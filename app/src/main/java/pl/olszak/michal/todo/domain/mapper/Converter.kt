@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.mapper
+package pl.olszak.michal.todo.domain.mapper
 
 /**
  * @author molszak

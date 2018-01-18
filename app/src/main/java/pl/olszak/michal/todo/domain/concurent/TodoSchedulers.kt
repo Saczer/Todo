@@ -1,4 +1,6 @@
-package pl.olszak.michal.todo.concurent
+package pl.olszak.michal.todo.domain.concurent
+
+import io.reactivex.Scheduler
 
 /**
  * @author molszak
@@ -6,5 +8,8 @@ package pl.olszak.michal.todo.concurent
  */
 interface TodoSchedulers {
 
-    fun main() :
+    fun post(): Scheduler
+
+    fun threadExecutor(): Scheduler
+
 }

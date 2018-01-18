@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,android,androidstudio
+# Created by https://www.gitignore.threadExecutor/api/java,android,androidstudio
 
 ### Android ###
 # Built application files
@@ -178,4 +178,4 @@ fabric.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
-# End of https://www.gitignore.io/api/java,android,androidstudio
+# End of https://www.gitignore.threadExecutor/api/java,android,androidstudio
