@@ -20,6 +20,7 @@ class ExecutorModule {
     fun providePostExecutionThread(postExecutionThread: UiThread): PostExecutionThread =
             postExecutionThread
 
+    @Provides
     fun provideTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers =
             todoSchedulersFacade
 }
