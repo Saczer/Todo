@@ -2,7 +2,7 @@ package pl.olszak.michal.todo.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import pl.olszak.michal.todo.MainActivity
+import pl.olszak.michal.todo.hello.MainActivity
 
 /**
  * @author molszak
