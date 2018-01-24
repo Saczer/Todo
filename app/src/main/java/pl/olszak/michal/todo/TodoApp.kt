@@ -20,12 +20,9 @@ class TodoApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-
-        val component = DaggerApplicationComponent
+        DaggerApplicationComponent
                 .builder()
-                .application(this)
-                .bind()
-        component.inject(this)
+                .create(this)
         plantTree()
     }
 
