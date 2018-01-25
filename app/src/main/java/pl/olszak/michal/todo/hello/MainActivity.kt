@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MainViewModel::class.java)
 
-        binding.viewModel = mainViewModel.provideBindable()
+
     }
+
 }
