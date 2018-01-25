@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="pl.olszak.michal.todo.hello.MainViewModel" />
+            type="pl.olszak.michal.todo.hello.MainViewObservable" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -23,10 +23,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            app:adapter="@{viewModel.adapter}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:adapter="@{viewModel.adapter}"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </layout>

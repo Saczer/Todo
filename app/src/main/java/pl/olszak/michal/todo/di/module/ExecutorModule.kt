@@ -1,26 +1,25 @@
 package pl.olszak.michal.todo.di.module
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import pl.olszak.michal.todo.di.scope.PerApplication
 import pl.olszak.michal.todo.domain.concurent.*
-import javax.inject.Singleton
 
 /**
  * @author molszak
  *         created on 18.01.2018.
  */
 @Module
-@Singleton
-class ExecutorModule {
+@PerApplication
+abstract class ExecutorModule {
 
-    @Provides
-    fun provideThreadExecutor(executor: TodoExecutor): ThreadExecutor = executor
+    @Binds
+    abstract fun provideThreadExecutor(executor: TodoExecutor): ThreadExecutor
 
-    @Provides
-    fun providePostExecutionThread(postExecutionThread: UiThread): PostExecutionThread =
-            postExecutionThread
+    @Binds
+    abstract fun providePostExecutionThread(postExecutionThread: UiThread): PostExecutionThread
 
-    @Provides
-    fun provideTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers =
-            todoSchedulersFacade
+    @Binds
+    abstract fun provideTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers
+
 }

@@ -1,21 +1,21 @@
 package pl.olszak.michal.todo.di.module
 
+import android.app.Application
 import android.content.Context
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import pl.olszak.michal.todo.TodoApp
-import javax.inject.Singleton
+import pl.olszak.michal.todo.di.scope.PerApplication
 
 /**
  * @author molszak
  *         created on 18.01.2018.
  */
-@Singleton
 @Module
-class ApplicationModule {
+@PerApplication
+abstract class ApplicationModule {
 
-    @Provides
-    fun provideContext(application : TodoApp) : Context =  application
+    @Binds
+    abstract fun provideContext(application: Application): Context
 
 
 }

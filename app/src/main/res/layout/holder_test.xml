@@ -6,7 +6,7 @@
 
         <variable
             name="obj"
-            type="pl.olszak.michal.todo.model.Item" />
+            type="pl.olszak.michal.todo.domain.model.Item" />
     </data>
 
     <LinearLayout

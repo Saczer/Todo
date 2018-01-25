@@ -5,7 +5,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import pl.olszak.michal.todo.di.DaggerApplicationComponent
+import pl.olszak.michal.todo.di.Injector
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,9 +20,7 @@ class TodoApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerApplicationComponent
-                .builder()
-                .create(this)
+        Injector.inject(this)
         plantTree()
     }
 
