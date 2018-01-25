@@ -20,6 +20,7 @@ fun bindText(view: TextView, number: Int) {
         view.text = text
     } catch (ex: ParseException) {
         Timber.e(ex)
+
     }
 }
 
