@@ -11,8 +11,11 @@ import pl.olszak.michal.todo.BR
 class BindingViewHolder constructor(private val binding: ViewDataBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(obj: Binding) {
+    fun bind(obj: Binding, callbacks: BindingCallbacks? = null) {
         binding.setVariable(BR.obj, obj)
+        callbacks?.let {
+            binding.setVariable(BR.callbacks, it)
+        }
         binding.executePendingBindings()
     }
 

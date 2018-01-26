@@ -2,14 +2,14 @@ package pl.olszak.michal.todo.hello
 
 import pl.olszak.michal.todo.domain.model.Item
 import pl.olszak.michal.todo.util.NameGenerator
-import pl.olszak.michal.todo.viewmodel.TodoViewModel
+import pl.olszak.michal.todo.viewmodel.BindableViewModel
 import javax.inject.Inject
 
 /**
  * @author molszak
  *         created on 19.01.2018.
  */
-class MainViewModel @Inject constructor() : TodoViewModel<MainViewObservable>() {
+class MainViewModel @Inject constructor() : BindableViewModel<MainViewObservable>() {
 
     private val items: List<Item>
     private val observable = MainViewObservable()

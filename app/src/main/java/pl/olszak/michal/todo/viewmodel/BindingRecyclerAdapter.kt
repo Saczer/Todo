@@ -13,6 +13,8 @@ import android.view.ViewGroup
  */
 abstract class BindingRecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
 
+    var callbacks: BindingCallbacks? = null
+
     protected abstract fun getBindingForPosition(position: Int): Binding
 
     @LayoutRes
@@ -33,7 +35,7 @@ abstract class BindingRecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>(
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         val binding = getBindingForPosition(position)
-        holder.bind(binding)
+        holder.bind(binding, callbacks)
     }
 
 }

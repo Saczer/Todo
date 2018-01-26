@@ -11,8 +11,8 @@ import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
  */
 @BindingAdapter(value = ["adapter"], requireAll = false)
 fun bindAdapter(view: RecyclerView, adapter: BindingRecyclerAdapter?) {
-    if (adapter != null) {
-        view.adapter = adapter
+    adapter?.let {
+        view.adapter = it
         view.layoutManager = LinearLayoutManager(view.context)
     }
 }

@@ -8,7 +8,8 @@ import java.util.*
  */
 object NameGenerator {
 
-    private val list = listOf("Michał",
+    private val list = listOf(
+            "Michał",
             "Agata",
             "Marek",
             "Asia",
@@ -17,7 +18,8 @@ object NameGenerator {
             "Maciej",
             "Darek",
             "Mateusz",
-            "Dariusz")
+            "Dariusz"
+    )
 
     fun getRandomName(): String {
         val position = Random().nextInt(list.size)

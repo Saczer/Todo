@@ -14,6 +14,7 @@ class ItemAdapter : SingleBindingRecyclerAdapter(R.layout.holder_test) {
     private val items = ArrayList<Item>()
 
     fun setItems(items: List<Item>) {
+        callbacks = ItemAdapterCallbacks(this)
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()

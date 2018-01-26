@@ -7,12 +7,17 @@
         <variable
             name="obj"
             type="pl.olszak.michal.todo.domain.model.Item" />
+
+        <variable
+            name="callbacks"
+            type="pl.olszak.michal.todo.hello.adapter.ItemAdapterCallbacks" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:onClick="@{(v) -> callbacks.onItemClick(v, obj)}">
 
         <ImageView
             android:layout_width="wrap_content"

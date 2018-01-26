@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.viewmodel.model
+package pl.olszak.michal.todo.data.model
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -11,7 +11,7 @@ import pl.olszak.michal.todo.viewmodel.Binding
  * Created by molszak.
  * 20.01.2018
  */
-open class Task : BaseObservable(), Binding {
+open class TaskBinding(val id : Long): BaseObservable(), Binding {
 
     @Bindable
     var title: String = ""
@@ -32,6 +32,13 @@ open class Task : BaseObservable(), Binding {
         }
 
     @Bindable
+    var done : Boolean = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.done)
+        }
+
+    @Bindable
     var visible: Boolean = true
         set(value) {
             field = value
@@ -49,8 +56,8 @@ open class Task : BaseObservable(), Binding {
 
     @Bindable
     fun getDeph(): Int {
-        if (parent != null && parent is Task) {
-            val parentTask: Task = parent as Task
+        if (parent != null && parent is TaskBinding) {
+            val parentTask: TaskBinding = parent as TaskBinding
             return parentTask.getDeph()
         }
 
