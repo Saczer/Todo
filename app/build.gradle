@@ -15,7 +15,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.schemaLocation" : "$projectDir/schemas".toString()]
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
     }
@@ -29,6 +29,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 ext {
@@ -40,9 +46,13 @@ ext {
     timberVersion = '4.6.0'
     lifecycleVersion = '1.1.0'
     roomVersion = '1.0.0'
+
     junitVersion = '4.12'
     runnerVersion = '1.0.1'
     espressoVersion = '3.0.1'
+    assertjVersion = '3.9.0'
+    mockitoKotlinVersion = '1.5.0'
+    robolectricVersion = '3.6.1'
 }
 
 configurations.all {
@@ -82,6 +92,11 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$lifecycleVersion"
 
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+    testImplementation "android.arch.persistence.room:testing:$roomVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
 }
