@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b4c86eb3130f8fdfa295f09458d6915e",
+    "identityHash": "1390e53f2a84370fed9d317209a3ee2c",
     "entities": [
       {
         "tableName": "tasks",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `parentId` INTEGER, `done` INTEGER NOT NULL, `iconId` TEXT NOT NULL, `priority` TEXT NOT NULL, `date` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `parentId` INTEGER, `done` INTEGER NOT NULL, `iconName` TEXT NOT NULL, `priority` INTEGER NOT NULL, `date` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -39,15 +39,15 @@
             "notNull": true
           },
           {
-            "fieldPath": "iconId",
-            "columnName": "iconId",
+            "fieldPath": "iconName",
+            "columnName": "iconName",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "priority",
             "columnName": "priority",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -69,7 +69,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b4c86eb3130f8fdfa295f09458d6915e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1390e53f2a84370fed9d317209a3ee2c\")"
     ]
   }
 }

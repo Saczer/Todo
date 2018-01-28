@@ -19,11 +19,6 @@
         android:gravity="center_vertical"
         android:onClick="@{(v) -> callbacks.onItemClick(v, obj)}">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

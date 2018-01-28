@@ -17,8 +17,8 @@ class TaskFactory {
                     "Some description",
                     null,
                     false,
-                    "some icon id",
-                    "some priority",
+                    "icon_id",
+                    0x0001,
                     System.currentTimeMillis()
             )
         }

@@ -17,8 +17,8 @@ data class CachedTask(
         val description: String,
         var parentId: Long? = null,
         var done: Boolean,
-        val iconId: String,
-        val priority: String,
+        val iconName: String,
+        val priority: Int,
         val date: Long
 
 )
