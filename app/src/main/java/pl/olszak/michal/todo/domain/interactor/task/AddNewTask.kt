@@ -18,7 +18,7 @@ class AddNewTask @Inject constructor(private val taskStore: TaskStore,
 
     override fun buildUseCaseCompletable(params: Task?): Completable {
         if (params == null) {
-            return Completable.complete()
+            return Completable.error(NullPointerException("Provided task should not be null"))
         }
         return taskStore.addTask(params)
     }

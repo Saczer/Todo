@@ -95,4 +95,21 @@ open class TodoDaoTest {
                 .assertValue { it.isEmpty() }
     }
 
+    @Test
+    fun `deleting one task from database deletes only this task`() {
+        val tasks = TaskFactory.createCachedTaskList(4)
+        tasks.forEach {
+            database.taskDao().insertCachedTask(it)
+        }
+
+        val task = tasks.first()
+
+        database.taskDao().clearCachedTaskWithId(task.id)
+        database.taskDao()
+                .getAllCachedTasks()
+                .test()
+                .assertValue { it.size == 3 }
+                .assertValue { it.none { it == task } }
+    }
+
 }

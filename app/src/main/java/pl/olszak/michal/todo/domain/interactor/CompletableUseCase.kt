@@ -16,6 +16,5 @@ abstract class CompletableUseCase<in Params> constructor(
         return buildUseCaseCompletable(params)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
-
     }
 }
