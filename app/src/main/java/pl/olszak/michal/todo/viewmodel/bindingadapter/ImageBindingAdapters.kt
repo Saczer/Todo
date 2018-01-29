@@ -6,8 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.data.Icon
-import pl.olszak.michal.todo.data.Priority
+import pl.olszak.michal.todo.data.model.Icon
+import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.util.TodoUtil
 
 /**

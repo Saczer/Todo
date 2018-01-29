@@ -10,11 +10,11 @@ import javax.inject.Inject
  *         created on 26.01.2018.
  */
 class TestTodoSchedulers @Inject constructor() : TodoSchedulers {
-    override fun post(): Scheduler {
+    override fun ui(): Scheduler {
         return Schedulers.trampoline()
     }
 
-    override fun threadExecutor(): Scheduler {
+    override fun io(): Scheduler {
         return Schedulers.trampoline()
     }
 }

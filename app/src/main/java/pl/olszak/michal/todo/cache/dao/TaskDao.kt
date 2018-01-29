@@ -21,6 +21,9 @@ abstract class TaskDao {
     @Query(DatabaseConstants.SELECT_TASK_BY_ID)
     abstract fun getCachedTaskById(id: Long): Flowable<CachedTask>
 
+    @Query(DatabaseConstants.DELETE_TASK_BY_ID)
+    abstract fun clearCachedTaskWithId(id: Long)
+
     @Query(DatabaseConstants.DELETE_ALL_TASKS)
     abstract fun clearAllCachedTasks()
 
@@ -28,3 +31,4 @@ abstract class TaskDao {
     abstract fun insertCachedTask(cachedTask: CachedTask)
 
 }
+

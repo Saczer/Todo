@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.data
+package pl.olszak.michal.todo.data.model
 
 /**
  * Created by molszak.

@@ -2,7 +2,10 @@ package pl.olszak.michal.todo.cache.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import org.threeten.bp.Instant
 import pl.olszak.michal.todo.cache.DatabaseConstants
+import pl.olszak.michal.todo.data.model.Icon
+import pl.olszak.michal.todo.data.model.Priority
 
 /**
  * @author molszak
@@ -13,12 +16,10 @@ data class CachedTask(
 
         @PrimaryKey
         var id: Long,
-        val title: String,
-        val description: String,
-        var parentId: Long? = null,
-        var done: Boolean,
-        val iconName: String,
-        val priority: Int,
-        val date: Long
-
+        var title: String,
+        var description: String? = null,
+        var done: Boolean = false,
+        var icon: Icon = Icon.NONE,
+        var priority: Priority = Priority.LOW,
+        var time: Instant? = null
 )

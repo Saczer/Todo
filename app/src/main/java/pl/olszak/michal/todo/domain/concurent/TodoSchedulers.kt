@@ -8,8 +8,8 @@ import io.reactivex.Scheduler
  */
 interface TodoSchedulers {
 
-    fun post(): Scheduler
+    fun ui(): Scheduler
 
-    fun threadExecutor(): Scheduler
+    fun io(): Scheduler
 
 }

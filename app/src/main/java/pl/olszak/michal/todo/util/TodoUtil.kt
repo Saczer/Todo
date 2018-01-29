@@ -5,8 +5,8 @@ import android.support.annotation.ColorInt
 import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.data.Icon
-import pl.olszak.michal.todo.data.Priority
+import pl.olszak.michal.todo.data.model.Icon
+import pl.olszak.michal.todo.data.model.Priority
 
 /**
  * Created by molszak.

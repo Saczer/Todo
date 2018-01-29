@@ -2,10 +2,13 @@ package pl.olszak.michal.todo.di.module
 
 import android.app.Application
 import android.arch.persistence.room.Room
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.todo.cache.DatabaseConstants
 import pl.olszak.michal.todo.cache.TodoDatabase
+import pl.olszak.michal.todo.data.TaskStore
+import pl.olszak.michal.todo.data.TaskStoreImpl
 import pl.olszak.michal.todo.di.scope.PerApplication
 
 /**
@@ -28,5 +31,8 @@ abstract class DatabaseModule {
                     .build()
         }
     }
+
+    @Binds
+    abstract fun bindTaskStore(taskStore: TaskStoreImpl): TaskStore
 
 }

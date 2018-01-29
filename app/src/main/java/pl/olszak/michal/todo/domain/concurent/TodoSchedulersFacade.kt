@@ -10,11 +10,11 @@ import javax.inject.Inject
  */
 class TodoSchedulersFacade @Inject constructor(private val postExecutionThread: PostExecutionThread,
                                                private val threadExecutor: ThreadExecutor) : TodoSchedulers {
-    override fun threadExecutor(): Scheduler {
+    override fun io(): Scheduler {
         return Schedulers.from(threadExecutor)
     }
 
-    override fun post(): Scheduler {
+    override fun ui(): Scheduler {
         return postExecutionThread.scheduler
     }
 }
