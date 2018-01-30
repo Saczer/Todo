@@ -1,6 +1,6 @@
 package pl.olszak.michal.todo.hello
 
-import pl.olszak.michal.todo.domain.model.Item
+import pl.olszak.michal.todo.data.model.Item
 import pl.olszak.michal.todo.util.NameGenerator
 import pl.olszak.michal.todo.viewmodel.BindableViewModel
 import javax.inject.Inject

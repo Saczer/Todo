@@ -11,14 +11,13 @@ import javax.inject.Inject
 class TaskConverter @Inject constructor() : Converter<CachedTask, Task> {
 
     override fun convertTo(cached: CachedTask): Task {
-        val binding = Task(cached.id)
-        binding.title = cached.title
-        binding.description = cached.description
-        binding.priority = cached.priority
-        binding.repeating = cached.repeating
-        binding.time = cached.time
-        binding.done = cached.done
-        return binding
+        return Task(cached.id,
+                cached.title,
+                cached.description,
+                cached.done,
+                cached.priority,
+                cached.repeating,
+                cached.time)
     }
 
     override fun convertFrom(model: Task): CachedTask {

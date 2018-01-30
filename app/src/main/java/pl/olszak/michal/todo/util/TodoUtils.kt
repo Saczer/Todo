@@ -3,6 +3,7 @@ package pl.olszak.michal.todo.util
 import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
+import android.view.View
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Priority
 
@@ -10,7 +11,7 @@ import pl.olszak.michal.todo.data.model.Priority
  * Created by molszak.
  * 27.01.2018
  */
-object TodoUtil {
+object TodoUtils {
 
     @ColorInt
     fun getColorForPriority(context: Context, priority: Priority): Int {
@@ -27,4 +28,12 @@ object TodoUtil {
         return (0xffffff - color)
     }
 
+}
+
+fun dpToPx(context: Context, value: Float): Float {
+    return value * context.resources.displayMetrics.density
+}
+
+fun isMatchParent(measureSpec: Int): Boolean {
+    return View.MeasureSpec.getMode(measureSpec) == View.MeasureSpec.EXACTLY
 }

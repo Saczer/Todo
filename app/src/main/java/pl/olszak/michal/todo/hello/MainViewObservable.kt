@@ -3,7 +3,7 @@ package pl.olszak.michal.todo.hello
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import pl.olszak.michal.todo.BR
-import pl.olszak.michal.todo.domain.model.Item
+import pl.olszak.michal.todo.data.model.Item
 import pl.olszak.michal.todo.hello.adapter.ItemAdapter
 import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
 

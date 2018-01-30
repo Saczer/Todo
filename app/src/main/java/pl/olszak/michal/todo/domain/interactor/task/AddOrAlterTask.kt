@@ -11,8 +11,9 @@ import javax.inject.Inject
  * @author molszak
  *         created on 29.01.2018.
  */
-class AddNewTask @Inject constructor(private val taskStore: TaskStore,
-                                     schedulers: TodoSchedulers
+class AddOrAlterTask @Inject constructor(
+        private val taskStore: TaskStore,
+        schedulers: TodoSchedulers
 ) : CompletableUseCase<Task>(schedulers) {
 
 

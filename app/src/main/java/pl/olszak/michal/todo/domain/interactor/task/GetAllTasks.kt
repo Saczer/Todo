@@ -13,7 +13,8 @@ import javax.inject.Inject
  */
 class GetAllTasks @Inject constructor(
         private val taskStore: TaskStore,
-        todoSchedulers: TodoSchedulers) : FlowableUseCase<List<Task>, Unit>(todoSchedulers) {
+        todoSchedulers: TodoSchedulers
+) : FlowableUseCase<List<Task>, Unit>(todoSchedulers) {
 
     override fun buildUseCase(params: Unit?): Flowable<List<Task>> {
         return taskStore.getAllTasks()

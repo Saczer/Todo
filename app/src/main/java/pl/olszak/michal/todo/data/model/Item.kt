@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.domain.model
+package pl.olszak.michal.todo.data.model
 
 import pl.olszak.michal.todo.viewmodel.Binding
 

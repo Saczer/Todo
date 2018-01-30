@@ -1,7 +1,7 @@
 package pl.olszak.michal.todo.hello.adapter
 
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.domain.model.Item
+import pl.olszak.michal.todo.data.model.Item
 import pl.olszak.michal.todo.viewmodel.Binding
 import pl.olszak.michal.todo.viewmodel.SingleBindingRecyclerAdapter
 

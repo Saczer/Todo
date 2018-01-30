@@ -6,11 +6,11 @@
 
         <variable
             name="obj"
-            type="pl.olszak.michal.todo.domain.model.Item" />
+            type="pl.olszak.michal.todo.data.model.Item" />
 
         <variable
             name="callbacks"
-            type="pl.olszak.michal.todo.hello.adapter.ItemAdapterCallbacks" />
+            type="pl.olszak.michal.todo.hello.adapter.ItemInteractionListener" />
     </data>
 
     <LinearLayout
