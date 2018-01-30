@@ -2,7 +2,6 @@ package pl.olszak.michal.todo.cache.model
 
 import android.arch.persistence.room.TypeConverter
 import org.threeten.bp.Instant
-import pl.olszak.michal.todo.data.model.Icon
 import pl.olszak.michal.todo.data.model.Priority
 
 /**
@@ -31,18 +30,6 @@ class TodoRoomConverters {
     @TypeConverter
     fun toTimestamp(instant: Instant?): Long? {
         return instant?.toEpochMilli()
-    }
-
-    @TypeConverter
-    fun fromIcon(icon: Icon?): String? {
-        return icon?.iconName
-    }
-
-    @TypeConverter
-    fun toIcon(name: String?): Icon? {
-        return name?.let {
-            Icon.getIcon(name)
-        }
     }
 
 }

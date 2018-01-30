@@ -2,7 +2,6 @@ package pl.olszak.michal.todo.cache.testutils
 
 import org.threeten.bp.Instant
 import pl.olszak.michal.todo.cache.model.CachedTask
-import pl.olszak.michal.todo.data.model.Icon
 import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.data.model.Task
 
@@ -20,7 +19,7 @@ class TaskFactory {
                     "Random title",
                     "Some description",
                     false,
-                    Icon.MEAL,
+                    false,
                     Priority.CRITICAL,
                     Instant.now()
             )
@@ -36,7 +35,7 @@ class TaskFactory {
             val binding = Task(DataFactory.randomLong())
             binding.title = "Some random title"
             binding.description = "Some description"
-            binding.icon = Icon.MEAL
+            binding.repeating = true
             binding.priority = Priority.CRITICAL
             binding.done = false
             binding.time = Instant.now()

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package pl.olszak.michal.todo.util
 
 import timber.log.Timber
@@ -19,6 +21,8 @@ inline fun ifPlanted(action: () -> Unit) {
 
 inline fun logE(message: () -> String) = ifPlanted { Timber.e(message()) }
 
-inline fun logE(throwable: Throwable, message: () -> String) = ifPlanted { Timber.e(throwable, message()) }
+inline fun logE(throwable: Throwable, message: () -> String) = ifPlanted {
+    Timber.e(throwable, message())
+}
 
 fun logE(throwable: Throwable) = ifPlanted { Timber.e(throwable) }

@@ -41,7 +41,7 @@ open class TaskConverterTest {
         assertEquals(binding.id, cached.id)
         assertEquals(binding.title, cached.title)
         assertEquals(binding.description, cached.description)
-        assertEquals(binding.icon, cached.icon)
+        assertEquals(binding.repeating, cached.repeating)
         assertEquals(binding.priority, cached.priority)
         assertEquals(binding.time, cached.time)
     }

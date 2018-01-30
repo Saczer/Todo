@@ -8,14 +8,14 @@ import javax.inject.Inject
  * @author molszak
  *         created on 29.01.2018.
  */
-class TaskConverter @Inject constructor(): Converter<CachedTask, Task> {
+class TaskConverter @Inject constructor() : Converter<CachedTask, Task> {
 
     override fun convertTo(cached: CachedTask): Task {
         val binding = Task(cached.id)
         binding.title = cached.title
         binding.description = cached.description
         binding.priority = cached.priority
-        binding.icon = cached.icon
+        binding.repeating = cached.repeating
         binding.time = cached.time
         binding.done = cached.done
         return binding
@@ -27,7 +27,7 @@ class TaskConverter @Inject constructor(): Converter<CachedTask, Task> {
                 model.title,
                 model.description,
                 model.done,
-                model.icon,
+                model.repeating,
                 model.priority,
                 model.time
         )
