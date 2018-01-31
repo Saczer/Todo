@@ -13,14 +13,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/task_list_item_height">
+        android:layout_height="@dimen/tasks_item_height">
 
         <pl.olszak.michal.todo.view.circle.CircleView
             android:id="@+id/circle"
-            android:layout_width="@dimen/task_list_item_circle_size"
-            android:layout_height="@dimen/task_list_item_circle_size"
-            android:layout_marginStart="@dimen/task_list_item_margin_horizontal"
-            android:layout_marginTop="@dimen/task_list_item_margin_vertical"
+            android:layout_width="@dimen/tasks_item_circle_size"
+            android:layout_height="@dimen/tasks_item_circle_size"
+            android:layout_marginStart="@dimen/tasks_item_margin_horizontal"
+            android:layout_marginTop="@dimen/tasks_item_margin_vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:priority="@{obj.priority}" />
@@ -30,7 +30,7 @@
             style="@style/TaskList.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/task_list_item_margin_horizontal"
+            android:layout_marginStart="@dimen/tasks_item_margin_horizontal"
             android:text="@{obj.title}"
             app:layout_constraintBottom_toBottomOf="@+id/circle"
             app:layout_constraintStart_toEndOf="@+id/circle"

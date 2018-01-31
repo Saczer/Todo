@@ -9,6 +9,7 @@ import pl.olszak.michal.todo.di.ViewModelFactory
 import pl.olszak.michal.todo.di.ViewModelKey
 import pl.olszak.michal.todo.di.scope.PerActivity
 import pl.olszak.michal.todo.hello.MainViewModel
+import pl.olszak.michal.todo.tasks.TasksViewModel
 
 /**
  * @author molszak
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TasksViewModel::class)
+    abstract fun bindTasksViewModel(viewModel: TasksViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

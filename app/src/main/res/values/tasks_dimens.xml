@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tasks_item_height">64dp</dimen>
+    <dimen name="tasks_item_margin_horizontal">16dp</dimen>
+    <dimen name="tasks_item_margin_vertical">8dp</dimen>
+    <dimen name="tasks_item_circle_size">24dp</dimen>
+    <dimen name="tasks_bottom_elevation">7dp</dimen>
+    <dimen name="tasks_fab_elevation">9dp</dimen>
+    <dimen name="tasks_bottom_navigation_height">56dp</dimen>
+    <dimen name="tasks_fab_margin_bottom">72dp</dimen>
+    <dimen name="tasks_fab_margin_right">24dp</dimen>
+</resources>

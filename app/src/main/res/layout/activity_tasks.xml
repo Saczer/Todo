@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="contract"
+            type="pl.olszak.michal.todo.tasks.TasksContract" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/bottom_navigation_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/fab_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tasks_bottom_navigation_height">
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_plus_white_24dp"
+                app:elevation="@dimen/tasks_fab_elevation"
+                app:fabSize="normal"
+                app:layout_anchor="@id/fragment_container"
+                app:layout_anchorGravity="bottom|end"
+                app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior"
+                app:useCompatPadding="true" />
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tasks_bottom_navigation_height"
+            android:background="@drawable/bottom_navigation_layer"
+            app:elevation="@dimen/tasks_bottom_elevation"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:menu="@menu/bottom_navigation" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

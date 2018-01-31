@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="task_list_item_height">64dp</dimen>
-    <dimen name="task_list_item_margin_horizontal">16dp</dimen>
-    <dimen name="task_list_item_margin_vertical">8dp</dimen>
-    <dimen name="task_list_item_circle_size">24dp</dimen>
-</resources>
