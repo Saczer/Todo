@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -43,7 +44,7 @@ class TasksActivity : AppCompatActivity(), HasSupportFragmentInjector {
             navigateToTasks()
         } else {
             if (binding.bottomNavigation.selectedItemId == R.id.settings) {
-                binding.fab.hide()
+                binding.fab.visibility = View.INVISIBLE
             }
         }
 
@@ -73,14 +74,12 @@ class TasksActivity : AppCompatActivity(), HasSupportFragmentInjector {
     private fun navigateToSettings() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, SettingsFragment())
-                .addToBackStack(null)
                 .commit()
     }
 
     private fun navigateToTasks() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, TasksFragment())
-                .addToBackStack(null)
                 .commit()
     }
 
