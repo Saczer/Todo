@@ -13,8 +13,8 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
-import pl.olszak.michal.todo.tasks.list.TasksFragment
-import pl.olszak.michal.todo.tasks.settings.SettingsFragment
+import pl.olszak.michal.todo.settings.SettingsFragment
+import pl.olszak.michal.todo.tasklist.TasksFragment
 import javax.inject.Inject
 
 /**
@@ -41,6 +41,10 @@ class TasksActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         if (savedInstanceState == null) {
             navigateToTasks()
+        } else {
+            if (binding.bottomNavigation.selectedItemId == R.id.settings) {
+                binding.fab.hide()
+            }
         }
 
         binding.contract = tasksViewModel

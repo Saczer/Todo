@@ -28,26 +28,22 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
+                style="@style/Task.Fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tasks_fab_margin"
                 android:src="@mipmap/ic_plus_white_24dp"
-                app:elevation="@dimen/tasks_fab_elevation"
-                app:fabSize="normal"
                 app:layout_anchor="@id/fragment_container"
                 app:layout_anchorGravity="bottom|end"
-                app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior"
-                app:useCompatPadding="true" />
+                app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior" />
 
         </android.support.design.widget.CoordinatorLayout>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
+            style="@style/Task.BottomMenu"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tasks_bottom_navigation_height"
-            android:background="@drawable/bottom_navigation_layer"
-            app:elevation="@dimen/tasks_bottom_elevation"
-            app:itemIconTint="@drawable/nav_item_color_state"
-            app:itemTextColor="@drawable/nav_item_color_state"
             app:layout_behavior="@string/bottom_sheet_behavior"
             app:menu="@menu/bottom_navigation" />
 

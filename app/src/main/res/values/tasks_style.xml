@@ -3,11 +3,25 @@
 
     <style name="TaskList" />
 
+    <style name="Task" />
+
     <style name="TaskList.Title">
         <item name="android:gravity">left</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/blackOpacity87</item>
+    </style>
+
+    <style name="Task.Fab">
+        <item name="elevation">@dimen/tasks_fab_elevation</item>
+        <item name="fabSize">normal</item>
+    </style>
+
+    <style name="Task.BottomMenu">
+        <item name="elevation">@dimen/tasks_bottom_elevation</item>
+        <item name="itemIconTint">@drawable/nav_item_color_state</item>
+        <item name="itemTextColor">@drawable/nav_item_color_state</item>
+        <item name="android:background">@drawable/bottom_navigation_layer</item>
     </style>
 
 </resources>

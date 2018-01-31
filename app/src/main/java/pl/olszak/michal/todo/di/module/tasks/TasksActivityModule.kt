@@ -3,8 +3,8 @@ package pl.olszak.michal.todo.di.module.tasks
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import pl.olszak.michal.todo.di.scope.PerActivity
-import pl.olszak.michal.todo.tasks.list.TasksFragment
-import pl.olszak.michal.todo.tasks.settings.SettingsFragment
+import pl.olszak.michal.todo.tasklist.TasksFragment
+import pl.olszak.michal.todo.settings.SettingsFragment
 
 /**
  * @author molszak

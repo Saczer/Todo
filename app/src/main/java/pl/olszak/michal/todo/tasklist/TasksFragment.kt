@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.tasks.list
+package pl.olszak.michal.todo.tasklist
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
