@@ -10,4 +10,6 @@ interface Navigator {
 
     fun navigateToTaskList()
 
+    fun changeTheme()
+
 }

@@ -8,7 +8,7 @@
     <dimen name="tasks_bottom_elevation">7dp</dimen>
     <dimen name="tasks_bottom_navigation_height">56dp</dimen>
 
-    <dimen name="tasks_container_margin">@dimen/tasks_bottom_navigation_height</dimen>
+    <dimen name="tasks_container_margin">@dimen/toolbar_height</dimen>
 
     <dimen name="tasks_fab_margin">24dp</dimen>
     <dimen name="tasks_fab_elevation">9dp</dimen>

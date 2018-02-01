@@ -14,12 +14,12 @@ import pl.olszak.michal.todo.domain.concurent.*
 abstract class ExecutorModule {
 
     @Binds
-    abstract fun provideThreadExecutor(executor: TodoExecutor): ThreadExecutor
+    abstract fun bindThreadExecutor(executor: TodoExecutor): ThreadExecutor
 
     @Binds
-    abstract fun providePostExecutionThread(postExecutionThread: UiThread): PostExecutionThread
+    abstract fun bindPostExecutionThread(postExecutionThread: UiThread): PostExecutionThread
 
     @Binds
-    abstract fun provideTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers
+    abstract fun bindTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers
 
 }

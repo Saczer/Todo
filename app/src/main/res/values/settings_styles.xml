@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Settings" />
+
+    <style name="Settings.Toolbar">
+        <item name="titleTextColor">?android:attr/colorPrimary</item>
+        <item name="android:titleTextAppearance">@style/Settings.Toolbar.Title</item>
+    </style>
+
+    <style name="Settings.Toolbar.Title">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+</resources>

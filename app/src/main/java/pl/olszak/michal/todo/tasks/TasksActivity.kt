@@ -4,86 +4,50 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
-import pl.olszak.michal.todo.settings.SettingsFragment
-import pl.olszak.michal.todo.tasklist.TasksFragment
+import pl.olszak.michal.todo.di.FragmentInjectingActivity
+import pl.olszak.michal.todo.navigation.AndroidNavigator
+import pl.olszak.michal.todo.navigation.Navigator
 import javax.inject.Inject
 
 /**
  * @author molszak
  *         created on 30.01.2018.
  */
-class TasksActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class TasksActivity : FragmentInjectingActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var navigator: Navigator
 
     private lateinit var tasksViewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (intent != null) {
+            intent.extras?.let {
+                if (it.getBoolean(AndroidNavigator.SHOULD_CHANGE_THEME)) {
+                    setTheme(R.style.NormalTheme)
+                }
+            }
+        }
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
         val binding: ActivityTasksBinding = DataBindingUtil.setContentView(this, R.layout.activity_tasks)
 
         tasksViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TasksViewModel::class.java)
+        tasksViewModel.setNavigator(navigator)
 
-        if (savedInstanceState == null) {
-            navigateToTasks()
-        } else {
+        if (savedInstanceState != null) {
             if (binding.bottomNavigation.selectedItemId == R.id.settings) {
                 binding.fab.visibility = View.INVISIBLE
             }
+        } else {
+            navigator.navigateToTaskList()
         }
-
         binding.contract = tasksViewModel
-
-        binding.fab.setOnClickListener({
-            Snackbar.make(binding.fabContainer, R.string.settings, Snackbar.LENGTH_LONG).show()
-        })
-
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.settings -> {
-                    navigateToSettings()
-                    binding.fab.hide()
-                    true
-                }
-                R.id.task_list -> {
-                    navigateToTasks()
-                    binding.fab.show()
-                    true
-                }
-                else -> false
-            }
-        }
     }
 
-    private fun navigateToSettings() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SettingsFragment())
-                .commit()
-    }
-
-    private fun navigateToTasks() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, TasksFragment())
-                .commit()
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return fragmentInjector
-    }
 }

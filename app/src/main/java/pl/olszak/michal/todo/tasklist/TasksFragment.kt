@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.databinding.FragmentTasksBinding
+import pl.olszak.michal.todo.databinding.FragmentAllTasksBinding
 import pl.olszak.michal.todo.di.Injectable
 
 /**
@@ -16,13 +16,18 @@ import pl.olszak.michal.todo.di.Injectable
  */
 class TasksFragment : Fragment(), Injectable {
 
-    private lateinit var binding: FragmentTasksBinding
+    private lateinit var binding: FragmentAllTasksBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_tasks,
+                R.layout.fragment_all_tasks,
                 container,
                 false)
+
+        val toolbar = binding.toolbar
+        toolbar.apply {
+            title = getString(R.string.all_tasks)
+        }
 
         return binding.root
     }

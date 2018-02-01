@@ -7,8 +7,9 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/AllTasks.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tasks_bottom_navigation_height" />
+            android:layout_height="@dimen/all_tasks_toolbar_height" />
 
         <pl.olszak.michal.todo.view.TaskRecyclerView
             android:id="@+id/tasks"

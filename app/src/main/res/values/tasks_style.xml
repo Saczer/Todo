@@ -18,6 +18,9 @@
     </style>
 
     <style name="Task.BottomMenu">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
         <item name="elevation">@dimen/tasks_bottom_elevation</item>
         <item name="itemIconTint">@drawable/nav_item_color_state</item>
         <item name="itemTextColor">@drawable/nav_item_color_state</item>
