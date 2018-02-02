@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
 import pl.olszak.michal.todo.R
+import pl.olszak.michal.todo.cache.model.ThemePalette
 import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.util.TodoUtils
 import pl.olszak.michal.todo.view.circle.CircleView
@@ -15,7 +16,7 @@ import pl.olszak.michal.todo.view.circle.CircleView
 @BindingAdapter(value = ["priority"], requireAll = false)
 fun bindPriority(view: ImageView, priority: Priority?) {
     val color = if (priority != null) {
-        TodoUtils.getColorForPriority(view.context, priority)
+        TodoUtils.getColor(view.context, priority)
     } else {
         ContextCompat.getColor(view.context, R.color.white)
     }
@@ -25,6 +26,15 @@ fun bindPriority(view: ImageView, priority: Priority?) {
 @BindingAdapter(value = ["priority"], requireAll = false)
 fun bindPriority(view: CircleView, priority: Priority?) {
     priority?.let {
-        view.setPriority(priority)
+        val color = TodoUtils.getColor(view.context, it)
+        view.setColor(color)
+    }
+}
+
+@BindingAdapter(value = ["themePalette"], requireAll = false)
+fun bindThemePalette(view: CircleView, themePalette: ThemePalette?) {
+    themePalette?.let {
+        val color = TodoUtils.getColor(view.context, it)
+        view.setColor(color)
     }
 }

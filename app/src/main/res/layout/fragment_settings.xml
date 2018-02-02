@@ -20,6 +20,34 @@
             android:layout_height="@dimen/settings_toolbar_height"
             app:title="@string/settings" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <pl.olszak.michal.todo.view.preferences.PreferenceTitle
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_item_height"
+                    app:pt_title="@string/preferences" />
+
+                <pl.olszak.michal.todo.view.circle.ThemeView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:tv_color="@color/deepOrange" />
+
+                <pl.olszak.michal.todo.view.circle.ThemeView
+                    android:id="@+id/thSecond"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:tv_color="@color/deepOrange" />
+            </LinearLayout>
+        </ScrollView>
+
         <TextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"

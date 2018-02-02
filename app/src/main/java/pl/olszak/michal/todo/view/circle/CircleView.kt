@@ -9,8 +9,6 @@ import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.view.View
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.data.model.Priority
-import pl.olszak.michal.todo.util.TodoUtils
 
 /**
  * @author molszak
@@ -61,8 +59,4 @@ class CircleView @JvmOverloads constructor(
         return circleColor
     }
 
-    fun setPriority(priority: Priority) {
-        val priorityColor = TodoUtils.getColorForPriority(context, priority)
-        setColor(priorityColor)
-    }
 }

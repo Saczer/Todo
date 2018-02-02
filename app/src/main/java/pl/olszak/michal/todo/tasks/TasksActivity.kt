@@ -6,10 +6,11 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
 import pl.olszak.michal.todo.R
+import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
-import pl.olszak.michal.todo.navigation.AndroidNavigator
 import pl.olszak.michal.todo.navigation.Navigator
+import pl.olszak.michal.todo.util.TodoUtils
 import javax.inject.Inject
 
 /**
@@ -22,18 +23,16 @@ class TasksActivity : FragmentInjectingActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var navigator: Navigator
+    @Inject
+    lateinit var todoPreferences: TodoPreferences
 
     private lateinit var tasksViewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (intent != null) {
-            intent.extras?.let {
-                if (it.getBoolean(AndroidNavigator.SHOULD_CHANGE_THEME)) {
-                    setTheme(R.style.NormalTheme)
-                }
-            }
-        }
         super.onCreate(savedInstanceState)
+        val themePalette = todoPreferences.getThemeColor()
+        setTheme(TodoUtils.getStyle(themePalette))
+
         val binding: ActivityTasksBinding = DataBindingUtil.setContentView(this, R.layout.activity_tasks)
 
         tasksViewModel = ViewModelProviders.of(this, viewModelFactory)
@@ -47,6 +46,7 @@ class TasksActivity : FragmentInjectingActivity() {
         } else {
             navigator.navigateToTaskList()
         }
+
         binding.contract = tasksViewModel
     }
 

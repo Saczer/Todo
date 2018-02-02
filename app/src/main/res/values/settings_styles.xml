@@ -5,12 +5,20 @@
 
     <style name="Settings.Toolbar">
         <item name="titleTextColor">?android:attr/colorPrimary</item>
-        <item name="android:titleTextAppearance">@style/Settings.Toolbar.Title</item>
+        <item name="titleTextAppearance">@style/Settings.Toolbar.Title</item>
     </style>
 
     <style name="Settings.Toolbar.Title">
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
         <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="Settings.Title">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/blackOpacity87</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold|italic</item>
     </style>
 </resources>

@@ -26,6 +26,8 @@ class SettingsFragment : Fragment(), Injectable {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         binding.item = item
+        binding.thSecond.changeState()
+
         return binding.root
     }
 }

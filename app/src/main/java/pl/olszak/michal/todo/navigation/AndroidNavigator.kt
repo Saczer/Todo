@@ -17,10 +17,9 @@ import javax.inject.Inject
  */
 class AndroidNavigator @Inject constructor(private val activity: AppCompatActivity?) : Navigator {
 
-    override fun changeTheme() {
+    override fun restartActivity() {
         activity?.let {
             val intent = Intent(it, TasksActivity::class.java)
-            intent.putExtra(SHOULD_CHANGE_THEME, true)
             it.startActivity(intent)
             it.finish()
         }
@@ -74,7 +73,6 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
         private const val DEFAULT_TRANSITION_TIME = 200L
         private const val ENTER_FADE_TRANSITION_TIME = 220L
 
-        const val SHOULD_CHANGE_THEME = "should_change_theme"
     }
 
 
