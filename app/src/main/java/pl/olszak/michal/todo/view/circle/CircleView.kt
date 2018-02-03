@@ -2,13 +2,13 @@ package pl.olszak.michal.todo.view.circle
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewOutlineProvider
 import pl.olszak.michal.todo.R
+import pl.olszak.michal.todo.util.calculateBounds
 
 /**
  * @author molszak
@@ -21,6 +21,9 @@ class CircleView @JvmOverloads constructor(
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var circleColor: Int = Color.WHITE
 
+    private val circleRect = RectF()
+    private var circleRadius = 0f
+
     init {
         initializeParameters(attrs)
     }
@@ -30,6 +33,7 @@ class CircleView @JvmOverloads constructor(
         circlePaint.apply {
             color = circleColor
         }
+        setup()
     }
 
     private fun initializeAttributes(attrs: AttributeSet?) {
@@ -42,8 +46,28 @@ class CircleView @JvmOverloads constructor(
         }
     }
 
+    private fun setup() {
+        if (width == 0 && height == 0) {
+            return
+        }
+
+        circleRect.set(calculateBounds(this))
+        circleRadius = Math.min(circleRect.height() / 2f, circleRect.width() / 2f)
+        invalidate()
+    }
+
+    override fun setPadding(left: Int, top: Int, right: Int, bottom: Int) {
+        super.setPadding(left, top, right, bottom)
+        setup()
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        setup()
+    }
+
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawCircle(width / 2f, height / 2f, width / 2f, circlePaint)
+        canvas?.drawCircle(circleRect.centerX(), circleRect.centerY(), circleRadius, circlePaint)
     }
 
     fun setColor(@ColorInt color: Int) {
@@ -57,6 +81,15 @@ class CircleView @JvmOverloads constructor(
     @ColorInt
     fun getColor(): Int {
         return circleColor
+    }
+
+    private inner class OutlineProvider : ViewOutlineProvider() {
+        override fun getOutline(view: View?, outline: Outline?) {
+            val bounds = Rect()
+            circleRect.roundOut(bounds)
+            outline?.setRoundRect(bounds, bounds.width() / 2f)
+        }
+
     }
 
 }
