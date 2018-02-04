@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <pl.olszak.michal.todo.view.circle.ThemeView
+        android:id="@+id/orange"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp" />
+
+    <pl.olszak.michal.todo.view.circle.ThemeView
+        android:id="@+id/pink"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="6dp" />
+
+    <pl.olszak.michal.todo.view.circle.ThemeView
+        android:id="@+id/black"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="6dp" />
+
+
+</merge>

@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewOutlineProvider
 import pl.olszak.michal.todo.R
+import pl.olszak.michal.todo.cache.model.ThemePalette
 import pl.olszak.michal.todo.util.TodoUtils
 import pl.olszak.michal.todo.util.calculateBounds
 
@@ -26,7 +27,7 @@ class ThemeView @JvmOverloads constructor(
         private const val STROKE = 6f
     }
 
-    private var state: ThemeView.State = State.SELECTED
+    private var state: ThemeView.State = State.IDLE
 
     private val checkedDrawable: Drawable
     private val drawableGravity = Gravity.CENTER
@@ -40,6 +41,17 @@ class ThemeView @JvmOverloads constructor(
     private val circlePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val circleRect = RectF()
     private var circleRadius = 0f
+
+    var listener: OnStateChangeListener? = null
+    var themePalette: ThemePalette? = null
+        set(value) {
+            if (field != value && value != null) {
+                field = value
+                circleColor = TodoUtils.getColor(context, value)
+                invalidateColor()
+                invalidate()
+            }
+        }
 
     enum class State {
 
@@ -56,17 +68,6 @@ class ThemeView @JvmOverloads constructor(
     init {
         initializeAttributes(attrs)
         checkedDrawable = CheckedDrawable(context)
-        circlePaint.apply {
-            color = circleColor
-        }
-        borderColor.apply {
-            color = TodoUtils.darkenColor(circleColor, FACTOR)
-            strokeWidth = STROKE
-            style = Paint.Style.STROKE
-            strokeJoin = Paint.Join.ROUND
-            strokeCap = Paint.Cap.ROUND
-        }
-
         outlineProvider = OutlineProvider()
         setup()
     }
@@ -104,6 +105,13 @@ class ThemeView @JvmOverloads constructor(
         setup()
     }
 
+    override fun performClick(): Boolean {
+        if (state != State.SELECTED) {
+            changeState()
+        }
+        return super.performClick()
+    }
+
     private fun setup() {
         if (width == 0 && height == 0) {
             return
@@ -131,18 +139,33 @@ class ThemeView @JvmOverloads constructor(
         checkedDrawable.bounds = drawableBounds
     }
 
-    fun setColor(@ColorInt color: Int) {
-        circleColor = color
-        invalidate()
+    private fun invalidateColor() {
+        circlePaint.apply {
+            color = circleColor
+        }
+        borderColor.apply {
+            color = TodoUtils.darkenColor(circleColor, FACTOR)
+            strokeWidth = STROKE
+            style = Paint.Style.STROKE
+            strokeJoin = Paint.Join.ROUND
+            strokeCap = Paint.Cap.ROUND
+        }
     }
 
     fun changeState() {
         state = state.change()
+        listener?.onStateChange(this, state)
         invalidate()
     }
 
     fun getState(): State {
         return state
+    }
+
+    interface OnStateChangeListener {
+
+        fun onStateChange(view: ThemeView, state: State)
+
     }
 
     private inner class OutlineProvider : ViewOutlineProvider() {
