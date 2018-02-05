@@ -5,8 +5,6 @@ import android.databinding.ObservableField
 import android.view.MenuItem
 import android.view.View
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.cache.dao.TodoPreferences
-import pl.olszak.michal.todo.cache.model.ThemePalette
 import pl.olszak.michal.todo.navigation.Navigator
 import javax.inject.Inject
 
@@ -14,14 +12,13 @@ import javax.inject.Inject
  * @author molszak
  *         created on 31.01.2018.
  */
-class TasksViewModel @Inject constructor(private val todoPreferences: TodoPreferences) : ViewModel(), TasksContract {
+class TasksViewModel @Inject constructor() : ViewModel(), TasksContract {
 
     override val visibility: ObservableField<Boolean> = ObservableField(true)
-    private var navigator: Navigator? = null
+    var navigator: Navigator? = null
 
     override fun onClickAdd(view: View) {
-        todoPreferences.setThemePalette(ThemePalette.ORANGE)
-        navigator?.restartActivity()
+        TODO("create new task by launching transparent fragment on top of view")
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -42,10 +39,6 @@ class TasksViewModel @Inject constructor(private val todoPreferences: TodoPrefer
             }
             else -> return false
         }
-    }
-
-    fun setNavigator(navigator: Navigator) {
-        this.navigator = navigator
     }
 
     override fun onCleared() {

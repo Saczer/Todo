@@ -10,4 +10,5 @@ import pl.olszak.michal.todo.di.scope.PerFragment
 @PerFragment
 @Module
 abstract class TasksFragmentModule {
+
 }

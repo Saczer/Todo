@@ -10,6 +10,6 @@ interface Navigator {
 
     fun navigateToTaskList()
 
-    fun restartActivity()
+    fun needsRestartSettingsChange()
 
 }

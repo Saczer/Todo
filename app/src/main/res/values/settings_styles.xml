@@ -8,6 +8,12 @@
         <item name="titleTextAppearance">@style/Settings.Toolbar.Title</item>
     </style>
 
+    <style name="Settings.Container">
+        <item name="android:divider">@drawable/divider</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+
     <style name="Settings.Toolbar.Title">
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
@@ -19,6 +25,14 @@
         <item name="android:fontFamily">monospace</item>
         <item name="android:textColor">@color/blackOpacity87</item>
         <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Settings.Label">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/blackOpacity54</item>
+        <item name="android:textStyle">normal</item>
     </style>
 </resources>

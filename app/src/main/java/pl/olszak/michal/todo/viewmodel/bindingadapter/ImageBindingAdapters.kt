@@ -31,10 +31,3 @@ fun bindPriority(view: CircleView, priority: Priority?) {
     }
 }
 
-@BindingAdapter(value = ["themePalette"], requireAll = false)
-fun bindThemePalette(view: CircleView, themePalette: ThemePalette?) {
-    themePalette?.let {
-        val color = TodoUtils.getColor(view.context, it)
-        view.setColor(color)
-    }
-}

@@ -17,9 +17,15 @@ import javax.inject.Inject
  */
 class AndroidNavigator @Inject constructor(private val activity: AppCompatActivity?) : Navigator {
 
-    override fun restartActivity() {
+    private val settingsFragment = SettingsFragment()
+    private val tasksFragment = TasksFragment()
+
+    override fun needsRestartSettingsChange() {
         activity?.let {
             val intent = Intent(it, TasksActivity::class.java)
+            intent.apply {
+                putExtra(SETTINGS_CHANGE, true)
+            }
             it.startActivity(intent)
             it.finish()
         }
@@ -28,7 +34,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
     override fun navigateToSettings() {
         activity?.let {
             val transaction = it.supportFragmentManager.beginTransaction()
-            val next = SettingsFragment()
+            val next = settingsFragment
             val previous = it.supportFragmentManager.findFragmentById(R.id.fragment_container)
             if (previous is SettingsFragment) {
                 return
@@ -50,7 +56,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
     override fun navigateToTaskList() {
         activity?.let {
             val transaction = it.supportFragmentManager.beginTransaction()
-            val next = TasksFragment()
+            val next = tasksFragment
             val previous = it.supportFragmentManager.findFragmentById(R.id.fragment_container)
             if (previous is TasksFragment) {
                 return
@@ -72,7 +78,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
     companion object {
         private const val DEFAULT_TRANSITION_TIME = 200L
         private const val ENTER_FADE_TRANSITION_TIME = 220L
-
+        const val SETTINGS_CHANGE = "settings_change_intent"
     }
 
 

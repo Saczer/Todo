@@ -32,13 +32,13 @@ class TaskFactory {
         }
 
         fun createTaskBinding(): Task {
-            val binding = Task(DataFactory.randomLong())
-            binding.title = "Some random title"
-            binding.description = "Some description"
-            binding.repeating = true
-            binding.priority = Priority.CRITICAL
-            binding.done = false
-            binding.time = Instant.now()
+            val binding = Task(DataFactory.randomLong(),
+                    "Some random title",
+                    "Some description",
+                    false,
+                    Priority.CRITICAL,
+                    true,
+                    Instant.now())
             return binding
         }
     }

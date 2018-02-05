@@ -5,22 +5,22 @@
 
     <pl.olszak.michal.todo.view.circle.ThemeView
         android:id="@+id/orange"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="6dp" />
+        android:layout_width="@dimen/themegroup_view_size"
+        android:layout_height="@dimen/themegroup_view_size"
+        android:layout_marginEnd="@dimen/themegroup_margin"
+        android:layout_marginStart="@dimen/themegroup_margin" />
 
     <pl.olszak.michal.todo.view.circle.ThemeView
         android:id="@+id/pink"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="6dp" />
+        android:layout_width="@dimen/themegroup_view_size"
+        android:layout_height="@dimen/themegroup_view_size"
+        android:layout_marginEnd="@dimen/themegroup_margin" />
 
     <pl.olszak.michal.todo.view.circle.ThemeView
         android:id="@+id/black"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="6dp" />
+        android:layout_width="@dimen/themegroup_view_size"
+        android:layout_height="@dimen/themegroup_view_size"
+        android:layout_marginEnd="@dimen/themegroup_margin" />
 
 
 </merge>

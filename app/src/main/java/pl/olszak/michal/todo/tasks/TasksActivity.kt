@@ -4,11 +4,11 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.view.View
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
+import pl.olszak.michal.todo.navigation.AndroidNavigator
 import pl.olszak.michal.todo.navigation.Navigator
 import pl.olszak.michal.todo.util.TodoUtils
 import javax.inject.Inject
@@ -37,14 +37,22 @@ class TasksActivity : FragmentInjectingActivity() {
 
         tasksViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TasksViewModel::class.java)
-        tasksViewModel.setNavigator(navigator)
+        tasksViewModel.navigator = navigator
 
+        //todo: this is violation of mvvm should be done somewhere else
         if (savedInstanceState != null) {
             if (binding.bottomNavigation.selectedItemId == R.id.settings) {
-                binding.fab.visibility = View.INVISIBLE
+                tasksViewModel.visibility.set(false)
             }
         } else {
-            navigator.navigateToTaskList()
+            val changedSettings = intent.getBooleanExtra(AndroidNavigator.SETTINGS_CHANGE, false)
+            if (changedSettings) {
+                navigator.navigateToSettings()
+                tasksViewModel.visibility.set(false)
+                binding.bottomNavigation.selectedItemId = R.id.settings
+            } else {
+                navigator.navigateToTaskList()
+            }
         }
 
         binding.contract = tasksViewModel

@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.os.Parcelable
 import android.support.annotation.ColorInt
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.view.ViewOutlineProvider
+import android.widget.Checkable
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.model.ThemePalette
 import pl.olszak.michal.todo.util.TodoUtils
@@ -20,14 +23,16 @@ import pl.olszak.michal.todo.util.calculateBounds
  */
 class ThemeView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr), Checkable {
 
     companion object {
         private const val FACTOR = .8f
         private const val STROKE = 6f
+        private const val STATE = "SavedInstanceState"
+        private const val CHECKED = "Checked"
     }
 
-    private var state: ThemeView.State = State.IDLE
+    private var checked: Boolean = false
 
     private val checkedDrawable: Drawable
     private val drawableGravity = Gravity.CENTER
@@ -42,7 +47,7 @@ class ThemeView @JvmOverloads constructor(
     private val circleRect = RectF()
     private var circleRadius = 0f
 
-    var listener: OnStateChangeListener? = null
+    internal var listener: OnStateChangeListener? = null
     var themePalette: ThemePalette? = null
         set(value) {
             if (field != value && value != null) {
@@ -53,23 +58,12 @@ class ThemeView @JvmOverloads constructor(
             }
         }
 
-    enum class State {
-
-        IDLE {
-            override fun change(): State = SELECTED
-        },
-        SELECTED {
-            override fun change(): State = IDLE
-        };
-
-        abstract fun change(): State
-    }
-
     init {
         initializeAttributes(attrs)
         checkedDrawable = CheckedDrawable(context)
         outlineProvider = OutlineProvider()
         setup()
+        isClickable = true
     }
 
     private fun initializeAttributes(attrs: AttributeSet?) {
@@ -83,7 +77,7 @@ class ThemeView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         canvas?.let {
             it.drawCircle(circleRect.centerX(), circleRect.centerY(), circleRadius, circlePaint)
-            if (state == State.SELECTED) {
+            if (checked) {
                 checkedDrawable.draw(it)
                 it.drawCircle(borderCircleRect.centerX(), borderCircleRect.centerY(), borderCircleRadius, borderColor)
             }
@@ -105,10 +99,24 @@ class ThemeView @JvmOverloads constructor(
         setup()
     }
 
-    override fun performClick(): Boolean {
-        if (state != State.SELECTED) {
-            changeState()
+    override fun onSaveInstanceState(): Parcelable {
+        val bundle = Bundle()
+        bundle.putParcelable(STATE, super.onSaveInstanceState())
+        bundle.putBoolean(CHECKED, checked)
+        return bundle
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        state?.let {
+            if (it is Bundle) {
+                checked = it.getBoolean(CHECKED)
+                super.onRestoreInstanceState(it.getBundle(STATE))
+            }
         }
+    }
+
+    override fun performClick(): Boolean {
+        toggle()
         return super.performClick()
     }
 
@@ -152,19 +160,28 @@ class ThemeView @JvmOverloads constructor(
         }
     }
 
-    fun changeState() {
-        state = state.change()
-        listener?.onStateChange(this, state)
-        invalidate()
+    override fun setChecked(checked: Boolean) {
+        if (this.checked != checked) {
+            this.checked = checked
+            invalidate()
+        }
     }
 
-    fun getState(): State {
-        return state
+    override fun toggle() {
+        if (!checked) {
+            checked = !checked
+            listener?.onStateChange(this, checked)
+            invalidate()
+        }
     }
 
-    interface OnStateChangeListener {
+    override fun isChecked(): Boolean {
+        return checked
+    }
 
-        fun onStateChange(view: ThemeView, state: State)
+    internal interface OnStateChangeListener {
+
+        fun onStateChange(view: ThemeView, checked: Boolean)
 
     }
 

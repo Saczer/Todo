@@ -17,7 +17,7 @@ class AddOrAlterTask @Inject constructor(
 ) : CompletableUseCase<Task>(schedulers) {
 
 
-    override fun buildUseCaseCompletable(params: Task?): Completable {
+    public override fun buildUseCaseCompletable(params: Task?): Completable {
         if (params == null) {
             return Completable.error(NullPointerException("Provided task should not be null"))
         }

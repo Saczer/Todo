@@ -28,9 +28,9 @@ class PreferenceTitle @JvmOverloads constructor(
         title = findViewById(R.id.title)
 
         attrs?.let {
-            val attributArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.PreferenceTitle)
-            titleRes = attributArray.getResourceId(R.styleable.PreferenceTitle_pt_title, 0)
-            attributArray.recycle()
+            val attrArray: TypedArray = context.obtainStyledAttributes(it, R.styleable.PreferenceTitle)
+            titleRes = attrArray.getResourceId(R.styleable.PreferenceTitle_pt_title, 0)
+            attrArray.recycle()
         }
 
     }

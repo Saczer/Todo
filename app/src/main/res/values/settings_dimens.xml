@@ -2,5 +2,5 @@
 <resources>
     <dimen name="settings_toolbar_height">@dimen/toolbar_height</dimen>
     <dimen name="settings_margin">16dp</dimen>
-    <dimen name="settings_item_height">56dp</dimen>
+    <dimen name="settings_item_height">48dp</dimen>
 </resources>
