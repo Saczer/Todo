@@ -18,10 +18,10 @@ class AddOrAlterTask @Inject constructor(
 
 
     public override fun buildUseCaseCompletable(params: Task?): Completable {
-        if (params == null) {
-            return Completable.error(NullPointerException("Provided task should not be null"))
+        params?.let {
+            return taskStore.addTask(it)
         }
-        return taskStore.addTask(params)
+        return Completable.error(NullPointerException("Provided task should not be null"))
     }
 
 }
