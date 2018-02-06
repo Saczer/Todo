@@ -1,17 +1,17 @@
 package pl.olszak.michal.todo.navigation
 
 import android.content.Intent
-import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v7.app.AppCompatActivity
 import android.transition.Fade
 import android.transition.TransitionInflater
 import android.transition.TransitionSet
 import android.view.View
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.createtask.QuickCreateTaskFragment
 import pl.olszak.michal.todo.settings.SettingsFragment
 import pl.olszak.michal.todo.tasklist.TasksFragment
 import pl.olszak.michal.todo.tasks.TasksActivity
+import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
+import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 import javax.inject.Inject
 
 /**
@@ -82,15 +82,35 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
     override fun toQuickCreateTask(view: View) {
         activity?.let {
             val transaction = it.supportFragmentManager.beginTransaction()
-            val enterTransition = TransitionSet()
-            enterTransition.apply {
-                addTransition(TransitionInflater.from(it).inflateTransition(android.R.transition.explode)
-                        .setInterpolator(FastOutSlowInInterpolator()))
+            val exitTransitionSet = TransitionSet()
+            exitTransitionSet.apply {
+                addTransition(Fade().apply {
+                    duration = DEFAULT_TRANSITION_TIME
+                })
             }
 
-            val fragment = QuickCreateTaskFragment()
-            fragment.enterTransition = enterTransition
-            fragment.show(transaction, CREATE_TASK_FRAGMENT)
+            val previous = it.supportFragmentManager.findFragmentById(R.id.fragment_container)
+            previous.exitTransition = exitTransitionSet
+
+            var revealAnimationSetting: RevealAnimationSetting? = null
+
+            previous.view?.let {
+                revealAnimationSetting = RevealAnimationSetting(
+                        (view.x + view.width / 2).toInt(),
+                        (view.y + view.height / 2).toInt(),
+                        it.width,
+                        it.height
+                )
+            }
+
+            if (revealAnimationSetting != null) {
+                val fragment: QuickCreateTaskFragment =
+                        QuickCreateTaskFragment.newInstance(revealAnimationSetting!!)
+                fragment.show(transaction, CREATE_TASK_FRAGMENT)
+            } else {
+                val fragment = QuickCreateTaskFragment()
+                fragment.show(transaction, CREATE_TASK_FRAGMENT)
+            }
         }
     }
 
@@ -99,7 +119,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
         private const val ENTER_FADE_TRANSITION_TIME = 220L
         const val SETTINGS_CHANGE = "settings_change_intent"
 
-        const val CREATE_TASK_FRAGMENT = "create_task_fragment_tag"
+        private const val CREATE_TASK_FRAGMENT = "create_task_fragment_tag"
     }
 
 

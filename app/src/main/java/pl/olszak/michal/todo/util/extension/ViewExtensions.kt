@@ -2,6 +2,8 @@ package pl.olszak.michal.todo.util.extension
 
 import android.content.Context
 import android.graphics.RectF
+import android.support.annotation.ColorInt
+import android.util.TypedValue
 import android.view.View
 
 /**
@@ -14,6 +16,13 @@ fun dpToPx(context: Context, value: Float): Float {
 
 fun isMatchParent(measureSpec: Int): Boolean {
     return View.MeasureSpec.getMode(measureSpec) == View.MeasureSpec.EXACTLY
+}
+
+@ColorInt
+fun getCurrentAccentColor(context: Context): Int {
+    val value = TypedValue()
+    context.theme.resolveAttribute(android.R.attr.colorAccent, value, true)
+    return value.data
 }
 
 fun View.calculateBounds(): RectF {

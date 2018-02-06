@@ -1,11 +1,17 @@
-package pl.olszak.michal.todo.util.animation
+package pl.olszak.michal.todo.view.animation
 
 import android.animation.Animator
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.content.Context
+import android.support.annotation.ColorInt
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.view.View
 import android.view.ViewAnimationUtils
-import pl.olszak.michal.todo.util.animation.model.RevealAnimationSetting
+import pl.olszak.michal.todo.R
+import pl.olszak.michal.todo.util.extension.getCurrentAccentColor
+import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 
 /**
  * @author molszak
@@ -33,10 +39,26 @@ class AnimationUtils {
                         }
 
                         anim.start()
+                        val startColor: Int = getCurrentAccentColor(it.context)
+                        val endColor: Int = ContextCompat.getColor(it.context, R.color.blackOpacity54)
+                        startColorAnimation(it, startColor, endColor, duration.toLong())
                     }
                 }
-
             })
+        }
+
+        fun startColorAnimation(view: View, @ColorInt startColor: Int, @ColorInt endColor: Int, duration: Long) {
+            val animator = ValueAnimator()
+            animator.apply {
+                setIntValues(startColor, endColor)
+                setEvaluator(ArgbEvaluator())
+                addUpdateListener {
+                    view.setBackgroundColor(it.animatedValue as Int)
+                }
+                setDuration(duration)
+            }
+
+            animator.start()
         }
     }
 

@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.createtask
+package pl.olszak.michal.todo.tasks.create
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.FragmentQuickCreateTaskBinding
 import pl.olszak.michal.todo.di.Injectable
-import pl.olszak.michal.todo.util.animation.model.RevealAnimationSetting
+import pl.olszak.michal.todo.view.animation.AnimationUtils
+import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 
 /**
  * @author molszak
@@ -37,6 +38,11 @@ class QuickCreateTaskFragment : DialogFragment(), Injectable {
                 R.layout.fragment_quick_create_task,
                 container,
                 false)
+
+        val revealAnimationSetting: RevealAnimationSetting? = arguments.getParcelable(ARG_REVEAL_SETTINGS)
+        revealAnimationSetting?.let {
+            AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
+        }
 
         return binding.root
     }

@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.util.animation.model
+package pl.olszak.michal.todo.view.animation.model
 
 import android.os.Parcel
 import android.os.Parcelable
