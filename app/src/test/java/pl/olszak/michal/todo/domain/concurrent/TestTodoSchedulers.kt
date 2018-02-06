@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.domain.concurrent
+package pl.olszak.michal.todo.domain.concurrent
 
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers

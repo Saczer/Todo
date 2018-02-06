@@ -20,7 +20,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
     private val settingsFragment = SettingsFragment()
     private val tasksFragment = TasksFragment()
 
-    override fun needsRestartSettingsChange() {
+    override fun restartSettingsChange() {
         activity?.let {
             val intent = Intent(it, TasksActivity::class.java)
             intent.apply {
@@ -31,7 +31,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
         }
     }
 
-    override fun navigateToSettings() {
+    override fun toSettings() {
         activity?.let {
             val transaction = it.supportFragmentManager.beginTransaction()
             val next = settingsFragment
@@ -53,7 +53,7 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
         }
     }
 
-    override fun navigateToTaskList() {
+    override fun toTaskList() {
         activity?.let {
             val transaction = it.supportFragmentManager.beginTransaction()
             val next = tasksFragment
@@ -73,6 +73,10 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
             transaction.replace(R.id.fragment_container, next)
                     .commit()
         }
+    }
+
+    override fun toCreateTask() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

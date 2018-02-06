@@ -17,6 +17,7 @@ import javax.inject.Inject
  * @author molszak
  *         created on 31.01.2018.
  */
+//TODO: Create something that encapsulates theme settings
 class SettingsFragment : Fragment(), Injectable {
 
     lateinit var binding: FragmentSettingsBinding

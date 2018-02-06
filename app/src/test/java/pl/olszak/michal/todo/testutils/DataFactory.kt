@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.testutils
+package pl.olszak.michal.todo.testutils
 
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom

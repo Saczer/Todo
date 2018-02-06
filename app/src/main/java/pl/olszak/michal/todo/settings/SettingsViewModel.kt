@@ -23,6 +23,6 @@ class SettingsViewModel @Inject constructor(
 
     override fun onThemeSelected(themePalette: ThemePalette) {
         todoPreferences.setThemePalette(themePalette)
-        navigator.needsRestartSettingsChange()
+        navigator.restartSettingsChange()
     }
 }

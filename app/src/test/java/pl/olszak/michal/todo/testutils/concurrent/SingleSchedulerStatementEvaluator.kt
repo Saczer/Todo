@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.testutils.concurrent
+package pl.olszak.michal.todo.testutils.concurrent
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins

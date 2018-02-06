@@ -4,8 +4,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import pl.olszak.michal.todo.cache.converter.TaskConverter
 import pl.olszak.michal.todo.cache.model.CachedTask
-import pl.olszak.michal.todo.cache.testutils.TaskFactory
+import pl.olszak.michal.todo.testutils.TaskFactory
 import pl.olszak.michal.todo.data.model.Task
 import kotlin.test.assertEquals
 

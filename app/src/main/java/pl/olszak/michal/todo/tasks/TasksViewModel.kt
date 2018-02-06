@@ -25,14 +25,14 @@ class TasksViewModel @Inject constructor() : ViewModel(), TasksContract {
         when (menuItem.itemId) {
             R.id.settings -> {
                 navigator?.let {
-                    it.navigateToSettings()
+                    it.toSettings()
                     visibility.set(false)
                 }
                 return true
             }
             R.id.task_list -> {
                 navigator?.let {
-                    it.navigateToTaskList()
+                    it.toTaskList()
                     visibility.set(true)
                 }
                 return true

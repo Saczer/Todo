@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.domain.usecase
+package pl.olszak.michal.todo.domain.usecase
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -6,9 +6,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import pl.olszak.michal.todo.cache.domain.concurrent.TestTodoSchedulers
-import pl.olszak.michal.todo.cache.testutils.TaskFactory
-import pl.olszak.michal.todo.cache.testutils.TaskStoreStubber
+import pl.olszak.michal.todo.domain.concurrent.TestTodoSchedulers
+import pl.olszak.michal.todo.testutils.TaskFactory
+import pl.olszak.michal.todo.testutils.TaskStoreStubber
 import pl.olszak.michal.todo.data.TaskStore
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers

@@ -47,11 +47,11 @@ class TasksActivity : FragmentInjectingActivity() {
         } else {
             val changedSettings = intent.getBooleanExtra(AndroidNavigator.SETTINGS_CHANGE, false)
             if (changedSettings) {
-                navigator.navigateToSettings()
+                navigator.toSettings()
                 tasksViewModel.visibility.set(false)
                 binding.bottomNavigation.selectedItemId = R.id.settings
             } else {
-                navigator.navigateToTaskList()
+                navigator.toTaskList()
             }
         }
 

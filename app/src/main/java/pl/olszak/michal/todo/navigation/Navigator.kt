@@ -6,10 +6,12 @@ package pl.olszak.michal.todo.navigation
  */
 interface Navigator {
 
-    fun navigateToSettings()
+    fun toSettings()
 
-    fun navigateToTaskList()
+    fun toTaskList()
 
-    fun needsRestartSettingsChange()
+    fun restartSettingsChange()
+
+    fun toCreateTask()
 
 }

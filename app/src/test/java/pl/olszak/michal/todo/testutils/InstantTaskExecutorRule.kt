@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pl.olszak.michal.todo.cache.testutils
+package pl.olszak.michal.todo.testutils
 
 import android.arch.core.executor.ArchTaskExecutor
 import android.arch.core.executor.TaskExecutor

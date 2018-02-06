@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.mapper
+package pl.olszak.michal.todo.cache.converter
 
 /**
  * @author molszak

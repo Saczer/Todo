@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.testutils
+package pl.olszak.michal.todo.testutils
 
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable

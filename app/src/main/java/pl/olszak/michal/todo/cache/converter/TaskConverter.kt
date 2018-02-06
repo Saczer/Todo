@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.mapper
+package pl.olszak.michal.todo.cache.converter
 
 import pl.olszak.michal.todo.cache.model.CachedTask
 import pl.olszak.michal.todo.data.model.Task

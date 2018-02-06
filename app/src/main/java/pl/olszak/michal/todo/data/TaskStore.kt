@@ -12,7 +12,7 @@ interface TaskStore {
 
     fun getAllTasks(): Flowable<List<Task>>
 
-    fun getTaskWithId(id: Long): Flowable<Task>
+    fun getTaskById(id: Long): Flowable<Task>
 
     fun clearAllTasks(): Completable
 

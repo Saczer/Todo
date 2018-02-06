@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.dao
+package pl.olszak.michal.todo.cache
 
 import android.arch.persistence.room.Room
 import org.junit.After
@@ -8,20 +8,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
-import pl.olszak.michal.todo.cache.TodoDatabase
-import pl.olszak.michal.todo.cache.testutils.InstantTaskExecutorRule
-import pl.olszak.michal.todo.cache.testutils.TaskFactory
+import pl.olszak.michal.todo.testutils.InstantTaskExecutorRule
+import pl.olszak.michal.todo.testutils.TaskFactory
 
 /**
  * @author molszak
  *         created on 26.01.2018.
  */
 @RunWith(RobolectricTestRunner::class)
-open class TodoDaoTest {
+open class TodoDatabaseTest {
 
     @JvmField
     @Rule
-    val immediateExecutionRule = InstantTaskExecutorRule()
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var database: TodoDatabase
 

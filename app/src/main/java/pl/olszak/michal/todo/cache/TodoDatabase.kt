@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import pl.olszak.michal.todo.cache.dao.TaskDao
 import pl.olszak.michal.todo.cache.model.CachedTask
-import pl.olszak.michal.todo.cache.model.TodoRoomConverters
+import pl.olszak.michal.todo.cache.converter.TodoRoomConverters
 
 /**
  * @author molszak

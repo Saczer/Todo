@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.testutils
+package pl.olszak.michal.todo.testutils
 
 import org.threeten.bp.Instant
 import pl.olszak.michal.todo.cache.model.CachedTask

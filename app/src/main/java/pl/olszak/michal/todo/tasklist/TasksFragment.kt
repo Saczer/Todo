@@ -24,11 +24,6 @@ class TasksFragment : Fragment(), Injectable {
                 container,
                 false)
 
-        val toolbar = binding.toolbar
-        toolbar.apply {
-            title = getString(R.string.all_tasks)
-        }
-
         return binding.root
     }
 }

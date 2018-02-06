@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.todo.cache.DatabaseConstants
 import pl.olszak.michal.todo.cache.TodoDatabase
+import pl.olszak.michal.todo.cache.dao.TaskDao
 import pl.olszak.michal.todo.data.TaskStore
 import pl.olszak.michal.todo.data.TaskStoreImpl
 import pl.olszak.michal.todo.di.scope.PerApplication
@@ -29,6 +30,11 @@ abstract class DatabaseModule {
                     TodoDatabase::class.java,
                     DatabaseConstants.DATABASE_NAME)
                     .build()
+        }
+
+        @Provides
+        fun provideTaskDao(database: TodoDatabase): TaskDao {
+            return database.taskDao()
         }
     }
 

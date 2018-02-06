@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.cache.model
+package pl.olszak.michal.todo.cache.converter
 
 import android.arch.persistence.room.TypeConverter
 import org.threeten.bp.Instant
