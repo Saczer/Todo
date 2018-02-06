@@ -14,8 +14,8 @@ import android.view.ViewOutlineProvider
 import android.widget.Checkable
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.model.ThemePalette
-import pl.olszak.michal.todo.util.TodoUtils
-import pl.olszak.michal.todo.util.calculateBounds
+import pl.olszak.michal.todo.util.extension.calculateBounds
+import pl.olszak.michal.todo.util.tools.TodoUtils
 
 /**
  * @author molszak
@@ -125,7 +125,7 @@ class ThemeView @JvmOverloads constructor(
             return
         }
 
-        borderCircleRect.set(calculateBounds(this))
+        borderCircleRect.set(calculateBounds())
         borderCircleRadius = Math.min((borderCircleRect.height() - STROKE) / 2f,
                 (borderCircleRect.width() - STROKE) / 2f)
 

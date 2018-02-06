@@ -1,5 +1,7 @@
 package pl.olszak.michal.todo.navigation
 
+import android.view.View
+
 /**
  * @author molszak
  *         created on 31.01.2018.
@@ -12,6 +14,6 @@ interface Navigator {
 
     fun restartSettingsChange()
 
-    fun toCreateTask()
+    fun toQuickCreateTask(view : View)
 
 }

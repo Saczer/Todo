@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package pl.olszak.michal.todo.util
+package pl.olszak.michal.todo.util.extension
 
 import timber.log.Timber
 

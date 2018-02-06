@@ -18,7 +18,7 @@ class TasksViewModel @Inject constructor() : ViewModel(), TasksContract {
     var navigator: Navigator? = null
 
     override fun onClickAdd(view: View) {
-        TODO("create new task by launching transparent fragment on top of view")
+        navigator?.toQuickCreateTask(view)
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

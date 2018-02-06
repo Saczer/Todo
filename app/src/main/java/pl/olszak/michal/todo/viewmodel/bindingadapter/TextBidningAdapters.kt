@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import org.threeten.bp.Instant
 import org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
-import pl.olszak.michal.todo.util.logE
+import pl.olszak.michal.todo.util.extension.logE
 import java.text.NumberFormat
 import java.text.ParseException
 

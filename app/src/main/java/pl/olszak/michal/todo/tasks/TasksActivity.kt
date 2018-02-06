@@ -10,7 +10,7 @@ import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
 import pl.olszak.michal.todo.navigation.AndroidNavigator
 import pl.olszak.michal.todo.navigation.Navigator
-import pl.olszak.michal.todo.util.TodoUtils
+import pl.olszak.michal.todo.util.tools.TodoUtils
 import javax.inject.Inject
 
 /**

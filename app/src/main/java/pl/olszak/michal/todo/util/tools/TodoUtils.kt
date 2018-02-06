@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.util
+package pl.olszak.michal.todo.util.tools
 
 import android.content.Context
 import android.graphics.Color
@@ -64,24 +64,4 @@ object TodoUtils {
         }
     }
 
-}
-
-fun dpToPx(context: Context, value: Float): Float {
-    return value * context.resources.displayMetrics.density
-}
-
-fun isMatchParent(measureSpec: Int): Boolean {
-    return View.MeasureSpec.getMode(measureSpec) == View.MeasureSpec.EXACTLY
-}
-
-fun calculateBounds(view : View): RectF {
-    val availableWidth = view.width - view.paddingLeft - view.paddingRight
-    val availableHeight = view.height - view.paddingTop - view.paddingBottom
-
-    val sideLength = Math.min(availableWidth, availableHeight)
-
-    val left = view.paddingLeft + (availableWidth - sideLength) / 2f
-    val top = view.paddingTop + (availableHeight - sideLength) / 2f
-
-    return RectF(left, top, left + sideLength, top + sideLength)
 }

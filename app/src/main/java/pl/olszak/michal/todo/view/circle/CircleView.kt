@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.util.calculateBounds
+import pl.olszak.michal.todo.util.extension.calculateBounds
 
 /**
  * @author molszak
@@ -34,6 +34,7 @@ class CircleView @JvmOverloads constructor(
             color = circleColor
         }
         setup()
+        outlineProvider = OutlineProvider()
     }
 
     private fun initializeAttributes(attrs: AttributeSet?) {
@@ -51,7 +52,7 @@ class CircleView @JvmOverloads constructor(
             return
         }
 
-        circleRect.set(calculateBounds(this))
+        circleRect.set(calculateBounds())
         circleRadius = Math.min(circleRect.height() / 2f, circleRect.width() / 2f)
         invalidate()
     }
