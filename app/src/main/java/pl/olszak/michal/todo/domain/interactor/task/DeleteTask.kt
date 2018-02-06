@@ -16,11 +16,11 @@ class DeleteTask @Inject constructor(
         schedulers: TodoSchedulers
 ) : CompletableUseCase<Task>(schedulers) {
 
-    override fun buildUseCaseCompletable(params: Task?): Completable {
+    public override fun buildUseCaseCompletable(params: Task?): Completable {
         params?.let { task ->
             return taskStore.clearTaskWithId(task.id)
         }
-        return Completable.complete()
+        return Completable.error(NullPointerException("Task can't be null"))
     }
 
 

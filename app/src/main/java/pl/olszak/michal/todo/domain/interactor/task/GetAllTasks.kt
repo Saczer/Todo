@@ -16,7 +16,7 @@ class GetAllTasks @Inject constructor(
         todoSchedulers: TodoSchedulers
 ) : FlowableUseCase<List<Task>, Unit>(todoSchedulers) {
 
-    override fun buildUseCase(params: Unit?): Flowable<List<Task>> {
+    public override fun buildUseCase(params: Unit?): Flowable<List<Task>> {
         return taskStore.getAllTasks()
     }
 

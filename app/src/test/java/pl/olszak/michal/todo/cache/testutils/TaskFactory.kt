@@ -41,5 +41,11 @@ class TaskFactory {
                     Instant.now())
             return binding
         }
+
+        fun createTaskBindingList(size: Int): List<Task> {
+            return List(size, {
+                createTaskBinding()
+            })
+        }
     }
 }

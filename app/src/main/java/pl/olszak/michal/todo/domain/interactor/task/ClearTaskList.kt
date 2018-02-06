@@ -15,7 +15,7 @@ class ClearTaskList @Inject constructor(
         schedulers: TodoSchedulers
 ) : CompletableUseCase<Unit>(schedulers) {
 
-    override fun buildUseCaseCompletable(params: Unit?): Completable {
+    public override fun buildUseCaseCompletable(params: Unit?): Completable {
         return taskStore.clearAllTasks()
     }
 

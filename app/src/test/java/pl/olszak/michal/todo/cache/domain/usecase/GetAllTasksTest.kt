@@ -10,45 +10,50 @@ import pl.olszak.michal.todo.cache.domain.concurrent.TestTodoSchedulers
 import pl.olszak.michal.todo.cache.testutils.TaskFactory
 import pl.olszak.michal.todo.cache.testutils.TaskStoreStubber
 import pl.olszak.michal.todo.data.TaskStore
-import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
-import pl.olszak.michal.todo.domain.interactor.task.AddOrAlterTask
+import pl.olszak.michal.todo.domain.interactor.task.GetAllTasks
 
 /**
  * @author molszak
- *         created on 29.01.2018.
+ *         created on 06.02.2018.
  */
 @RunWith(JUnit4::class)
-open class AddOrAlterTaskTest {
+class GetAllTasksTest {
 
-    private lateinit var useCase: AddOrAlterTask
+    private lateinit var useCase: GetAllTasks
 
     private lateinit var mockTaskStore: TaskStore
     private val todoSchedulers: TodoSchedulers = TestTodoSchedulers()
-    private val task: Task = TaskFactory.createTaskBinding()
+    private val tasks = TaskFactory.createTaskBindingList(TASKS_SIZE)
 
     @Before
     fun setup() {
         mockTaskStore = mock()
-        useCase = AddOrAlterTask(mockTaskStore, todoSchedulers)
+        useCase = GetAllTasks(mockTaskStore, todoSchedulers)
     }
 
     @Test
     fun `building use case calls store`() {
-        useCase.buildUseCaseCompletable(task)
-        verify(mockTaskStore).addTask(task)
+        useCase.buildUseCase(null)
+        verify(mockTaskStore).getAllTasks()
     }
 
     @Test
-    fun `adding null task returns error`() {
+    fun `executing use case returns list when it exists`() {
+        TaskStoreStubber.stubGetAllTasksWithList(mockTaskStore, tasks)
         val testObserver = useCase.execute(null).test()
-        testObserver.assertError { it is NullPointerException }
+        testObserver.assertValue { it.size == TASKS_SIZE }
     }
 
     @Test
-    fun `building use case completes`() {
-        TaskStoreStubber.stubAddTask(mockTaskStore, task)
-        val testObserver = useCase.execute(task).test()
-        testObserver.assertComplete()
+    fun `executing use case doesn't return when empty`() {
+        TaskStoreStubber.stubGetAllTasks(mockTaskStore)
+        val testObserver = useCase.execute(null).test()
+        testObserver.assertValue { it.isEmpty() }
     }
+
+    companion object {
+        private const val TASKS_SIZE = 5
+    }
+
 }

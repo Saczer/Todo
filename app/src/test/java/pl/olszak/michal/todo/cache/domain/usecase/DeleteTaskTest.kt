@@ -12,16 +12,16 @@ import pl.olszak.michal.todo.cache.testutils.TaskStoreStubber
 import pl.olszak.michal.todo.data.TaskStore
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
-import pl.olszak.michal.todo.domain.interactor.task.AddOrAlterTask
+import pl.olszak.michal.todo.domain.interactor.task.DeleteTask
 
 /**
  * @author molszak
- *         created on 29.01.2018.
+ *         created on 06.02.2018.
  */
 @RunWith(JUnit4::class)
-open class AddOrAlterTaskTest {
+class DeleteTaskTest {
 
-    private lateinit var useCase: AddOrAlterTask
+    private lateinit var useCase: DeleteTask
 
     private lateinit var mockTaskStore: TaskStore
     private val todoSchedulers: TodoSchedulers = TestTodoSchedulers()
@@ -30,25 +30,26 @@ open class AddOrAlterTaskTest {
     @Before
     fun setup() {
         mockTaskStore = mock()
-        useCase = AddOrAlterTask(mockTaskStore, todoSchedulers)
+        useCase = DeleteTask(mockTaskStore, todoSchedulers)
     }
 
     @Test
     fun `building use case calls store`() {
         useCase.buildUseCaseCompletable(task)
-        verify(mockTaskStore).addTask(task)
+        verify(mockTaskStore).clearTaskWithId(task.id)
     }
 
     @Test
-    fun `adding null task returns error`() {
+    fun `executing empty use case returns exception`() {
         val testObserver = useCase.execute(null).test()
-        testObserver.assertError { it is NullPointerException }
+        testObserver.assertError { it is NullPointerException && it.message == "Task can't be null" }
     }
 
     @Test
-    fun `building use case completes`() {
-        TaskStoreStubber.stubAddTask(mockTaskStore, task)
+    fun `executing valid use case completes`() {
+        TaskStoreStubber.stubClearTask(mockTaskStore, task)
         val testObserver = useCase.execute(task).test()
         testObserver.assertComplete()
     }
+
 }

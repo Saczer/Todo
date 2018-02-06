@@ -2,53 +2,48 @@ package pl.olszak.michal.todo.cache.domain.usecase
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Completable
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import pl.olszak.michal.todo.cache.domain.concurrent.TestTodoSchedulers
-import pl.olszak.michal.todo.cache.testutils.TaskFactory
 import pl.olszak.michal.todo.cache.testutils.TaskStoreStubber
 import pl.olszak.michal.todo.data.TaskStore
-import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
-import pl.olszak.michal.todo.domain.interactor.task.AddOrAlterTask
+import pl.olszak.michal.todo.domain.interactor.task.ClearTaskList
 
 /**
  * @author molszak
- *         created on 29.01.2018.
+ *         created on 06.02.2018.
  */
 @RunWith(JUnit4::class)
-open class AddOrAlterTaskTest {
+class ClearTaskListTest {
 
-    private lateinit var useCase: AddOrAlterTask
+    private lateinit var useCase: ClearTaskList
 
     private lateinit var mockTaskStore: TaskStore
     private val todoSchedulers: TodoSchedulers = TestTodoSchedulers()
-    private val task: Task = TaskFactory.createTaskBinding()
 
     @Before
     fun setup() {
         mockTaskStore = mock()
-        useCase = AddOrAlterTask(mockTaskStore, todoSchedulers)
+        useCase = ClearTaskList(mockTaskStore, todoSchedulers)
     }
 
     @Test
     fun `building use case calls store`() {
-        useCase.buildUseCaseCompletable(task)
-        verify(mockTaskStore).addTask(task)
+        useCase.buildUseCaseCompletable(null)
+        verify(mockTaskStore).clearAllTasks()
     }
 
     @Test
-    fun `adding null task returns error`() {
+    fun `executing use case completes`() {
+        TaskStoreStubber.stubClearAllTasks(mockTaskStore)
         val testObserver = useCase.execute(null).test()
-        testObserver.assertError { it is NullPointerException }
-    }
-
-    @Test
-    fun `building use case completes`() {
-        TaskStoreStubber.stubAddTask(mockTaskStore, task)
-        val testObserver = useCase.execute(task).test()
         testObserver.assertComplete()
     }
+
+
 }
