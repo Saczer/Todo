@@ -3,6 +3,7 @@ package pl.olszak.michal.todo.tasks.create
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
  * @author molszak
  *         created on 06.02.2018.
  */
-class QuickCreateTaskFragment : DialogFragment(), Injectable {
+class QuickCreateTaskFragment : Fragment(), Injectable {
 
     companion object {
         private const val ARG_REVEAL_SETTINGS = "arg_reveal_settings"
@@ -46,4 +47,16 @@ class QuickCreateTaskFragment : DialogFragment(), Injectable {
 
         return binding.root
     }
+
+    /*override fun onStart() {
+        super.onStart()
+
+        dialog?.let {
+            it.window?.let {
+                val width = ViewGroup.LayoutParams.MATCH_PARENT
+                val height = ViewGroup.LayoutParams.MATCH_PARENT
+                it.setLayout(width, height)
+            }
+        }
+    }*/
 }

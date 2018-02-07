@@ -106,10 +106,11 @@ class AndroidNavigator @Inject constructor(private val activity: AppCompatActivi
             if (revealAnimationSetting != null) {
                 val fragment: QuickCreateTaskFragment =
                         QuickCreateTaskFragment.newInstance(revealAnimationSetting!!)
-                fragment.show(transaction, CREATE_TASK_FRAGMENT)
+                transaction.replace(R.id.fragment_container, fragment)
+                        .commit()
             } else {
                 val fragment = QuickCreateTaskFragment()
-                fragment.show(transaction, CREATE_TASK_FRAGMENT)
+                transaction.replace(R.id.fragment_container, fragment).commit()
             }
         }
     }
