@@ -12,7 +12,7 @@ import pl.olszak.michal.todo.R
  * @author molszak
  *         created on 08.02.2018.
  */
-//todo: bind animatedVisibility
+//todo: move it to animation utils?
 @BindingAdapter(value = ["animatedVisibility"], requireAll = false)
 fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
     animatedVisibility?.let {
@@ -26,13 +26,13 @@ fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
 
         val isVisible = oldVisibility == View.VISIBLE
         view.visibility = View.VISIBLE
-        var startAlpha = if (isVisible) 1f else 0f
+        var startTranslationY = if (isVisible) 0f else view.height.toFloat()
         if (endVisibility != null) {
-            startAlpha = view.alpha
+            startTranslationY = view.translationY
         }
-        val endAlpha = if (it) 1f else 0f
+        val endAlpha = if (it) 0f else view.height.toFloat()
 
-        val animator = ObjectAnimator.ofFloat(view, View.ALPHA, startAlpha, endAlpha)
+        val animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, startTranslationY, endAlpha)
         animator.setAutoCancel(true)
 
         animator.addListener(object : AnimatorListenerAdapter() {
@@ -49,7 +49,7 @@ fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
             override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
                 view.setTag(R.id.finalVisibility, null)
                 if (!isCancelled) {
-                    view.alpha = 1f
+                    view.translationY = 0f
                     view.visibility = visibility
                 }
             }

@@ -12,8 +12,10 @@ import android.support.design.widget.FloatingActionButton
 fun bindVisibility(view: FloatingActionButton, visibility: Boolean?) {
     visibility?.let {
         if (it) {
+            view.isClickable = true
             view.show()
         } else {
+            view.isClickable = false
             view.hide()
         }
     }

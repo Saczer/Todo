@@ -20,6 +20,7 @@ import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 class AnimationUtils {
 
     companion object Factory {
+        //todo : move final color to navigator
         fun registerCircularRevealAnimation(context: Context,
                                             view: View,
                                             revealSettings: RevealAnimationSetting) {

@@ -51,6 +51,7 @@
                 style="@style/Task.BottomMenu"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tasks_bottom_navigation_height"
+                app:animatedVisibility="@{contract.navigationVisibility}"
                 app:layout_behavior="@string/bottom_sheet_behavior"
                 app:menu="@menu/bottom_navigation"
                 app:onNavigationItemSelectedListener="@{contract::onNavigationItemSelected}" />

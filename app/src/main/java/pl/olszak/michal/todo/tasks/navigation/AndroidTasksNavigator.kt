@@ -121,7 +121,10 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
                 transaction.replace(R.id.fragment_container, fragment).commit()
             }
 
-            navigationCallback?.hideAction(true)
+            navigationCallback?.let {
+                it.hideAction(true)
+                it.hideNavigation(true)
+            }
         }
     }
 
@@ -139,7 +142,10 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
     }
 
     override fun returnFromCreateTask() {
-        navigationCallback?.hideAction(false)
+        navigationCallback?.let {
+            it.hideAction(false)
+            it.hideNavigation(false)
+        }
     }
 
     companion object {

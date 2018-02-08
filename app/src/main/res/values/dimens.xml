@@ -7,4 +7,5 @@
     <dimen name="toolbar_height">56dp</dimen>
 
     <item name="finalVisibility" type="id" />
+    <item name="initialHeight" type="id" />
 </resources>
