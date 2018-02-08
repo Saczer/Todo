@@ -10,45 +10,53 @@
             type="pl.olszak.michal.todo.tasks.TasksContract" />
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/bottom_navigation_container"
+    <FrameLayout
+        android:id="@+id/outer_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@null">
 
         <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/fab_container"
+            android:id="@+id/bottom_navigation_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/tasks_bottom_navigation_height">
+            android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/fragment_container"
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/fab_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/tasks_bottom_navigation_height">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                style="@style/Task.Fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/tasks_fab_margin"
-                android:onClick="@{(view) -> contract.onClickAdd(view)}"
-                android:src="@mipmap/ic_plus_white_24dp"
-                android:visibility="@{contract.visibility}"
-                app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior" />
+                <FrameLayout
+                    android:id="@+id/fragment_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab"
+                    style="@style/Task.Fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/tasks_fab_margin"
+                    android:onClick="@{contract::onClickAdd}"
+                    android:src="@mipmap/ic_plus_white_24dp"
+                    android:visibility="@{contract.actionVisibility}"
+                    app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior" />
+
+            </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                style="@style/Task.BottomMenu"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tasks_bottom_navigation_height"
+                app:layout_behavior="@string/bottom_sheet_behavior"
+                app:menu="@menu/bottom_navigation"
+                app:onNavigationItemSelectedListener="@{contract::onNavigationItemSelected}" />
 
         </android.support.design.widget.CoordinatorLayout>
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            style="@style/Task.BottomMenu"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tasks_bottom_navigation_height"
-            app:layout_behavior="@string/bottom_sheet_behavior"
-            app:menu="@menu/bottom_navigation"
-            app:onNavigationItemSelectedListener="@{(menuItem) -> contract.onNavigationItemSelected(menuItem)}" />
-
-    </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
 
 </layout>

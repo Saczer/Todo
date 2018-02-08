@@ -60,6 +60,7 @@ class AnimationUtils {
 
             animator.start()
         }
+
     }
 
 }

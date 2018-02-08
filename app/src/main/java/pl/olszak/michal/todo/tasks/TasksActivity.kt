@@ -8,8 +8,8 @@ import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
-import pl.olszak.michal.todo.navigation.AndroidNavigator
-import pl.olszak.michal.todo.navigation.Navigator
+import pl.olszak.michal.todo.tasks.navigation.AndroidTasksNavigator
+import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import pl.olszak.michal.todo.util.tools.TodoUtils
 import javax.inject.Inject
 
@@ -22,40 +22,35 @@ class TasksActivity : FragmentInjectingActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
-    lateinit var navigator: Navigator
+    lateinit var navigator: TasksNavigator
     @Inject
     lateinit var todoPreferences: TodoPreferences
 
-    private lateinit var tasksViewModel: TasksViewModel
+    private lateinit var viewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val themePalette = todoPreferences.getThemeColor()
         setTheme(TodoUtils.getStyle(themePalette))
-
         val binding: ActivityTasksBinding = DataBindingUtil.setContentView(this, R.layout.activity_tasks)
 
-        tasksViewModel = ViewModelProviders.of(this, viewModelFactory)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TasksViewModel::class.java)
-        tasksViewModel.navigator = navigator
+        viewModel.navigator = navigator
+        binding.contract = viewModel
 
-        //todo: this is violation of mvvm should be done somewhere else
-        if (savedInstanceState != null) {
-            if (binding.bottomNavigation.selectedItemId == R.id.settings) {
-                tasksViewModel.visibility.set(false)
-            }
-        } else {
-            val changedSettings = intent.getBooleanExtra(AndroidNavigator.SETTINGS_CHANGE, false)
-            if (changedSettings) {
-                navigator.toSettings()
-                tasksViewModel.visibility.set(false)
-                binding.bottomNavigation.selectedItemId = R.id.settings
-            } else {
-                navigator.toTaskList()
-            }
+        val changedSettings = intent.getBooleanExtra(AndroidTasksNavigator.SETTINGS_CHANGE, false)
+        if (changedSettings) {
+            viewModel.handleChangeSettings()
+            binding.bottomNavigation.selectedItemId = R.id.settings
+        } else if (savedInstanceState == null) {
+            viewModel.handleNoSavedState()
         }
-
-        binding.contract = tasksViewModel
     }
 
+    override fun onBackPressed() {
+        if (!viewModel.handleOnBackPressed()) {
+            super.onBackPressed()
+        }
+    }
 }

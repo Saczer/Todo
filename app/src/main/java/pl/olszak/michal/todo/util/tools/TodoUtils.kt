@@ -2,12 +2,10 @@ package pl.olszak.michal.todo.util.tools
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.RectF
 import android.support.annotation.ColorInt
 import android.support.annotation.FloatRange
 import android.support.annotation.StyleRes
 import android.support.v4.content.ContextCompat
-import android.view.View
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.model.ThemePalette
 import pl.olszak.michal.todo.data.model.Priority

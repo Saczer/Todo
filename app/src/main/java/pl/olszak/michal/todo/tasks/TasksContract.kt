@@ -9,8 +9,8 @@ import android.view.View
  *         created on 31.01.2018.
  */
 interface TasksContract {
-
-    val visibility: ObservableField<Boolean>
+    val actionVisibility: ObservableField<Boolean>
+    val navigationVisibility: ObservableField<Boolean>
 
     fun onClickAdd(view: View)
 

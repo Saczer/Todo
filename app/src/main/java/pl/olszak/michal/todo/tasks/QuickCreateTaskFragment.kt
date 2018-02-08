@@ -1,8 +1,7 @@
-package pl.olszak.michal.todo.tasks.create
+package pl.olszak.michal.todo.tasks
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,15 +47,5 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
         return binding.root
     }
 
-    /*override fun onStart() {
-        super.onStart()
 
-        dialog?.let {
-            it.window?.let {
-                val width = ViewGroup.LayoutParams.MATCH_PARENT
-                val height = ViewGroup.LayoutParams.MATCH_PARENT
-                it.setLayout(width, height)
-            }
-        }
-    }*/
 }

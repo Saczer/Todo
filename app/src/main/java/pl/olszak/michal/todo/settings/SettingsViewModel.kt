@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.cache.model.ThemePalette
-import pl.olszak.michal.todo.navigation.Navigator
+import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import javax.inject.Inject
 
 /**
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class SettingsViewModel @Inject constructor(
         private val todoPreferences: TodoPreferences,
-        private val navigator: Navigator) : SettingsContract, ViewModel() {
+        private val navigator: TasksNavigator) : SettingsContract, ViewModel() {
 
     override val observableTheme: ObservableField<ThemePalette> = ObservableField()
 

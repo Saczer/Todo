@@ -9,13 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/LightTheme">
+        android:theme="@style/NormalTheme">
         <activity android:name=".tasks.TasksActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".tasks.CreateTaskActivity"
+            android:parentActivityName=".tasks.CreateTaskActivity"
+            android:theme="@style/NormalTheme.Transparent" />
 
         <activity android:name=".hello.MainActivity" />
     </application>

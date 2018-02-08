@@ -5,43 +5,63 @@ import android.databinding.ObservableField
 import android.view.MenuItem
 import android.view.View
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.navigation.Navigator
+import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import javax.inject.Inject
 
 /**
  * @author molszak
  *         created on 31.01.2018.
  */
-class TasksViewModel @Inject constructor() : ViewModel(), TasksContract {
+class TasksViewModel @Inject constructor() : ViewModel(), TasksContract, TasksNavigator.NavigatorInteractionCallback {
+    override val actionVisibility: ObservableField<Boolean> = ObservableField(true)
+    override val navigationVisibility: ObservableField<Boolean> = ObservableField(true)
 
-    override val visibility: ObservableField<Boolean> = ObservableField(true)
-    var navigator: Navigator? = null
+    var navigator: TasksNavigator? = null
+        set(value) {
+            value?.attach(this)
+            field = value
+        }
+
+    fun handleChangeSettings() {
+        navigator?.toSettings()
+    }
+
+    fun handleOnBackPressed(): Boolean {
+        return navigator?.handleOnBackPressed() ?: false
+    }
+
+    fun handleNoSavedState() {
+        navigator?.toTaskList()
+    }
 
     override fun onClickAdd(view: View) {
         navigator?.toQuickCreateTask(view)
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        return when (menuItem.itemId) {
             R.id.settings -> {
-                navigator?.let {
-                    it.toSettings()
-                    visibility.set(false)
-                }
-                return true
+                navigator?.toSettings()
+                true
             }
             R.id.task_list -> {
-                navigator?.let {
-                    it.toTaskList()
-                    visibility.set(true)
-                }
-                return true
+                navigator?.toTaskList()
+                true
             }
-            else -> return false
+            else -> false
         }
     }
 
+    override fun hideAction(hide: Boolean) {
+        actionVisibility.set(!hide)
+    }
+
+    override fun hideNavigation(hide: Boolean) {
+        navigationVisibility.set(!hide)
+    }
+
     override fun onCleared() {
+        navigator?.detach(this)
         navigator = null
     }
 }
