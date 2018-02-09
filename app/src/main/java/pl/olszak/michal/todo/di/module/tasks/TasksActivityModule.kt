@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import dagger.android.ContributesAndroidInjector
 import pl.olszak.michal.todo.di.module.tasks.fragment.QuickCreateTaskFragmentModule
 import pl.olszak.michal.todo.di.module.tasks.fragment.SettingsFragmentModule
@@ -34,6 +35,7 @@ abstract class TasksActivityModule {
     abstract fun quickCreateFragmentInjector(): QuickCreateTaskFragment
 
     @Binds
+    @Reusable
     abstract fun bindNavigator(navigator: AndroidTasksNavigator): TasksNavigator
 
     @Module
