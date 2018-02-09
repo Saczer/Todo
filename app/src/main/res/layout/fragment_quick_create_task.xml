@@ -7,6 +7,7 @@
         android:background="@color/blackOpacity54">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/all_tasks_toolbar_height"
             android:layout_gravity="top"

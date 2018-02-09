@@ -5,6 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import pl.olszak.michal.todo.di.module.tasks.fragment.QuickCreateTaskFragmentModule
 import pl.olszak.michal.todo.di.module.tasks.fragment.SettingsFragmentModule
 import pl.olszak.michal.todo.di.module.tasks.fragment.TasksFragmentModule
 import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
@@ -29,7 +30,7 @@ abstract class TasksActivityModule {
     @ContributesAndroidInjector(modules = [SettingsFragmentModule::class])
     abstract fun settingsFragmentInjector(): SettingsFragment
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [QuickCreateTaskFragmentModule::class])
     abstract fun quickCreateFragmentInjector(): QuickCreateTaskFragment
 
     @Binds
