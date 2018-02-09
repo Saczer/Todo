@@ -23,7 +23,6 @@ class TasksFragment : Fragment(), Injectable {
                 R.layout.fragment_all_tasks,
                 container,
                 false)
-
         return binding.root
     }
 }

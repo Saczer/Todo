@@ -13,15 +13,15 @@ import javax.inject.Inject
  */
 class SettingsViewModel @Inject constructor(
         private val todoPreferences: TodoPreferences,
-        private val navigator: TasksNavigator) : SettingsContract, ViewModel() {
+        private val navigator: TasksNavigator) : ViewModel() {
 
-    override val observableTheme: ObservableField<ThemePalette> = ObservableField()
+    val observableTheme: ObservableField<ThemePalette> = ObservableField()
 
     init {
         observableTheme.set(todoPreferences.getThemeColor())
     }
 
-    override fun onThemeSelected(themePalette: ThemePalette) {
+    fun onThemeSelected(themePalette: ThemePalette) {
         todoPreferences.setThemePalette(themePalette)
         navigator.restartSettingsChange()
     }

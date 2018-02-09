@@ -12,9 +12,9 @@ import javax.inject.Inject
  * @author molszak
  *         created on 31.01.2018.
  */
-class TasksViewModel @Inject constructor() : ViewModel(), TasksContract, TasksNavigator.NavigatorInteractionCallback {
-    override val actionVisibility: ObservableField<Boolean> = ObservableField(true)
-    override val navigationVisibility: ObservableField<Boolean> = ObservableField(true)
+class TasksViewModel @Inject constructor() : ViewModel(), TasksNavigator.NavigatorInteractionCallback {
+    val actionVisibility: ObservableField<Boolean> = ObservableField(true)
+    val navigationVisibility: ObservableField<Boolean> = ObservableField(true)
 
     var navigator: TasksNavigator? = null
         set(value) {
@@ -34,11 +34,11 @@ class TasksViewModel @Inject constructor() : ViewModel(), TasksContract, TasksNa
         navigator?.toTaskList()
     }
 
-    override fun onClickAdd(view: View) {
+    fun onClickAdd(view: View) {
         navigator?.toQuickCreateTask(view)
     }
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+    fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.settings -> {
                 navigator?.toSettings()

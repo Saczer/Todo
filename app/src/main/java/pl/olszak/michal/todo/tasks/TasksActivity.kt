@@ -38,7 +38,7 @@ class TasksActivity : FragmentInjectingActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TasksViewModel::class.java)
         viewModel.navigator = navigator
-        binding.contract = viewModel
+        binding.vm = viewModel
 
         val changedSettings = intent.getBooleanExtra(RestartOptions.SETTINGS_CHANGE, false)
         if (changedSettings) {

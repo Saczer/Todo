@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="contract"
-            type="pl.olszak.michal.todo.tasks.settings.SettingsContract" />
+            name="vm"
+            type="pl.olszak.michal.todo.tasks.settings.SettingsViewModel" />
     </data>
 
     <RelativeLayout
@@ -53,8 +53,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/settings_margin"
-                        app:themePalette="@{contract.observableTheme}"
-                        app:themePaletteChange="@{(theme) -> contract.onThemeSelected(theme)}" />
+                        app:themePalette="@{vm.observableTheme}"
+                        app:themePaletteChange="@{vm::onThemeSelected}" />
 
                 </RelativeLayout>
             </LinearLayout>

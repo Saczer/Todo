@@ -41,23 +41,6 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
     @Inject
     lateinit var navigation: TasksNavigator
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_quick_create_task,
-                container,
-                false)
-        binding.toolbar.apply {
-            setNavigationIcon(R.mipmap.ic_arrow_left_black_24dp)
-            setNavigationOnClickListener {
-                Toast.makeText(context, "srata", Toast.LENGTH_LONG).show()
-                navigation.handleOnBackPressed()
-            }
-        }
-
-
-        return binding.root
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -72,6 +55,22 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
                 AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
             }
         }
+
+        binding.toolbar.apply {
+            setNavigationIcon(R.mipmap.ic_arrow_left_black_24dp)
+            setNavigationOnClickListener {
+                Toast.makeText(context, "srata", Toast.LENGTH_LONG).show()
+                navigation.handleOnBackPressed()
+            }
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_quick_create_task,
+                container,
+                false)
+        return binding.root
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="contract"
-            type="pl.olszak.michal.todo.tasks.TasksContract" />
+            name="vm"
+            type="pl.olszak.michal.todo.tasks.TasksViewModel" />
     </data>
 
     <FrameLayout
@@ -39,9 +39,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="@dimen/tasks_fab_margin"
-                    android:onClick="@{contract::onClickAdd}"
+                    android:onClick="@{vm::onClickAdd}"
                     android:src="@mipmap/ic_plus_white_24dp"
-                    android:visibility="@{contract.actionVisibility}"
+                    android:visibility="@{vm.actionVisibility}"
                     app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior" />
 
             </android.support.design.widget.CoordinatorLayout>
@@ -51,10 +51,10 @@
                 style="@style/Task.BottomMenu"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tasks_bottom_navigation_height"
-                app:animatedVisibility="@{contract.navigationVisibility}"
+                app:animatedVisibility="@{vm.navigationVisibility}"
                 app:layout_behavior="@string/bottom_sheet_behavior"
                 app:menu="@menu/bottom_navigation"
-                app:onNavigationItemSelectedListener="@{contract::onNavigationItemSelected}" />
+                app:onNavigationItemSelectedListener="@{vm::onNavigationItemSelected}" />
 
         </android.support.design.widget.CoordinatorLayout>
 
