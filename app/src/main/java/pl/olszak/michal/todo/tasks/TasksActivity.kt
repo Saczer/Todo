@@ -8,7 +8,6 @@ import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
-import pl.olszak.michal.todo.tasks.navigation.AndroidTasksNavigator
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import pl.olszak.michal.todo.util.tools.TodoUtils
 import javax.inject.Inject
@@ -34,14 +33,17 @@ class TasksActivity : FragmentInjectingActivity() {
         setTheme(TodoUtils.getStyle(themePalette))
         val binding: ActivityTasksBinding = DataBindingUtil.setContentView(this, R.layout.activity_tasks)
 
+        navigator.onRestoreInstanceState(savedInstanceState)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TasksViewModel::class.java)
         viewModel.navigator = navigator
         binding.contract = viewModel
 
-        val changedSettings = intent.getBooleanExtra(AndroidTasksNavigator.SETTINGS_CHANGE, false)
+        val changedSettings = intent.getBooleanExtra(RestartOptions.SETTINGS_CHANGE, false)
         if (changedSettings) {
             viewModel.handleChangeSettings()
+            intent.removeExtra(RestartOptions.SETTINGS_CHANGE)
             binding.bottomNavigation.selectedItemId = R.id.settings
         } else if (savedInstanceState == null) {
             viewModel.handleNoSavedState()

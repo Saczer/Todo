@@ -5,12 +5,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import pl.olszak.michal.todo.tasks.QuickCreateTaskFragment
+import pl.olszak.michal.todo.di.module.tasks.fragment.SettingsFragmentModule
+import pl.olszak.michal.todo.di.module.tasks.fragment.TasksFragmentModule
+import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
 import pl.olszak.michal.todo.di.scope.PerActivity
 import pl.olszak.michal.todo.tasks.navigation.AndroidTasksNavigator
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
-import pl.olszak.michal.todo.settings.SettingsFragment
-import pl.olszak.michal.todo.tasklist.TasksFragment
+import pl.olszak.michal.todo.tasks.settings.SettingsFragment
+import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
 import pl.olszak.michal.todo.tasks.TasksActivity
 
 /**

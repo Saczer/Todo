@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.di.module.tasks
+package pl.olszak.michal.todo.di.module.tasks.fragment
 
 import dagger.Module
 import pl.olszak.michal.todo.di.scope.PerFragment

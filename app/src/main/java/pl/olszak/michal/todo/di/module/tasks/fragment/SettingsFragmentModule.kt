@@ -1,14 +1,12 @@
-package pl.olszak.michal.todo.di.module.tasks
+package pl.olszak.michal.todo.di.module.tasks.fragment
 
 import android.arch.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.IntoMap
-import pl.olszak.michal.todo.data.model.Item
 import pl.olszak.michal.todo.di.ViewModelKey
 import pl.olszak.michal.todo.di.scope.PerFragment
-import pl.olszak.michal.todo.settings.SettingsViewModel
+import pl.olszak.michal.todo.tasks.settings.SettingsViewModel
 
 /**
  * @author molszak

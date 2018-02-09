@@ -1,5 +1,6 @@
 package pl.olszak.michal.todo.tasks.navigation
 
+import android.os.Bundle
 import android.view.View
 
 /**
@@ -7,6 +8,8 @@ import android.view.View
  *         created on 31.01.2018.
  */
 interface TasksNavigator {
+
+    fun onRestoreInstanceState(savedInstanceState: Bundle?)
 
     interface NavigatorInteractionCallback {
 
@@ -28,7 +31,7 @@ interface TasksNavigator {
 
     fun toQuickCreateTask(view: View)
 
-    fun handleOnBackPressed() : Boolean
+    fun handleOnBackPressed(): Boolean
 
     fun returnFromCreateTask()
 

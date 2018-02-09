@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.tasks
+package pl.olszak.michal.todo.tasks.create
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -19,9 +19,10 @@ import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 class QuickCreateTaskFragment : Fragment(), Injectable {
 
     companion object {
+        private const val SAVED_ANIMATION_STATE = "saved_animation_state"
         private const val ARG_REVEAL_SETTINGS = "arg_reveal_settings"
 
-        fun newInstance(revealSettings: RevealAnimationSetting): QuickCreateTaskFragment {
+        fun createWithReveal(revealSettings: RevealAnimationSetting): QuickCreateTaskFragment {
             val fragment = QuickCreateTaskFragment()
             val bundle = Bundle()
             bundle.putParcelable(ARG_REVEAL_SETTINGS, revealSettings)
@@ -33,19 +34,35 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
 
     private lateinit var binding: FragmentQuickCreateTaskBinding
 
+    private var alreadyAnimated: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_quick_create_task,
                 container,
                 false)
 
-        val revealAnimationSetting: RevealAnimationSetting? = arguments.getParcelable(ARG_REVEAL_SETTINGS)
-        revealAnimationSetting?.let {
-            AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
-        }
-
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+        savedInstanceState?.let {
+            alreadyAnimated = it.getBoolean(SAVED_ANIMATION_STATE, false)
+        }
+
+        if (!alreadyAnimated) {
+            alreadyAnimated = true
+            val revealAnimationSetting: RevealAnimationSetting? = arguments.getParcelable(ARG_REVEAL_SETTINGS)
+            revealAnimationSetting?.let {
+                AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putBoolean(SAVED_ANIMATION_STATE, alreadyAnimated)
+    }
 }

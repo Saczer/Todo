@@ -9,7 +9,6 @@ import pl.olszak.michal.todo.di.ViewModelFactory
 import pl.olszak.michal.todo.di.ViewModelKey
 import pl.olszak.michal.todo.di.scope.PerActivity
 import pl.olszak.michal.todo.hello.MainViewModel
-import pl.olszak.michal.todo.settings.SettingsViewModel
 import pl.olszak.michal.todo.tasks.TasksViewModel
 
 /**

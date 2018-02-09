@@ -3,6 +3,7 @@ package pl.olszak.michal.todo.util.extension
 import android.content.Context
 import android.graphics.RectF
 import android.support.annotation.ColorInt
+import android.support.v4.view.ViewCompat
 import android.util.TypedValue
 import android.view.View
 
@@ -16,6 +17,10 @@ fun dpToPx(context: Context, value: Float): Float {
 
 fun isMatchParent(measureSpec: Int): Boolean {
     return View.MeasureSpec.getMode(measureSpec) == View.MeasureSpec.EXACTLY
+}
+
+fun shouldAnimateVisibilityChange(view: View): Boolean {
+    return ViewCompat.isLaidOut(view) && !view.isInEditMode
 }
 
 @ColorInt

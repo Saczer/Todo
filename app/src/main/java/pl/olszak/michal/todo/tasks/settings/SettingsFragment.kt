@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.settings
+package pl.olszak.michal.todo.tasks.settings
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
