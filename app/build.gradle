@@ -40,6 +40,17 @@ android {
             includeAndroidResources = true
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError true
+        enable 'UnusedResources'
+        checkReleaseBuilds true
+    }
 }
 
 ext {
@@ -107,4 +118,59 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     androidTestImplementation "com.android.support.test:runner:$runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+}
+
+class UpdateVersion extends DefaultTask {
+    @Input
+    String type
+
+    @TaskAction
+    void run() {
+        File workingDir = project.rootProject.projectDir
+        String latestTag = 'git describe --abbrev=0 --tags'.execute([], workingDir).text.trim() ?: "dev"
+        if (latestTag == "dev") {
+            throw new IllegalArgumentException("No tag found")
+        }
+        String[] latestVersion = latestTag.split("\\.")
+        int major = latestVersion[0].toInteger()
+        int minor = latestVersion[1].toInteger()
+        int patch = latestVersion[2].toInteger()
+        switch (type) {
+            case "M":
+                major++
+                minor = 0
+                patch = 0
+                break
+            case "m":
+                minor++
+                patch = 0
+                break
+            case "p":
+                patch++
+                break
+            default:
+                throw new IllegalArgumentException("Unrecognized version type \"$type\"")
+        }
+
+        String latestVersionString = "$major.$minor.$patch"
+        println "Updating version to $latestVersionString"
+        def outputStream = new ByteArrayOutputStream()
+
+        project.root.exec {
+            commandLine 'git', 'tag', '-a', latestVersionString, '-m', "\"Verison $latestVersionString.\""
+            standardOutput = outputStream
+            errorOutput = outputStream
+        }
+
+        String newTag = 'git describe --abbrev=0 --tags'.execute([], workingDir).text.trim() ?: "dev"
+        if (newTag == latestTag) {
+            throw new AssertionError("Git tag did not work ${outputStream.toString().trim()}")
+        }
+    }
+}
+
+tasks.create("updateVersion", UpdateVersion.class) {
+    type getProperty("version")
+    group "build"
+    description "Updates current version, Supports CLI property flag -Pversion={type} whre type is (Mmp)"
 }
