@@ -1,7 +1,6 @@
 package pl.olszak.michal.todo.tasks
 
 import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import pl.olszak.michal.todo.R
@@ -10,6 +9,7 @@ import pl.olszak.michal.todo.databinding.ActivityTasksBinding
 import pl.olszak.michal.todo.di.FragmentInjectingActivity
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import pl.olszak.michal.todo.util.tools.TodoUtils
+import pl.olszak.michal.todo.util.viewModelProvider
 import javax.inject.Inject
 
 /**
@@ -32,11 +32,9 @@ class TasksActivity : FragmentInjectingActivity() {
         val themePalette = todoPreferences.getThemeColor()
         setTheme(TodoUtils.getStyle(themePalette))
         val binding: ActivityTasksBinding = DataBindingUtil.setContentView(this, R.layout.activity_tasks)
+        viewModel = viewModelProvider(viewModelFactory)
 
         navigator.onRestoreInstanceState(savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(TasksViewModel::class.java)
         viewModel.navigator = navigator
         binding.vm = viewModel
 

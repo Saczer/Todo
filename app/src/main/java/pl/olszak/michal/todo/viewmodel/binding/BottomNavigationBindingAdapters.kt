@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.viewmodel.bindingadapter
+package pl.olszak.michal.todo.viewmodel.binding
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
