@@ -29,20 +29,11 @@ import java.text.ParseException
  */
 
 @BindingMethods(value = [
-    (BindingMethod(type = Toolbar::class,
-            attribute = "navigationClick",
-            method = "setNavigationOnClickListener")),
     (BindingMethod(type = ThemeGroup::class,
             attribute = "themePalette",
             method = "setTheme"))])
 class BindingMethods
 
-/*@BindingAdapter(value = ["themePalette"], requireAll = false)
-fun bindThemePalette(view: ThemeGroup, themePalette: ThemePalette?) {
-    themePalette?.let {
-        view.setTheme(themePalette)
-    }
-}*/
 
 @BindingAdapter(value = ["themePaletteChange"], requireAll = false)
 fun bindThemePaletteChange(view: ThemeGroup, listener: ThemeGroup.OnChangeTheme?) {

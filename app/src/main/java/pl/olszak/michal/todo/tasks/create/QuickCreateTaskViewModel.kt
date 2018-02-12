@@ -1,6 +1,7 @@
 package pl.olszak.michal.todo.tasks.create
 
 import android.arch.lifecycle.ViewModel
+import android.view.View
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import javax.inject.Inject
 

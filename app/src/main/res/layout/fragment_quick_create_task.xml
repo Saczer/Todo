@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -18,7 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/all_tasks_toolbar_height"
             android:layout_gravity="top"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:onClick="@{() -> vm.onNavigateBack()}"
+            app:navigationIcon="@mipmap/ic_arrow_left_grey600_24dp" />
 
     </FrameLayout>
 </layout>

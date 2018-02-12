@@ -31,6 +31,7 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
 
         val viewModel: QuickCreateTaskViewModel = viewModelProvider(viewModelFactory)
+        binding.vm = viewModel
 
         savedInstanceState?.let {
             alreadyAnimated = it.getBoolean(SAVED_ANIMATION_STATE, false)
@@ -42,11 +43,6 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
             revealAnimationSetting?.let {
                 AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
             }
-        }
-
-        binding.toolbar.apply {
-            setNavigationIcon(R.mipmap.ic_arrow_left_black_24dp)
-            setNavigationOnClickListener { }
         }
     }
 
