@@ -6,7 +6,6 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v4.view.animation.LinearOutSlowInInterpolator
 import android.view.View
@@ -24,10 +23,15 @@ class TodoAnimationUtils {
 
     companion object Factory {
 
-        //todo : move final color to navigator
+        private const val SHORT_ANIM_TIME = 200L
+        private val FAST_OUT_SLOW_IN = FastOutSlowInInterpolator()
+        private val LINEAR_OUT_SLOW_IN = LinearOutSlowInInterpolator()
+        private val COLOR_EVALUATOR = ArgbEvaluator()
+        
         fun registerCircularRevealAnimation(context: Context,
                                             view: View,
-                                            revealSettings: RevealAnimationSetting) {
+                                            revealSettings: RevealAnimationSetting,
+                                            @ColorInt endColor: Int) {
             view.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
                 override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
                     v?.let {
@@ -37,15 +41,14 @@ class TodoAnimationUtils {
                         val duration = context.resources.getInteger(android.R.integer.config_mediumAnimTime)
                         val radius: Float = Math.sqrt((width * width + height * height).toDouble()).toFloat()
 
-                        val anim: Animator = ViewAnimationUtils.createCircularReveal(it, cx, cy, 0f, radius)
-                        anim.apply {
+                        val animator: Animator = ViewAnimationUtils.createCircularReveal(it, cx, cy, 0f, radius)
+                        animator.apply {
                             setDuration(duration.toLong())
-                            interpolator = FastOutSlowInInterpolator()
+                            interpolator = FAST_OUT_SLOW_IN
                         }
 
-                        anim.start()
+                        animator.start()
                         val startColor: Int = getCurrentAccentColor(it.context)
-                        val endColor: Int = ContextCompat.getColor(it.context, R.color.blackOpacity54)
                         startColorAnimation(it, startColor, endColor, duration.toLong())
                     }
                 }
@@ -56,7 +59,7 @@ class TodoAnimationUtils {
             val animator = ValueAnimator()
             animator.apply {
                 setIntValues(startColor, endColor)
-                setEvaluator(ArgbEvaluator())
+                setEvaluator(COLOR_EVALUATOR)
                 addUpdateListener {
                     view.setBackgroundColor(it.animatedValue as Int)
                 }
@@ -83,8 +86,8 @@ class TodoAnimationUtils {
 
                 view.animate()
                         .translationY(endTranslationY)
-                        .setDuration(200L)
-                        .setInterpolator(LinearOutSlowInInterpolator())
+                        .setDuration(SHORT_ANIM_TIME)
+                        .setInterpolator(LINEAR_OUT_SLOW_IN)
                         .setListener(object : AnimatorListenerAdapter() {
                             private var cancelled: Boolean = false
 

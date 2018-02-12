@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,8 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
             alreadyAnimated = true
             val revealAnimationSetting: RevealAnimationSetting? = arguments.getParcelable(ARG_REVEAL_SETTINGS)
             revealAnimationSetting?.let {
-                TodoAnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
+                val endColor = ContextCompat.getColor(context, R.color.blackOpacity54)
+                TodoAnimationUtils.registerCircularRevealAnimation(context, binding.root, it, endColor)
             }
         }
     }
