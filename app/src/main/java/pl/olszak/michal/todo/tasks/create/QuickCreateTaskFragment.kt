@@ -12,7 +12,7 @@ import pl.olszak.michal.todo.databinding.FragmentQuickCreateTaskBinding
 import pl.olszak.michal.todo.di.Injectable
 import pl.olszak.michal.todo.util.extension.showSoftInputMethod
 import pl.olszak.michal.todo.util.viewModelProvider
-import pl.olszak.michal.todo.view.animation.AnimationUtils
+import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
 import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 import javax.inject.Inject
 
@@ -43,7 +43,7 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
             alreadyAnimated = true
             val revealAnimationSetting: RevealAnimationSetting? = arguments.getParcelable(ARG_REVEAL_SETTINGS)
             revealAnimationSetting?.let {
-                AnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
+                TodoAnimationUtils.registerCircularRevealAnimation(context, binding.root, it)
             }
         }
     }

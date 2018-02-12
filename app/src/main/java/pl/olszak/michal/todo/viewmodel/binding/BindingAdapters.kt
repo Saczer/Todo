@@ -17,7 +17,7 @@ import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.util.extension.logE
 import pl.olszak.michal.todo.util.tools.TodoUtils
-import pl.olszak.michal.todo.view.animation.AnimationUtils
+import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
 import pl.olszak.michal.todo.view.circle.CircleView
 import pl.olszak.michal.todo.view.circle.ThemeGroup
 import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
@@ -63,7 +63,7 @@ fun bindVisibility(view: FloatingActionButton, visibility: Boolean?) {
 @BindingAdapter(value = ["animatedVisibility"], requireAll = false)
 fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
     animatedVisibility?.let {
-        AnimationUtils.animateVisibility(view, it)
+        TodoAnimationUtils.animateVisibility(view, it)
     }
     /*animatedVisibility?.let {
         view.visibility = if (it) View.VISIBLE else View.INVISIBLE

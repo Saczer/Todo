@@ -73,3 +73,4 @@ fun View.calculateBounds(): RectF {
 
     return RectF(left, top, left + sideLength, top + sideLength)
 }
+

@@ -1,10 +1,14 @@
 package pl.olszak.michal.todo.view.animation
 
-import android.animation.*
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.support.v4.view.animation.LinearOutSlowInInterpolator
 import android.view.View
 import android.view.ViewAnimationUtils
 import pl.olszak.michal.todo.R
@@ -16,7 +20,7 @@ import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
  * @author molszak
  *         created on 06.02.2018.
  */
-class AnimationUtils {
+class TodoAnimationUtils {
 
     companion object Factory {
 
@@ -63,6 +67,8 @@ class AnimationUtils {
         }
 
         fun animateVisibility(view: View, visibilityChange: Boolean) {
+            view.animate().cancel()
+
             if (shouldAnimateVisibilityChange(view)) {
 
                 val endVisibility: Int? = view.getTag(R.id.finalVisibility) as Int?
@@ -73,42 +79,31 @@ class AnimationUtils {
                     return
                 }
 
-                val isVisible = oldVisibility == View.VISIBLE
-                view.visibility = View.VISIBLE
-                var startTranslationY = if (isVisible) 0f else view.height.toFloat()
-                if (endVisibility != null) {
-                    startTranslationY = view.translationY
-                }
                 val endTranslationY = if (visibilityChange) 0f else view.height.toFloat()
 
-                val animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, startTranslationY, endTranslationY)
-                animator.apply {
-                    interpolator = FastOutSlowInInterpolator()
-                    setAutoCancel(true)
+                view.animate()
+                        .translationY(endTranslationY)
+                        .setDuration(200L)
+                        .setInterpolator(LinearOutSlowInInterpolator())
+                        .setListener(object : AnimatorListenerAdapter() {
+                            private var cancelled: Boolean = false
 
-                    addListener(object : AnimatorListenerAdapter() {
-                        var isCancelled: Boolean = false
-
-                        override fun onAnimationStart(animation: Animator?) {
-                            view.setTag(R.id.finalVisibility, visibility)
-                        }
-
-                        override fun onAnimationCancel(animation: Animator?) {
-                            isCancelled = true
-                        }
-
-                        override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
-                            view.setTag(R.id.finalVisibility, null)
-                            if (!isCancelled) {
-                                view.translationY = 0f
+                            override fun onAnimationStart(animation: Animator?) {
                                 view.visibility = visibility
-                                view.invalidate()
                             }
-                        }
-                    })
-                }
-                animator.start()
+
+                            override fun onAnimationCancel(animation: Animator?) {
+                                cancelled = true
+                            }
+
+                            override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
+                                if (!cancelled && !visibilityChange) {
+                                    view.visibility = View.GONE
+                                }
+                            }
+                        })
             } else {
+                view.translationY = 0f
                 view.visibility = if (visibilityChange) View.VISIBLE else View.INVISIBLE
             }
         }
