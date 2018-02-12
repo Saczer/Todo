@@ -5,4 +5,5 @@
     <string name="all_tasks">Wszystkie zadania</string>
     <string name="preferences">Preferencje</string>
     <string name="theme">Motyw</string>
+    <string name="quick_task_hint">Wpisz tytuł zadania</string>
 </resources>

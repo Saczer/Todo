@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">@color/deepBlue</item>
         <item name="colorAccent">@color/pink</item>
+        <item name="colorControlNormal">@color/blue</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
@@ -11,6 +12,7 @@
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/deepOrange</item>
         <item name="colorAccent">@color/black</item>
+        <item name="colorControlNormal">@color/deepOrange</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 

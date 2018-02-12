@@ -1,8 +1,6 @@
 package pl.olszak.michal.todo.view.animation
 
-import android.animation.Animator
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
+import android.animation.*
 import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
@@ -11,6 +9,7 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.util.extension.getCurrentAccentColor
+import pl.olszak.michal.todo.util.extension.shouldAnimateVisibilityChange
 import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 
 /**
@@ -20,6 +19,7 @@ import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 class AnimationUtils {
 
     companion object Factory {
+
         //todo : move final color to navigator
         fun registerCircularRevealAnimation(context: Context,
                                             view: View,
@@ -60,6 +60,57 @@ class AnimationUtils {
             }
 
             animator.start()
+        }
+
+        fun animateVisibility(view: View, visibilityChange: Boolean) {
+            if (shouldAnimateVisibilityChange(view)) {
+
+                val endVisibility: Int? = view.getTag(R.id.finalVisibility) as Int?
+                val oldVisibility = endVisibility ?: view.visibility
+
+                val visibility = if (visibilityChange) View.VISIBLE else View.INVISIBLE
+                if (oldVisibility == visibility) {
+                    return
+                }
+
+                val isVisible = oldVisibility == View.VISIBLE
+                view.visibility = View.VISIBLE
+                var startTranslationY = if (isVisible) 0f else view.height.toFloat()
+                if (endVisibility != null) {
+                    startTranslationY = view.translationY
+                }
+                val endTranslationY = if (visibilityChange) 0f else view.height.toFloat()
+
+                val animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, startTranslationY, endTranslationY)
+                animator.apply {
+                    interpolator = FastOutSlowInInterpolator()
+                    setAutoCancel(true)
+
+                    addListener(object : AnimatorListenerAdapter() {
+                        var isCancelled: Boolean = false
+
+                        override fun onAnimationStart(animation: Animator?) {
+                            view.setTag(R.id.finalVisibility, visibility)
+                        }
+
+                        override fun onAnimationCancel(animation: Animator?) {
+                            isCancelled = true
+                        }
+
+                        override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
+                            view.setTag(R.id.finalVisibility, null)
+                            if (!isCancelled) {
+                                view.translationY = 0f
+                                view.visibility = visibility
+                                view.invalidate()
+                            }
+                        }
+                    })
+                }
+                animator.start()
+            } else {
+                view.visibility = if (visibilityChange) View.VISIBLE else View.INVISIBLE
+            }
         }
 
     }

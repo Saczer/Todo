@@ -6,6 +6,8 @@ import android.support.annotation.ColorInt
 import android.support.v4.view.ViewCompat
 import android.util.TypedValue
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.content.systemService
 
 /**
  * @author molszak
@@ -21,6 +23,36 @@ fun isMatchParent(measureSpec: Int): Boolean {
 
 fun shouldAnimateVisibilityChange(view: View): Boolean {
     return ViewCompat.isLaidOut(view) && !view.isInEditMode
+}
+
+fun View.hideSoftInputMethod(millis: Long = 0L) {
+    val runnable = Runnable {
+        val inputManager: InputMethodManager = context.systemService()
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    if (millis > 0) {
+        this.postDelayed(runnable, millis)
+    } else {
+        this.post(runnable)
+    }
+}
+
+fun View.showSoftInputMethod(millis: Long = 0L) {
+    if (isFocusable) {
+        if (requestFocus()) {
+            val runnable = Runnable {
+                val inputManager: InputMethodManager = context.systemService()
+                inputManager.showSoftInput(this, android.view.inputmethod.InputMethod.SHOW_EXPLICIT)
+            }
+
+            if (millis > 0) {
+                this.postDelayed(runnable, millis)
+            } else {
+                this.post(runnable)
+            }
+        }
+    }
 }
 
 @ColorInt

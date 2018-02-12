@@ -8,11 +8,12 @@ import android.transition.TransitionInflater
 import android.transition.TransitionSet
 import android.view.View
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.tasks.settings.SettingsFragment
-import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
-import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
 import pl.olszak.michal.todo.tasks.RestartOptions
 import pl.olszak.michal.todo.tasks.TasksActivity
+import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
+import pl.olszak.michal.todo.tasks.settings.SettingsFragment
+import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
+import pl.olszak.michal.todo.util.extension.hideSoftInputMethod
 import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 import javax.inject.Inject
 
@@ -159,7 +160,11 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
                 false
             } else {
                 it.supportFragmentManager.popBackStack()
-                returnFromCreateTask()
+
+                val view: View? = it.findViewById(android.R.id.content)
+                view?.hideSoftInputMethod()
+                view?.postDelayed({ returnFromCreateTask() }, DEFAULT_TRANSITION_TIME)
+
                 true
             }
         }

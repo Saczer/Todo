@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.FragmentQuickCreateTaskBinding
 import pl.olszak.michal.todo.di.Injectable
+import pl.olszak.michal.todo.util.extension.showSoftInputMethod
 import pl.olszak.michal.todo.util.viewModelProvider
 import pl.olszak.michal.todo.view.animation.AnimationUtils
 import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
@@ -32,6 +33,7 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
 
         val viewModel: QuickCreateTaskViewModel = viewModelProvider(viewModelFactory)
         binding.vm = viewModel
+        binding.enterTitle.showSoftInputMethod()
 
         savedInstanceState?.let {
             alreadyAnimated = it.getBoolean(SAVED_ANIMATION_STATE, false)

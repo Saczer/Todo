@@ -3,6 +3,7 @@ package pl.olszak.michal.todo.viewmodel.binding
 import android.databinding.BindingAdapter
 import android.databinding.BindingMethod
 import android.databinding.BindingMethods
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
@@ -10,13 +11,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toolbar
 import org.threeten.bp.Instant
 import org.threeten.bp.format.DateTimeFormatter
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.util.extension.logE
 import pl.olszak.michal.todo.util.tools.TodoUtils
+import pl.olszak.michal.todo.view.animation.AnimationUtils
 import pl.olszak.michal.todo.view.circle.CircleView
 import pl.olszak.michal.todo.view.circle.ThemeGroup
 import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
@@ -27,11 +28,11 @@ import java.text.ParseException
  * Created by molszak.
  * 10.02.2018
  */
-
 @BindingMethods(value = [
-    (BindingMethod(type = ThemeGroup::class,
+    BindingMethod(type = ThemeGroup::class,
             attribute = "themePalette",
-            method = "setTheme"))])
+            method = "setTheme")
+])
 class BindingMethods
 
 
@@ -57,6 +58,16 @@ fun bindVisibility(view: FloatingActionButton, visibility: Boolean?) {
             view.hide()
         }
     }
+}
+
+@BindingAdapter(value = ["animatedVisibility"], requireAll = false)
+fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
+    animatedVisibility?.let {
+        AnimationUtils.animateVisibility(view, it)
+    }
+    /*animatedVisibility?.let {
+        view.visibility = if (it) View.VISIBLE else View.INVISIBLE
+    }*/
 }
 
 @BindingAdapter(value = ["priority"], requireAll = false)
