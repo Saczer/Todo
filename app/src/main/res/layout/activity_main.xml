@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         tools:context="pl.olszak.michal.todo.hello.MainActivity">
 
-        <pl.olszak.michal.todo.view.circle.CircleView
+        <pl.olszak.michal.todo.view.CircleView
             android:id="@+id/circle"
             android:layout_width="300dp"
             android:layout_height="300dp"

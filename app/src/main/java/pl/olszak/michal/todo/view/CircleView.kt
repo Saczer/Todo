@@ -1,4 +1,4 @@
-package pl.olszak.michal.todo.view.circle
+package pl.olszak.michal.todo.view
 
 import android.content.Context
 import android.content.res.TypedArray

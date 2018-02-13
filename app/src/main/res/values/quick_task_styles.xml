@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="QuickTask" />
+
+    <style name="QuickTask.Toolbar">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/quick_task_toolbar_elevation</item>
+        <item name="navigationIcon">@mipmap/ic_arrow_left_grey600_24dp</item>
+    </style>
+
+    <style name="QuickTask.Bottom">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/quick_task_bottom_elevation</item>
+    </style>
+
+    <style name="QuickTask.Edit">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:textColor">@color/grey800</item>
+    </style>
+
+    <style name="QuickTask.SendButton">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:src">@mipmap/ic_send_grey600_24dp</item>
+    </style>
+
+</resources>

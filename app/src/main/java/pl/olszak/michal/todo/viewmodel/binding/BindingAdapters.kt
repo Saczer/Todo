@@ -18,8 +18,8 @@ import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.util.extension.logE
 import pl.olszak.michal.todo.util.tools.TodoUtils
 import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
-import pl.olszak.michal.todo.view.circle.CircleView
-import pl.olszak.michal.todo.view.circle.ThemeGroup
+import pl.olszak.michal.todo.view.CircleView
+import pl.olszak.michal.todo.view.ThemeGroup
 import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
 import java.text.NumberFormat
 import java.text.ParseException
@@ -65,9 +65,6 @@ fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
     animatedVisibility?.let {
         TodoAnimationUtils.animateVisibility(view, it)
     }
-    /*animatedVisibility?.let {
-        view.visibility = if (it) View.VISIBLE else View.INVISIBLE
-    }*/
 }
 
 @BindingAdapter(value = ["priority"], requireAll = false)

@@ -48,7 +48,7 @@
                         android:layout_marginStart="@dimen/settings_margin"
                         android:text="@string/theme" />
 
-                    <pl.olszak.michal.todo.view.circle.ThemeGroup
+                    <pl.olszak.michal.todo.view.ThemeGroup
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

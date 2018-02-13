@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -16,48 +15,39 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/QuickTask.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/all_tasks_toolbar_height"
+            android:layout_height="@dimen/quick_task_toolbar_height"
             android:layout_gravity="top"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:onClick="@{() -> vm.onNavigateBack()}"
-            app:navigationIcon="@mipmap/ic_arrow_left_grey600_24dp" />
+            android:onClick="@{() -> vm.onNavigateBack()}" />
 
         <LinearLayout
+            style="@style/QuickTask.Bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/white"
-            android:elevation="8dp"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/enter_title"
+                style="@style/QuickTask.Edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tasks_item_margin_horizontal"
                 android:layout_weight="1"
-                android:background="@null"
-                android:ems="2"
                 android:hint="@string/quick_task_hint"
-                android:imeOptions="actionSend"
-                android:inputType="text"
-                android:maxLines="2"
-                android:text="@={vm.taskTitle}"
-                android:textColor="@color/grey800"
-                android:textSize="16sp" />
+                android:text="@={vm.taskTitle}" />
 
             <ImageButton
-                android:id="@+id/create_task"
+                android:id="@+id/send"
+                style="@style/QuickTask.SendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/quick_task_element_margin"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="@{() -> vm.createTask()}"
-                android:src="@mipmap/ic_send_grey600_24dp" />
+                android:padding="@dimen/quick_task_send_padding" />
 
         </LinearLayout>
 

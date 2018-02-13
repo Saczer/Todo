@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tasks_item_height">
 
-        <pl.olszak.michal.todo.view.circle.CircleView
+        <pl.olszak.michal.todo.view.CircleView
             android:id="@+id/circle"
             android:layout_width="@dimen/tasks_item_circle_size"
             android:layout_height="@dimen/tasks_item_circle_size"

@@ -5,11 +5,13 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.databinding.FragmentQuickCreateTaskBinding
+import pl.olszak.michal.todo.databinding.FragmentQuickTaskBinding
 import pl.olszak.michal.todo.di.Injectable
 import pl.olszak.michal.todo.util.extension.showSoftInputMethod
 import pl.olszak.michal.todo.util.viewModelProvider
@@ -23,7 +25,7 @@ import javax.inject.Inject
  */
 class QuickCreateTaskFragment : Fragment(), Injectable {
 
-    private lateinit var binding: FragmentQuickCreateTaskBinding
+    private lateinit var binding: FragmentQuickTaskBinding
     private var alreadyAnimated: Boolean = false
 
     @Inject
@@ -52,9 +54,14 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_quick_create_task,
+                R.layout.fragment_quick_task,
                 container,
                 false)
+
+        //somehow it doesn't work when extending class nor as xml attributes
+        binding.enterTitle.imeOptions = EditorInfo.IME_ACTION_SEND
+        binding.enterTitle.setRawInputType(InputType.TYPE_CLASS_TEXT)
+
         return binding.root
     }
 
