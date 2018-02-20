@@ -79,7 +79,7 @@ class ThemeView @JvmOverloads constructor(
             it.drawCircle(circleRect.centerX(), circleRect.centerY(), circleRadius, circlePaint)
             if (checked) {
                 checkedDrawable.draw(it)
-                it.drawCircle(borderCircleRect.centerX(), borderCircleRect.centerY(), borderCircleRadius, borderColor)
+//                it.drawCircle(borderCircleRect.centerX(), borderCircleRect.centerY(), borderCircleRadius, borderColor)
             }
         }
     }

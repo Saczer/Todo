@@ -24,7 +24,7 @@
         <LinearLayout
             style="@style/QuickTask.Bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/quick_task_toolbar_height"
             android:layout_gravity="bottom"
             android:orientation="horizontal">
 
@@ -43,7 +43,6 @@
                 style="@style/QuickTask.SendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/quick_task_element_margin"
                 android:layout_weight="0"
                 android:onClick="@{() -> vm.createTask()}"
