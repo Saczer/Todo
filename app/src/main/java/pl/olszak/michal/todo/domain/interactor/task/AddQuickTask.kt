@@ -2,6 +2,7 @@ package pl.olszak.michal.todo.domain.interactor.task
 
 import io.reactivex.Completable
 import pl.olszak.michal.todo.data.TaskStore
+import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
 import pl.olszak.michal.todo.domain.interactor.CompletableUseCase
 import javax.inject.Inject
@@ -17,10 +18,9 @@ class AddQuickTask @Inject constructor(
     override fun buildUseCaseCompletable(params: String?): Completable {
         params?.let {
             if(it.isEmpty()){
-                //todo: create task
-
                 return error()
             }
+            return taskStore.addTask(Task(title = it))
         }
         return error()
     }

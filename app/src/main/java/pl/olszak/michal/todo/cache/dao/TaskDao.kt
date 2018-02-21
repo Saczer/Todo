@@ -5,6 +5,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Flowable
+import io.reactivex.Single
 import pl.olszak.michal.todo.cache.DatabaseConstants
 import pl.olszak.michal.todo.cache.model.CachedTask
 
@@ -28,7 +29,7 @@ abstract class TaskDao {
     abstract fun clearAllCachedTasks()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCachedTask(cachedTask: CachedTask)
+    abstract fun insertCachedTask(cachedTask: CachedTask) : Long
 
 }
 

@@ -7,8 +7,7 @@ import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
  * Created by molszak.
  * 29.01.2018
  */
-abstract class FlowableUseCase<T, in Params> constructor(
-        private val todoSchedulers: TodoSchedulers) {
+abstract class FlowableUseCase<T, in Params> constructor(private val todoSchedulers: TodoSchedulers) {
 
     protected abstract fun buildUseCase(params: Params?): Flowable<T>
 

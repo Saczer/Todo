@@ -22,13 +22,15 @@ class TaskConverter @Inject constructor() : Converter<CachedTask, Task> {
 
     override fun convertFrom(model: Task): CachedTask {
         return CachedTask(
-                model.id,
                 model.title,
                 model.description,
                 model.done,
                 model.repeating,
                 model.priority,
-                model.time
-        )
+                model.time).apply {
+            model.id?.let {
+                this.id = it
+            }
+        }
     }
 }

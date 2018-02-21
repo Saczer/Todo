@@ -25,8 +25,10 @@ class TaskStoreStubber {
         }
 
         fun stubClearTask(taskStore: TaskStore, task: Task) {
-            whenever(taskStore.clearTaskWithId(task.id))
-                    .thenReturn(Completable.complete())
+            task.id?.let {
+                whenever(taskStore.clearTaskWithId(it))
+                        .thenReturn(Completable.complete())
+            }
         }
 
         fun stubAddTask(taskStore: TaskStore, task: Task) {

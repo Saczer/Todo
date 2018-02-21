@@ -11,14 +11,14 @@ import pl.olszak.michal.todo.data.model.Priority
  *         created on 25.01.2018.
  */
 @Entity(tableName = DatabaseConstants.CACHED_TASK_TABLE)
-data class CachedTask(
+data class CachedTask(val title: String,
+                      val description: String? = null,
+                      val done: Boolean = false,
+                      val repeating: Boolean = false,
+                      val priority: Priority = Priority.LOW,
+                      val time: Instant? = null) {
 
-        @PrimaryKey
-        val id: Long,
-        val title: String,
-        val description: String? = null,
-        val done: Boolean = false,
-        val repeating: Boolean = false,
-        val priority: Priority = Priority.LOW,
-        val time: Instant? = null
-)
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
+
+}

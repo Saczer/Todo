@@ -2,8 +2,8 @@ package pl.olszak.michal.todo.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import pl.olszak.michal.todo.cache.dao.TaskDao
 import pl.olszak.michal.todo.cache.converter.TaskConverter
+import pl.olszak.michal.todo.cache.dao.TaskDao
 import pl.olszak.michal.todo.data.model.Task
 import javax.inject.Inject
 

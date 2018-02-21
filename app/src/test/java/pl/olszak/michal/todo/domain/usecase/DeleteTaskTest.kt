@@ -36,7 +36,9 @@ class DeleteTaskTest {
     @Test
     fun `building use case calls store`() {
         useCase.buildUseCaseCompletable(task)
-        verify(mockTaskStore).clearTaskWithId(task.id)
+        task.id?.let {
+            verify(mockTaskStore).clearTaskWithId(it)
+        }
     }
 
     @Test

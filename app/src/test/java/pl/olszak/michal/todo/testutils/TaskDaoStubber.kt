@@ -19,8 +19,11 @@ class TaskDaoStubber {
         }
 
         fun stubGetCachedTaskById(taskDao: TaskDao, cached: CachedTask) {
-            whenever(taskDao.getCachedTaskById(cached.id))
-                    .thenReturn(Flowable.just(cached))
+            cached.id?.let {
+                whenever(taskDao.getCachedTaskById(it))
+                        .thenReturn(Flowable.just(cached))
+            }
+
         }
 
     }

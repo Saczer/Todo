@@ -15,14 +15,15 @@ class TaskFactory {
 
         fun createCachedTask(): CachedTask {
             return CachedTask(
-                    DataFactory.randomLong(),
                     "Random title",
                     "Some description",
                     false,
                     false,
                     Priority.CRITICAL,
                     Instant.now()
-            )
+            ).apply {
+                id = DataFactory.randomLong()
+            }
         }
 
         fun createCachedTaskList(size: Int): List<CachedTask> {
@@ -32,14 +33,13 @@ class TaskFactory {
         }
 
         fun createTaskBinding(): Task {
-            val binding = Task(DataFactory.randomLong(),
+            return Task(DataFactory.randomLong(),
                     "Some random title",
                     "Some description",
                     false,
                     Priority.CRITICAL,
                     true,
                     Instant.now())
-            return binding
         }
 
         fun createTaskBindingList(size: Int): List<Task> {

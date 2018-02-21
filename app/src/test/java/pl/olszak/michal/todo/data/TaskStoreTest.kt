@@ -13,6 +13,7 @@ import pl.olszak.michal.todo.cache.model.CachedTask
 import pl.olszak.michal.todo.testutils.TaskDaoStubber
 import pl.olszak.michal.todo.testutils.TaskFactory
 import pl.olszak.michal.todo.testutils.concurrent.ImmediateExecutionRule
+import kotlin.test.fail
 
 /**
  * @author molszak
@@ -59,16 +60,26 @@ open class TaskStoreTest {
     @Test
     fun `getting task calls method`() {
         val cached = cachedTasks.first()
-        taskStore.getTaskById(cached.id).test()
-        verify(taskDao).getCachedTaskById(cached.id)
+        cached.id?.let {
+            taskStore.getTaskById(it).test()
+            verify(taskDao).getCachedTaskById(it)
+        }
+        if(cached.id == null){
+            fail("Id should not be null")
+        }
     }
 
     @Test
     fun `getting tasks returns converted task`() {
         val cached = cachedTasks.first()
         TaskDaoStubber.stubGetCachedTaskById(taskDao, cached)
-        val testObserver = taskStore.getTaskById(cached.id).test()
-        testObserver.assertValue { it.id == cached.id }
+        cached.id?.let {
+            val testObserver = taskStore.getTaskById(it).test()
+            testObserver.assertValue { it.id == cached.id }
+        }
+        if(cached.id == null){
+            fail("Id should not be null")
+        }
     }
 
     @Test
@@ -80,8 +91,13 @@ open class TaskStoreTest {
     @Test
     fun `clearing task with id calls method`() {
         val cached = cachedTasks.first()
-        taskStore.clearTaskWithId(cached.id).test()
-        verify(taskDao).clearCachedTaskWithId(cached.id)
+        cached.id?.let {
+            taskStore.clearTaskWithId(it).test()
+            verify(taskDao).clearCachedTaskWithId(it)
+        }
+        if(cached.id == null){
+            fail("Id should not be null")
+        }
     }
 
     @Test

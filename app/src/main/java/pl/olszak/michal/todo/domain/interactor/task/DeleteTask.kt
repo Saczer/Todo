@@ -17,8 +17,10 @@ class DeleteTask @Inject constructor(
 ) : CompletableUseCase<Task>(schedulers) {
 
     public override fun buildUseCaseCompletable(params: Task?): Completable {
-        params?.let { task ->
-            return taskStore.clearTaskWithId(task.id)
+        params?.let {
+            it.id?.let {
+                return taskStore.clearTaskWithId(it)
+            }
         }
         return Completable.error(NullPointerException("Task can't be null"))
     }

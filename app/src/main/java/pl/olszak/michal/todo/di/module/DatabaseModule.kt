@@ -33,6 +33,7 @@ abstract class DatabaseModule {
         }
 
         @Provides
+        @JvmStatic
         fun provideTaskDao(database: TodoDatabase): TaskDao {
             return database.taskDao()
         }

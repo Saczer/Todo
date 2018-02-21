@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/quick_task_element_margin"
                 android:layout_weight="0"
+                android:clickable="@{!vm.loading}"
                 android:onClick="@{() -> vm.createTask()}"
                 android:padding="@dimen/quick_task_send_padding" />
 

@@ -1,6 +1,7 @@
 package pl.olszak.michal.todo.cache
 
 import android.arch.persistence.room.Room
+import com.google.common.cache.Cache
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -8,6 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import pl.olszak.michal.todo.cache.model.CachedTask
 import pl.olszak.michal.todo.testutils.InstantTaskExecutorRule
 import pl.olszak.michal.todo.testutils.TaskFactory
 
@@ -41,15 +43,26 @@ open class TodoDatabaseTest {
     @Test
     fun `insert and get user by id`() {
         val cachedTask = TaskFactory.createCachedTask()
-        database.taskDao().insertCachedTask(cachedTask)
+        val id = database.taskDao().insertCachedTask(cachedTask)
 
         val testObserver = database.taskDao()
-                .getCachedTaskById(cachedTask.id)
+                .getCachedTaskById(id)
                 .test()
 
         testObserver.assertValue { task ->
             task.id == cachedTask.id && task.title == cachedTask.title
         }
+    }
+
+    @Test
+    fun `inserting data to database returs it's id`(){
+        val cached = CachedTask("Some title")
+        val id = database.taskDao().insertCachedTask(cached)
+        database.taskDao().getCachedTaskById(id)
+                .test()
+                .assertValue{
+                    it.id != null && cached.title == it.title
+                }
     }
 
     @Test
@@ -102,13 +115,15 @@ open class TodoDatabaseTest {
         }
 
         val task = tasks.first()
+        task.id?.let { id ->
+            database.taskDao().clearCachedTaskWithId(id)
+            database.taskDao()
+                    .getAllCachedTasks()
+                    .test()
+                    .assertValue { it.size == 3 }
+                    .assertValue { it.none { it.id == id } }
+        }
 
-        database.taskDao().clearCachedTaskWithId(task.id)
-        database.taskDao()
-                .getAllCachedTasks()
-                .test()
-                .assertValue { it.size == 3 }
-                .assertValue { it.none { it == task } }
     }
 
 }
