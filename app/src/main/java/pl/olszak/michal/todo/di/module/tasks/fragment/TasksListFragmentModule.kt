@@ -19,6 +19,6 @@ abstract class TasksListFragmentModule {
     @Binds
     @IntoMap
     @ViewModelKey(TasksListViewModel::class)
-    abstract fun bindsTasksListViewModle(viewModel: TasksListViewModel): ViewModel
+    abstract fun bindsTasksListViewModel(viewModel: TasksListViewModel): ViewModel
 
 }
