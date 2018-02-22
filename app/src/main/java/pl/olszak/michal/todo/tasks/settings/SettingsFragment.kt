@@ -28,6 +28,7 @@ class SettingsFragment : Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
         val viewModel: SettingsViewModel = viewModelProvider(viewModelFactory)
         binding.vm = viewModel
+        viewModel.start()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

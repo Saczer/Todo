@@ -14,22 +14,22 @@ import pl.olszak.michal.todo.cache.model.CachedTask
  *         created on 25.01.2018.
  */
 @Dao
-abstract class TaskDao {
+interface TaskDao {
 
     @Query(DatabaseConstants.SELECT_ALL_TASKS)
-    abstract fun getAllCachedTasks(): Flowable<List<CachedTask>>
+    fun getAllCachedTasks(): Flowable<List<CachedTask>>
 
     @Query(DatabaseConstants.SELECT_TASK_BY_ID)
-    abstract fun getCachedTaskById(id: Long): Flowable<CachedTask>
+    fun getCachedTaskById(id: Long): Flowable<CachedTask>
 
     @Query(DatabaseConstants.DELETE_TASK_BY_ID)
-    abstract fun clearCachedTaskWithId(id: Long)
+    fun clearCachedTaskWithId(id: Long)
 
     @Query(DatabaseConstants.DELETE_ALL_TASKS)
-    abstract fun clearAllCachedTasks()
+    fun clearAllCachedTasks()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCachedTask(cachedTask: CachedTask) : Long
+    fun insertCachedTask(cachedTask: CachedTask) : Long
 
 }
 

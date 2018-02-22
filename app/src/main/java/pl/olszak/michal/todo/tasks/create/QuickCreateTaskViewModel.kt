@@ -1,12 +1,11 @@
 package pl.olszak.michal.todo.tasks.create
 
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.text.TextUtils
-import io.reactivex.disposables.CompositeDisposable
 import pl.olszak.michal.todo.domain.interactor.task.AddQuickTask
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
+import pl.olszak.michal.todo.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 /**
@@ -15,12 +14,13 @@ import javax.inject.Inject
  */
 class QuickCreateTaskViewModel @Inject constructor(
         private val addQuickTask: AddQuickTask,
-        private val navigator: TasksNavigator) : ViewModel() {
-
-    private val compositeDisposable = CompositeDisposable()
+        private val navigator: TasksNavigator) : BaseViewModel() {
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val taskTitle: ObservableField<String> = ObservableField()
+
+    override fun start() {
+    }
 
     fun onNavigateBack() {
         navigator.handleOnBackPressed()
@@ -31,9 +31,11 @@ class QuickCreateTaskViewModel @Inject constructor(
             if (TextUtils.isEmpty(it)) {
                 onNavigateBack()
             } else {
-                loading.set(true)
-                compositeDisposable.add(
+                disposables.add(
                         addQuickTask.execute(it)
+                                .doOnSubscribe {
+                                    loading.set(true)
+                                }
                                 .subscribe {
                                     loading.set(false)
                                     onNavigateBack()
@@ -42,7 +44,4 @@ class QuickCreateTaskViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
-        compositeDisposable.clear()
-    }
 }

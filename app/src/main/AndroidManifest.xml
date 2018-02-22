@@ -18,10 +18,8 @@
         </activity>
         <activity
             android:name=".tasks.CreateTaskActivity"
-            android:parentActivityName=".tasks.CreateTaskActivity"
+            android:parentActivityName=".tasks.TasksActivity"
             android:theme="@style/NormalTheme.Transparent" />
-
-        <activity android:name=".hello.MainActivity" />
     </application>
 
 </manifest>

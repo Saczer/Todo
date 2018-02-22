@@ -20,6 +20,9 @@ import pl.olszak.michal.todo.di.scope.PerApplication
 @PerApplication
 abstract class DatabaseModule {
 
+    @Binds
+    abstract fun bindTaskStore(taskStore: TaskStoreImpl): TaskStore
+
     @Module
     companion object {
 
@@ -38,8 +41,5 @@ abstract class DatabaseModule {
             return database.taskDao()
         }
     }
-
-    @Binds
-    abstract fun bindTaskStore(taskStore: TaskStoreImpl): TaskStore
 
 }

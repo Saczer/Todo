@@ -2,6 +2,11 @@
 <resources>
     <style name="AllTasks" />
 
+    <style name="AllTasks.Appbar">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/all_tasks_toolbar_elevation</item>
+    </style>
+
     <style name="AllTasks.Toolbar">
         <item name="titleTextColor">?android:attr/colorPrimary</item>
         <item name="titleTextAppearance">@style/AllTasks.Toolbar.Title</item>

@@ -2,22 +2,37 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="vm"
+            type="pl.olszak.michal.todo.tasks.tasklist.TasksListViewModel" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
+        <android.support.design.widget.AppBarLayout
+            style="@style/AllTasks.Appbar"
             android:id="@+id/toolbar"
-            style="@style/AllTasks.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/all_tasks_toolbar_height"
-            app:title="@string/all_tasks"/>
+            android:layout_height="wrap_content">
 
-        <pl.olszak.michal.todo.view.TaskRecyclerView
-            android:id="@+id/tasks"
+            <android.support.v7.widget.Toolbar
+                style="@style/AllTasks.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/all_tasks_toolbar_height"
+                app:title="@string/all_tasks" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tasksList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar" />
+            android:layout_below="@+id/toolbar"
+            app:tasks="@{vm.tasks}" />
     </RelativeLayout>
 
 

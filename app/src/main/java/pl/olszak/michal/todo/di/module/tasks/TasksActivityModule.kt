@@ -8,14 +8,14 @@ import dagger.Reusable
 import dagger.android.ContributesAndroidInjector
 import pl.olszak.michal.todo.di.module.tasks.fragment.QuickCreateTaskFragmentModule
 import pl.olszak.michal.todo.di.module.tasks.fragment.SettingsFragmentModule
-import pl.olszak.michal.todo.di.module.tasks.fragment.TasksFragmentModule
+import pl.olszak.michal.todo.di.module.tasks.fragment.TasksListFragmentModule
 import pl.olszak.michal.todo.di.scope.PerActivity
 import pl.olszak.michal.todo.tasks.TasksActivity
 import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
 import pl.olszak.michal.todo.tasks.navigation.AndroidTasksNavigator
 import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import pl.olszak.michal.todo.tasks.settings.SettingsFragment
-import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
+import pl.olszak.michal.todo.tasks.tasklist.TasksListFragment
 
 /**
  * @author molszak
@@ -25,8 +25,8 @@ import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
 @Module
 abstract class TasksActivityModule {
 
-    @ContributesAndroidInjector(modules = [TasksFragmentModule::class])
-    abstract fun tasksFragmentInjector(): TasksFragment
+    @ContributesAndroidInjector(modules = [TasksListFragmentModule::class])
+    abstract fun tasksFragmentInjector(): TasksListFragment
 
     @ContributesAndroidInjector(modules = [SettingsFragmentModule::class])
     abstract fun settingsFragmentInjector(): SettingsFragment

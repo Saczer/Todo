@@ -12,7 +12,7 @@ import pl.olszak.michal.todo.tasks.RestartOptions
 import pl.olszak.michal.todo.tasks.TasksActivity
 import pl.olszak.michal.todo.tasks.create.QuickCreateTaskFragment
 import pl.olszak.michal.todo.tasks.settings.SettingsFragment
-import pl.olszak.michal.todo.tasks.tasklist.TasksFragment
+import pl.olszak.michal.todo.tasks.tasklist.TasksListFragment
 import pl.olszak.michal.todo.util.extension.hideSoftInputMethod
 import pl.olszak.michal.todo.view.animation.model.RevealAnimationSetting
 import javax.inject.Inject
@@ -24,7 +24,7 @@ import javax.inject.Inject
 class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatActivity) : TasksNavigator {
 
     private lateinit var settingsFragment: SettingsFragment
-    private lateinit var tasksFragment: TasksFragment
+    private lateinit var tasksListFragment: TasksListFragment
     private var quickCreateTaskFragment: QuickCreateTaskFragment? = null
 
     private var navigationCallback: TasksNavigator.NavigatorInteractionCallback? = null
@@ -33,8 +33,8 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
         savedInstanceState?.let {
             val fragmentManager = activity.supportFragmentManager
 
-            val tasks: TasksFragment? = fragmentManager.findFragmentByTag(TASKS_FRAGMENT_TAG) as TasksFragment?
-            tasksFragment = tasks ?: TasksFragment()
+            val tasksList: TasksListFragment? = fragmentManager.findFragmentByTag(TASKS_FRAGMENT_TAG) as TasksListFragment?
+            tasksListFragment = tasksList ?: TasksListFragment()
 
             val settings: SettingsFragment? = fragmentManager.findFragmentByTag(SETTINGS_FRAGMENT_TAG) as SettingsFragment?
             settingsFragment = settings ?: SettingsFragment()
@@ -44,7 +44,7 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
 
         if (savedInstanceState == null) {
             settingsFragment = SettingsFragment()
-            tasksFragment = TasksFragment()
+            tasksListFragment = TasksListFragment()
         }
     }
 
@@ -96,9 +96,9 @@ class AndroidTasksNavigator @Inject constructor(private val activity: AppCompatA
     override fun toTaskList() {
         activity.let {
             val transaction = it.supportFragmentManager.beginTransaction()
-            val next = tasksFragment
+            val next = tasksListFragment
             val previous = it.supportFragmentManager.findFragmentById(R.id.fragment_container)
-            if (previous is TasksFragment) {
+            if (previous is TasksListFragment) {
                 return
             }
 

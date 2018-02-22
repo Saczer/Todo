@@ -11,7 +11,7 @@ abstract class FlowableUseCase<T, in Params> constructor(private val todoSchedul
 
     protected abstract fun buildUseCase(params: Params?): Flowable<T>
 
-    fun execute(params: Params?): Flowable<T> {
+    fun execute(params: Params? = null): Flowable<T> {
         return buildUseCase(params)
                 .subscribeOn(todoSchedulers.io())
                 .observeOn(todoSchedulers.ui())

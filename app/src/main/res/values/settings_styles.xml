@@ -3,6 +3,11 @@
 
     <style name="Settings" />
 
+    <style name="Settings.Appbar">
+        <item name="android:elevation">@dimen/settings_toolbar_elevation</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="Settings.Toolbar">
         <item name="titleTextColor">?android:attr/colorPrimary</item>
         <item name="titleTextAppearance">@style/Settings.Toolbar.Title</item>

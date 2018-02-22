@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TaskList" />
+    <style name="TaskItem" />
 
     <style name="Task" />
 
-    <style name="TaskList.Title">
+    <style name="TaskItem.Title">
         <item name="android:gravity">left</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:fontFamily">sans-serif-bold</item>

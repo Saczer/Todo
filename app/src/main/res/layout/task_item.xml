@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/TaskList.Title"
+            style="@style/TaskItem.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/tasks_item_margin_horizontal"

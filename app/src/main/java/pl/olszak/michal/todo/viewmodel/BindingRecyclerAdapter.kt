@@ -5,17 +5,16 @@ import android.databinding.ViewDataBinding
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
 /**
  * @author molszak
  *         created on 19.01.2018.
  */
-abstract class BindingRecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+abstract class BindingRecyclerAdapter<T : Binding> : RecyclerView.Adapter<BindingViewHolder>() {
 
-    var callbacks: BindingCallbacks? = null
-
-    protected abstract fun getBindingForPosition(position: Int): Binding
+    protected abstract fun getBindingForPosition(position: Int): T
 
     @LayoutRes
     protected abstract fun getLayoutForPosition(position: Int): Int
@@ -35,7 +34,10 @@ abstract class BindingRecyclerAdapter : RecyclerView.Adapter<BindingViewHolder>(
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         val binding = getBindingForPosition(position)
-        holder.bind(binding, callbacks)
+        holder.bind(binding)
+        onViewHolderBound(holder.itemView, binding, position)
     }
+
+    protected abstract fun onViewHolderBound(itemView: View, binding: T, position: Int)
 
 }

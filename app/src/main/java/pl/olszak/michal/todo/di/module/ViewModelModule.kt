@@ -8,7 +8,6 @@ import dagger.multibindings.IntoMap
 import pl.olszak.michal.todo.di.ViewModelFactory
 import pl.olszak.michal.todo.di.ViewModelKey
 import pl.olszak.michal.todo.di.scope.PerActivity
-import pl.olszak.michal.todo.hello.MainViewModel
 import pl.olszak.michal.todo.tasks.TasksViewModel
 
 /**
@@ -18,11 +17,6 @@ import pl.olszak.michal.todo.tasks.TasksViewModel
 @Module
 @PerActivity
 abstract class ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 
     @Binds
     @IntoMap

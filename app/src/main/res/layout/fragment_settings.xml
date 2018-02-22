@@ -13,12 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
+        <android.support.design.widget.AppBarLayout
+            style="@style/Settings.Appbar"
             android:id="@+id/toolbar"
-            style="@style/Settings.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/settings_toolbar_height"
-            app:title="@string/settings" />
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+
+                style="@style/Settings.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/settings_toolbar_height"
+                app:title="@string/settings" />
+        </android.support.design.widget.AppBarLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"

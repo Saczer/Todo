@@ -6,7 +6,6 @@ import android.databinding.BindingMethods
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -15,12 +14,13 @@ import org.threeten.bp.Instant
 import org.threeten.bp.format.DateTimeFormatter
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Priority
+import pl.olszak.michal.todo.data.model.Task
+import pl.olszak.michal.todo.tasks.tasklist.adapter.TaskAdapter
 import pl.olszak.michal.todo.util.extension.logE
 import pl.olszak.michal.todo.util.tools.TodoUtils
-import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
 import pl.olszak.michal.todo.view.CircleView
 import pl.olszak.michal.todo.view.ThemeGroup
-import pl.olszak.michal.todo.viewmodel.BindingRecyclerAdapter
+import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
 import java.text.NumberFormat
 import java.text.ParseException
 
@@ -105,16 +105,14 @@ fun bindInstant(view: TextView, instant: Instant?) {
     }
 }
 
+@BindingAdapter(value = ["tasks"])
+fun bindTaskList(view: RecyclerView, items: List<Task>) {
+    val adapter: TaskAdapter? = view.adapter as? TaskAdapter?
+    adapter?.setItems(items)
+}
+
 private fun getNumberFormat(view: View): NumberFormat {
     val resources = view.resources
     val locale = resources.configuration.locale
     return NumberFormat.getNumberInstance(locale)
-}
-
-@BindingAdapter(value = ["adapter"], requireAll = false)
-fun bindAdapter(view: RecyclerView, adapter: BindingRecyclerAdapter?) {
-    adapter?.let {
-        view.adapter = it
-        view.layoutManager = LinearLayoutManager(view.context)
-    }
 }

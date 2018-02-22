@@ -58,10 +58,6 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
                 container,
                 false)
 
-        //somehow it doesn't work when extending class nor as xml attributes
-        binding.enterTitle.imeOptions = EditorInfo.IME_ACTION_SEND
-        binding.enterTitle.setRawInputType(InputType.TYPE_CLASS_TEXT)
-
         return binding.root
     }
 
