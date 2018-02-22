@@ -14,12 +14,20 @@ class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
 
     private val tasks: MutableList<Task> = mutableListOf()
 
+    init {
+        setHasStableIds(true)
+    }
+
     fun setItems(tasks: List<Task>) {
         val diffResult = DiffUtil.calculateDiff(TaskUtilCallback(this.tasks, tasks))
         diffResult.dispatchUpdatesTo(this)
 
         this.tasks.clear()
         this.tasks.addAll(tasks)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return tasks[position].id ?: 0L
     }
 
     override fun getBindingForPosition(position: Int): Task = tasks[position]
