@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import pl.olszak.michal.todo.di.ViewModelFactory
 import pl.olszak.michal.todo.di.ViewModelKey
 import pl.olszak.michal.todo.di.scope.PerActivity
+import pl.olszak.michal.todo.di.scope.PerApplication
 import pl.olszak.michal.todo.tasks.TasksViewModel
 
 /**
@@ -15,7 +16,7 @@ import pl.olszak.michal.todo.tasks.TasksViewModel
  *         created on 25.01.2018.
  */
 @Module
-@PerActivity
+@PerApplication
 abstract class ViewModelModule {
 
     @Binds

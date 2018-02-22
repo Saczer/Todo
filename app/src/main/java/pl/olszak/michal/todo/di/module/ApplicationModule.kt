@@ -13,12 +13,13 @@ import pl.olszak.michal.todo.di.scope.PerApplication
  *         created on 18.01.2018.
  */
 @Module
-@PerApplication
 abstract class ApplicationModule {
 
     @Binds
+    @PerApplication
     abstract fun bindContext(application: Application): Context
 
     @Binds
+    @PerApplication
     abstract fun bindTodoPreferences(todoPreferencesImpl: TodoPreferencesImpl): TodoPreferences
 }

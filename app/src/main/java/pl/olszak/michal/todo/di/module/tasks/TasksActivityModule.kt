@@ -21,8 +21,9 @@ import pl.olszak.michal.todo.tasks.tasklist.TasksListFragment
  * @author molszak
  *         created on 31.01.2018.
  */
-@PerActivity
+
 @Module
+@PerActivity
 abstract class TasksActivityModule {
 
     @ContributesAndroidInjector(modules = [TasksListFragmentModule::class])
@@ -40,6 +41,7 @@ abstract class TasksActivityModule {
 
     @Module
     companion object {
+
         @Provides
         @JvmStatic
         fun provideActivity(activity: TasksActivity): AppCompatActivity {

@@ -12,8 +12,8 @@ import pl.olszak.michal.todo.tasks.settings.SettingsViewModel
  * @author molszak
  *         created on 31.01.2018.
  */
-@PerFragment
 @Module
+@PerFragment
 abstract class SettingsFragmentModule {
 
     @Binds

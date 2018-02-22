@@ -6,11 +6,13 @@ import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import pl.olszak.michal.todo.TodoApp
 import pl.olszak.michal.todo.di.module.*
+import pl.olszak.michal.todo.di.scope.PerApplication
 
 /**
  * @author molszak
  *         created on 18.01.2018.
  */
+@PerApplication
 @Component(
         modules = [
             ApplicationModule::class,
@@ -18,6 +20,7 @@ import pl.olszak.michal.todo.di.module.*
             ViewModelModule::class,
             AndroidSupportInjectionModule::class,
             ActivityBindingModule::class,
+            StoreModule::class,
             ExecutorModule::class
         ]
 )
@@ -25,6 +28,7 @@ interface ApplicationComponent {
 
     @Component.Builder
     interface Builder {
+
         @BindsInstance
         fun application(application: Application): Builder
 

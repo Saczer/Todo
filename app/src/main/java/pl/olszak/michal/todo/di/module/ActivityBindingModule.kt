@@ -5,6 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import pl.olszak.michal.todo.di.module.tasks.CreateTaskActivityModule
 import pl.olszak.michal.todo.di.module.tasks.TasksActivityModule
 import pl.olszak.michal.todo.di.scope.PerActivity
+import pl.olszak.michal.todo.di.scope.PerApplication
 import pl.olszak.michal.todo.tasks.CreateTaskActivity
 import pl.olszak.michal.todo.tasks.TasksActivity
 
@@ -13,7 +14,7 @@ import pl.olszak.michal.todo.tasks.TasksActivity
  *         created on 18.01.2018.
  */
 @Module
-@PerActivity
+@PerApplication
 abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [TasksActivityModule::class])
