@@ -12,7 +12,6 @@ import pl.olszak.michal.todo.viewmodel.SingleBindingRecyclerAdapter
  */
 class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
 
-
     private val tasks: MutableList<Task> = mutableListOf()
 
     fun setItems(tasks: List<Task>) {
@@ -30,6 +29,5 @@ class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
     override fun onViewHolderBound(itemView: View, binding: Task, position: Int) {
 
     }
-
 
 }
