@@ -40,7 +40,7 @@ open class TodoDatabaseTest {
         database.close()
     }
 
-    @Test
+    /*@Test
     fun `insert and get user by id`() {
         val cachedTask = TaskFactory.createCachedTask()
         val id = database.taskDao().insertCachedTask(cachedTask)
@@ -52,18 +52,7 @@ open class TodoDatabaseTest {
         testObserver.assertValue { task ->
             task.id == cachedTask.id && task.title == cachedTask.title
         }
-    }
-
-    @Test
-    fun `inserting data to database returs it's id`(){
-        val cached = CachedTask("Some title")
-        val id = database.taskDao().insertCachedTask(cached)
-        database.taskDao().getCachedTaskById(id)
-                .test()
-                .assertValue{
-                    it.id != null && cached.title == it.title
-                }
-    }
+    }*/
 
     @Test
     fun `inserting data saves database`() {

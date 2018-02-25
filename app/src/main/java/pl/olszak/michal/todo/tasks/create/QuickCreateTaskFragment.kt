@@ -5,11 +5,9 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.FragmentQuickTaskBinding
 import pl.olszak.michal.todo.di.Injectable

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import pl.olszak.michal.todo.databinding.FragmentAllTasksBinding
 import pl.olszak.michal.todo.di.Injectable
 import pl.olszak.michal.todo.tasks.tasklist.adapter.TaskAdapter
 import pl.olszak.michal.todo.util.viewModelProvider
+import pl.olszak.michal.todo.view.SwipeToDoneCallback
 import javax.inject.Inject
 
 /**
@@ -33,10 +36,19 @@ class TasksListFragment : Fragment(), Injectable {
         binding.vm = viewModel
         viewModel.start()
 
+        val swipeHandler = object : SwipeToDoneCallback(context) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+
+            }
+
+        }
+
         binding.tasksList.let {
             it.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             it.adapter = TaskAdapter()
             it.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            val itemTouchHelper = ItemTouchHelper(swipeHandler)
+            itemTouchHelper.attachToRecyclerView(it)
         }
     }
 
