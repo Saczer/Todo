@@ -56,6 +56,17 @@ class TasksListFragment : Fragment(), Injectable {
             }
         }
 
+        binding.toolbar.inflateMenu(R.menu.task_list)
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.clear_completed -> {
+                    viewModel.clearAllCompletedTasks()
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.tasksList.let {
             it.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             it.adapter = adapter
@@ -70,6 +81,8 @@ class TasksListFragment : Fragment(), Injectable {
                 R.layout.fragment_all_tasks,
                 container,
                 false)
+
+        binding.toolbar
         return binding.root
     }
 }

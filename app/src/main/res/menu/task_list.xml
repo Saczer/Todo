@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingPrefix">
+
+    <item
+        android:id="@+id/clear_completed"
+        android:icon="@drawable/check_outline"
+        android:title="@string/remove_completed"
+        iconTint="android:attr?/color_primary"
+        app:showAsAction="never" />
+
+</menu>

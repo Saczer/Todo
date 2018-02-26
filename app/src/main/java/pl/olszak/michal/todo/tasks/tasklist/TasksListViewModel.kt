@@ -5,6 +5,7 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.interactor.task.AlterTask
+import pl.olszak.michal.todo.domain.interactor.task.ClearAllCompletedTasks
 import pl.olszak.michal.todo.domain.interactor.task.GetAllTasks
 import pl.olszak.michal.todo.viewmodel.BaseViewModel
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Inject
  */
 class TasksListViewModel @Inject constructor(
         private val getAllTasks: GetAllTasks,
-        private val alterTask: AlterTask) : BaseViewModel() {
+        private val alterTask: AlterTask,
+        private val clearAllCompletedTasks: ClearAllCompletedTasks) : BaseViewModel() {
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val shouldShowError: ObservableBoolean = ObservableBoolean(false)
@@ -51,6 +53,11 @@ class TasksListViewModel @Inject constructor(
                 }.subscribe({
                     loading.set(false)
                 }))
+    }
+
+    fun clearAllCompletedTasks() {
+        disposables.add(clearAllCompletedTasks.execute()
+                .subscribe())
     }
 
 

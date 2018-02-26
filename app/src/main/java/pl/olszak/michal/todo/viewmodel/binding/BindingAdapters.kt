@@ -106,7 +106,6 @@ fun bindText(view: TextView, number: Int) {
 fun bindDone(view: TextView, done: Boolean?) {
     done?.let {
         if (it) {
-            view.setTextColor(ContextCompat.getColor(view.context, R.color.blackOpacity54))
             val spannable: Spannable = SpannableString(view.text)
             spannable.setSpan(StrikethroughSpan(), 0, spannable.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             view.text = spannable
@@ -122,9 +121,9 @@ fun bindInstant(view: TextView, instant: Instant?) {
 }
 
 @BindingAdapter(value = ["android:visibility"], requireAll = false)
-fun bindVisibility(view: CircleView, visible: Boolean?){
+fun bindVisibility(view: CircleView, visible: Boolean?) {
     visible?.let {
-        view.visibility = if(it) View.VISIBLE else View.GONE
+        view.visibility = if (it) View.VISIBLE else View.GONE
     }
 }
 

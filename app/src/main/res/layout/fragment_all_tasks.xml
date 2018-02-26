@@ -15,11 +15,12 @@
 
         <android.support.design.widget.AppBarLayout
             style="@style/AllTasks.Appbar"
-            android:id="@+id/toolbar"
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 style="@style/AllTasks.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/all_tasks_toolbar_height"
@@ -31,7 +32,7 @@
             android:id="@+id/tasksList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/appBar"
             app:tasks="@{vm.tasks}" />
     </RelativeLayout>
 

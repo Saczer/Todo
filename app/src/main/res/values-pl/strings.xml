@@ -6,4 +6,5 @@
     <string name="preferences">Preferencje</string>
     <string name="theme">Motyw</string>
     <string name="quick_task_hint">Wpisz tytuł zadania</string>
+    <string name="remove_completed">Usuń ukończone zadania</string>
 </resources>

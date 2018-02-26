@@ -6,4 +6,5 @@
     <string name="preferences">Preferences</string>
     <string name="theme">Theme</string>
     <string name="quick_task_hint">Enter title of task</string>
+    <string name="remove_completed">Remove completed tasks</string>
 </resources>

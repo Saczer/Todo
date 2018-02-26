@@ -46,6 +46,13 @@ class TaskStoreImpl @Inject constructor(private val taskDao: TaskDao,
         }
     }
 
+    override fun clearAllCompleted(): Completable {
+        return Completable.defer {
+            taskDao.clearCompletedTasks()
+            Completable.complete()
+        }
+    }
+
     override fun addTask(task: Task): Completable {
         return Completable.defer {
             taskDao.insertCachedTask(converter.convertFrom(task))

@@ -19,7 +19,7 @@ import pl.olszak.michal.todo.domain.interactor.task.AlterTask
  *         created on 29.01.2018.
  */
 @RunWith(JUnit4::class)
-class AddOrAlterTaskTest {
+class AlterTaskTest {
 
     private lateinit var useCase: AlterTask
 

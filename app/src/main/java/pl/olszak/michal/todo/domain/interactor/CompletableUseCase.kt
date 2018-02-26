@@ -12,7 +12,7 @@ abstract class CompletableUseCase<in Params> constructor(
 
     protected abstract fun buildUseCaseCompletable(params: Params? = null): Completable
 
-    fun execute(params: Params?): Completable {
+    fun execute(params: Params? = null): Completable {
         return buildUseCaseCompletable(params)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())

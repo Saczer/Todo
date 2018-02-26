@@ -27,6 +27,9 @@ abstract class TaskDao {
     @Query(DatabaseConstants.DELETE_ALL_TASKS)
     abstract fun clearAllCachedTasks()
 
+    @Query(DatabaseConstants.DELETE_ALL_COMPLETED_TASKS)
+    abstract fun clearCompletedTasks()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertCachedTask(cachedTask: CachedTask)
 

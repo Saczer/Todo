@@ -15,7 +15,7 @@ class AddQuickTask @Inject constructor(
         private val taskStore: TaskStore,
         schedulers: TodoSchedulers) : CompletableUseCase<String>(schedulers) {
 
-    override fun buildUseCaseCompletable(params: String?): Completable {
+    public override fun buildUseCaseCompletable(params: String?): Completable {
         params?.let {
             if(it.isEmpty()){
                 return error()

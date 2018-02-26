@@ -40,5 +40,10 @@ class TaskStoreStubber {
             whenever(taskStore.clearAllTasks())
                     .thenReturn(Completable.complete())
         }
+
+        fun stubClearAllCompletedTasks(taskStore: TaskStore){
+            whenever(taskStore.clearAllCompleted())
+                    .thenReturn(Completable.complete())
+        }
     }
 }

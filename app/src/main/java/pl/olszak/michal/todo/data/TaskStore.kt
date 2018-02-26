@@ -2,7 +2,6 @@ package pl.olszak.michal.todo.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
 import pl.olszak.michal.todo.data.model.Task
 
 /**
@@ -19,6 +18,8 @@ interface TaskStore {
 
     fun clearTaskWithId(id: Long): Completable
 
-    fun addTask(task: Task) : Completable
+    fun clearAllCompleted(): Completable
+
+    fun addTask(task: Task): Completable
 
 }
