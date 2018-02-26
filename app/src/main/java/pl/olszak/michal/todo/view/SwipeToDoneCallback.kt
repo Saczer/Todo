@@ -23,6 +23,8 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
     private val backgroundColor = Color.WHITE
     private val background = ColorDrawable()
 
+    private var buttonState: ButtonState = ButtonState.GONE
+
     init {
         background.apply {
             color = backgroundColor
@@ -41,6 +43,18 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
     }
 
     override fun onChildDraw(canvas: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+        buttonState = if (dX < -intrinsicWidth) ButtonState.VISIBLE else ButtonState.GONE
+
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+            if (buttonState == ButtonState.VISIBLE) {
+                drawCheck(canvas, viewHolder, dX)
+            }
+        }
+        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+    }
+
+
+    private fun drawCheck(canvas: Canvas, viewHolder: RecyclerView.ViewHolder, dX: Float) {
         val itemView = viewHolder.itemView
         itemView.let {
             val itemHeight = it.bottom - it.top
@@ -56,6 +70,10 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
             checkIcon.setBounds(checkLeft, checkTop, checkRight, checkBottom)
             checkIcon.draw(canvas)
         }
-        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+    }
+
+    private enum class ButtonState {
+        GONE,
+        VISIBLE
     }
 }
