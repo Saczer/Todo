@@ -12,7 +12,7 @@ import pl.olszak.michal.todo.testutils.TaskStoreStubber
 import pl.olszak.michal.todo.data.TaskStore
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.concurent.TodoSchedulers
-import pl.olszak.michal.todo.domain.interactor.task.AddOrAlterTask
+import pl.olszak.michal.todo.domain.interactor.task.AlterTask
 
 /**
  * @author molszak
@@ -21,7 +21,7 @@ import pl.olszak.michal.todo.domain.interactor.task.AddOrAlterTask
 @RunWith(JUnit4::class)
 class AddOrAlterTaskTest {
 
-    private lateinit var useCase: AddOrAlterTask
+    private lateinit var useCase: AlterTask
 
     private lateinit var mockTaskStore: TaskStore
     private val todoSchedulers: TodoSchedulers = TestTodoSchedulers()
@@ -30,7 +30,7 @@ class AddOrAlterTaskTest {
     @Before
     fun setup() {
         mockTaskStore = mock()
-        useCase = AddOrAlterTask(mockTaskStore, todoSchedulers)
+        useCase = AlterTask(mockTaskStore, todoSchedulers)
     }
 
     @Test

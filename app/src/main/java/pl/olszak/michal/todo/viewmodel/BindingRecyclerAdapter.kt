@@ -14,7 +14,7 @@ import android.view.ViewGroup
  */
 abstract class BindingRecyclerAdapter<T : Binding> : RecyclerView.Adapter<BindingViewHolder>() {
 
-    protected abstract fun getBindingForPosition(position: Int): T
+    abstract fun getBindingForPosition(position: Int): T
 
     @LayoutRes
     protected abstract fun getLayoutForPosition(position: Int): Int

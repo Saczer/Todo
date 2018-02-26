@@ -7,6 +7,10 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -98,10 +102,29 @@ fun bindText(view: TextView, number: Int) {
     }
 }
 
+@BindingAdapter(value = ["done"], requireAll = false)
+fun bindDone(view: TextView, done: Boolean?) {
+    done?.let {
+        if (it) {
+            view.setTextColor(ContextCompat.getColor(view.context, R.color.blackOpacity54))
+            val spannable: Spannable = SpannableString(view.text)
+            spannable.setSpan(StrikethroughSpan(), 0, spannable.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            view.text = spannable
+        }
+    }
+}
+
 @BindingAdapter(value = ["android:text"], requireAll = false)
 fun bindInstant(view: TextView, instant: Instant?) {
     instant?.let {
         view.text = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(it)
+    }
+}
+
+@BindingAdapter(value = ["android:visibility"], requireAll = false)
+fun bindVisibility(view: CircleView, visible: Boolean?){
+    visible?.let {
+        view.visibility = if(it) View.VISIBLE else View.GONE
     }
 }
 

@@ -26,6 +26,7 @@ import javax.inject.Inject
 class TasksListFragment : Fragment(), Injectable {
 
     private lateinit var binding: FragmentAllTasksBinding
+    private val adapter: TaskAdapter = TaskAdapter()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -37,15 +38,27 @@ class TasksListFragment : Fragment(), Injectable {
         viewModel.start()
 
         val swipeHandler = object : SwipeToDoneCallback(context) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
 
+            override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                val position = viewHolder.adapterPosition
+                val task = adapter.getBindingForPosition(position)
+                if (task.done) {
+                    return 0
+                }
+                return super.getSwipeDirs(recyclerView, viewHolder)
             }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val task = adapter.getBindingForPosition(position)
+                adapter.removeItem(position)
+                viewModel.markTaskAsChecked(task)
+            }
         }
 
         binding.tasksList.let {
             it.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            it.adapter = TaskAdapter()
+            it.adapter = adapter
             it.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             val itemTouchHelper = ItemTouchHelper(swipeHandler)
             itemTouchHelper.attachToRecyclerView(it)

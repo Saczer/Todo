@@ -22,7 +22,7 @@ object TodoUtils {
             Priority.CRITICAL -> ContextCompat.getColor(context, R.color.deepOrange)
             Priority.HIGH -> ContextCompat.getColor(context, R.color.orange)
             Priority.MEDIUM -> ContextCompat.getColor(context, R.color.yellow)
-            else -> ContextCompat.getColor(context, R.color.white)
+            else -> ContextCompat.getColor(context, android.R.color.transparent)
         }
     }
 

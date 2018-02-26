@@ -34,8 +34,12 @@ class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
 
     override fun getItemCount(): Int = tasks.size
 
-    override fun onViewHolderBound(itemView: View, binding: Task, position: Int) {
+    fun removeItem(position: Int) {
+        tasks.removeAt(position)
+        notifyItemRemoved(position)
+    }
 
+    override fun onViewHolderBound(itemView: View, binding: Task, position: Int) {
     }
 
 }

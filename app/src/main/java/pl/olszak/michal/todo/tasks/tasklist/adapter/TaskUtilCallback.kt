@@ -21,32 +21,36 @@ class TaskUtilCallback constructor(private val oldList: List<Task>,
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val old = oldList[oldItemPosition]
-        val new = oldList[newItemPosition]
+        val new = newList[newItemPosition]
 
         return old.title == new.title &&
                 old.description == new.description &&
-                old.priority == new.priority
+                old.priority == new.priority &&
+                old.done == new.done
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
         val old = oldList[oldItemPosition]
-        val new = oldList[newItemPosition]
+        val new = newList[newItemPosition]
 
         val payload = Bundle()
 
-        if(old.title != new.title){
+        if (old.title != new.title) {
             payload.putString(TITLE_CHANGE, new.title)
         }
-        if(old.description != new.description){
+        if (old.description != new.description) {
             payload.putString(DESCRIPTION_CHANGE, new.description)
         }
-        if(old.priority != new.priority){
+        if (old.priority != new.priority) {
             payload.putInt(PRIORITY_CHANGE, new.priority.id)
         }
+        if (old.done != new.done) {
+            payload.putBoolean(DONE_CHANGE, new.done)
+        }
 
-        return if(payload.isEmpty){
+        return if (payload.isEmpty) {
             null
-        }else {
+        } else {
             payload
         }
     }
@@ -55,5 +59,6 @@ class TaskUtilCallback constructor(private val oldList: List<Task>,
         private const val TITLE_CHANGE = "title_change"
         private const val DESCRIPTION_CHANGE = "description_change"
         private const val PRIORITY_CHANGE = "priority_change"
+        private const val DONE_CHANGE = "done_change"
     }
 }
