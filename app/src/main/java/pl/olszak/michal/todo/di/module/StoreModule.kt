@@ -11,9 +11,9 @@ import pl.olszak.michal.todo.di.scope.PerApplication
  *         created on 22.02.2018.
  */
 @Module
-@PerApplication
 abstract class StoreModule {
 
     @Binds
+    @PerApplication
     abstract fun bindTaskStore(taskStore: TaskStoreImpl): TaskStore
 }

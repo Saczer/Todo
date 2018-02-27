@@ -7,7 +7,6 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import pl.olszak.michal.todo.di.ViewModelFactory
 import pl.olszak.michal.todo.di.ViewModelKey
-import pl.olszak.michal.todo.di.scope.PerActivity
 import pl.olszak.michal.todo.di.scope.PerApplication
 import pl.olszak.michal.todo.tasks.TasksViewModel
 

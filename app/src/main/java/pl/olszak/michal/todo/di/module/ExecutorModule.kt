@@ -10,16 +10,18 @@ import pl.olszak.michal.todo.domain.concurent.*
  *         created on 18.01.2018.
  */
 @Module
-@PerApplication
 abstract class ExecutorModule {
 
     @Binds
+    @PerApplication
     abstract fun bindThreadExecutor(executor: TodoExecutor): ThreadExecutor
 
     @Binds
+    @PerApplication
     abstract fun bindPostExecutionThread(postExecutionThread: UiThread): PostExecutionThread
 
     @Binds
+    @PerApplication
     abstract fun bindTodoSchedulers(todoSchedulersFacade: TodoSchedulersFacade): TodoSchedulers
 
 }
