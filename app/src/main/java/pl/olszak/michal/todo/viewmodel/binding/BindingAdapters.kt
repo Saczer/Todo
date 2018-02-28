@@ -72,33 +72,10 @@ fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
 }
 
 @BindingAdapter(value = ["priority"], requireAll = false)
-fun bindPriority(view: ImageView, priority: Priority?) {
-    val color = if (priority != null) {
-        TodoUtils.getColor(view.context, priority)
-    } else {
-        ContextCompat.getColor(view.context, R.color.white)
-    }
-    view.setBackgroundColor(color)
-}
-
-@BindingAdapter(value = ["priority"], requireAll = false)
 fun bindPriority(view: CircleView, priority: Priority?) {
     priority?.let {
         val color = TodoUtils.getColor(view.context, it)
         view.setColor(color)
-    }
-}
-
-@BindingAdapter(value = ["android:text"], requireAll = false)
-fun bindText(view: TextView, number: Int) {
-    val format = getNumberFormat(view)
-    try {
-        val text = format.format(number)
-        view.text = text
-    } catch (ex: ParseException) {
-        logE(ex) {
-            "Could not parse number"
-        }
     }
 }
 
@@ -131,10 +108,4 @@ fun bindVisibility(view: CircleView, visible: Boolean?) {
 fun bindTaskList(view: RecyclerView, items: List<Task>) {
     val adapter: TaskAdapter? = view.adapter as? TaskAdapter?
     adapter?.setItems(items)
-}
-
-private fun getNumberFormat(view: View): NumberFormat {
-    val resources = view.resources
-    val locale = resources.configuration.locale
-    return NumberFormat.getNumberInstance(locale)
 }

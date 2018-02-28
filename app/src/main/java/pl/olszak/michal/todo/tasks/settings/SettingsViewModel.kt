@@ -1,6 +1,5 @@
 package pl.olszak.michal.todo.tasks.settings
 
-import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import pl.olszak.michal.todo.cache.dao.TodoPreferences
 import pl.olszak.michal.todo.cache.model.ThemePalette
@@ -15,7 +14,6 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
         private val todoPreferences: TodoPreferences,
         private val navigator: TasksNavigator) : BaseViewModel() {
-
 
     val observableTheme: ObservableField<ThemePalette> = ObservableField()
 

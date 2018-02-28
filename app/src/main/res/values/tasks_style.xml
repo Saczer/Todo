@@ -10,6 +10,8 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:fontFamily">sans-serif-bold</item>
         <item name="android:textColor">@color/blackOpacity87</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="Task.Fab">

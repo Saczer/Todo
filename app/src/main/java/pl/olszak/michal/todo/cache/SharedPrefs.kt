@@ -7,7 +7,7 @@ import android.content.SharedPreferences
  * @author molszak
  *         created on 02.02.2018.
  */
-internal class SharedPrefs(context: Context) {
+class SharedPrefs(context: Context) {
 
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences(PREFERENCES_NAME, PREFERENCES_MODE)

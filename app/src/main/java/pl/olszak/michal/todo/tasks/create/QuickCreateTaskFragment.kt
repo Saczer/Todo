@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.databinding.FragmentQuickTaskBinding
 import pl.olszak.michal.todo.di.Injectable
+import pl.olszak.michal.todo.tasks.navigation.TasksNavigator
 import pl.olszak.michal.todo.util.extension.showSoftInputMethod
 import pl.olszak.michal.todo.util.viewModelProvider
 import pl.olszak.michal.todo.view.animation.TodoAnimationUtils

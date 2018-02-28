@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">Todo</string>
+
+    <string name="create_description" translatable="false">Create task</string>
+
     <string name="tasksList">Tasks</string>
     <string name="settings">Settings</string>
     <string name="all_tasks">All tasksList</string>
