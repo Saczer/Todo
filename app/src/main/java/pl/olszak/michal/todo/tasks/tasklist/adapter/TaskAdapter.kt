@@ -5,6 +5,7 @@ import android.view.View
 import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.viewmodel.SingleBindingRecyclerAdapter
+import java.util.*
 
 /**
  * @author molszak
@@ -19,7 +20,8 @@ class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
     }
 
     fun setItems(tasks: List<Task>) {
-        val diffResult = DiffUtil.calculateDiff(TaskUtilCallback(this.tasks, tasks))
+        val old = this.tasks.toList()
+        val diffResult = DiffUtil.calculateDiff(TaskUtilCallback(old, tasks))
         diffResult.dispatchUpdatesTo(this)
 
         this.tasks.clear()

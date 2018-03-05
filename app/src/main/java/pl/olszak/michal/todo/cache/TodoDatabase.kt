@@ -11,7 +11,7 @@ import pl.olszak.michal.todo.cache.converter.TodoRoomConverters
  * @author molszak
  *         created on 25.01.2018.
  */
-@Database(entities = [CachedTask::class], version = 1)
+@Database(entities = [CachedTask::class], version = 2)
 @TypeConverters(TodoRoomConverters::class)
 abstract class TodoDatabase : RoomDatabase() {
 

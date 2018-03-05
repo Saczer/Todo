@@ -2,7 +2,9 @@ package pl.olszak.michal.todo.tasks.tasklist
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
+import android.databinding.ObservableInt
 import android.databinding.ObservableList
+import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.interactor.task.AlterTask
 import pl.olszak.michal.todo.domain.interactor.task.ClearAllCompletedTasks
@@ -20,8 +22,8 @@ class TasksListViewModel @Inject constructor(
         private val clearAllCompletedTasks: ClearAllCompletedTasks) : BaseViewModel() {
 
     val loading: ObservableBoolean = ObservableBoolean(false)
-    val shouldShowError: ObservableBoolean = ObservableBoolean(false)
     val tasks: ObservableList<Task> = ObservableArrayList()
+    val snackbarMessage: ObservableInt = ObservableInt()
 
     override fun start() {
         tasks.clear()
@@ -29,14 +31,15 @@ class TasksListViewModel @Inject constructor(
                 .doOnSubscribe {
                     loading.set(true)
                 }.subscribe({
+                    loading.set(false)
                     tasks.clear()
                     tasks.addAll(it)
                 }, {
-                    shouldShowError.set(true)
+                    snackbarMessage.set(R.string.error_task_list)
                 }))
     }
 
-    fun markTaskAsChecked(task: Task) {
+    fun completeTask(task: Task) {
         //todo: could be done in model, with returned new instance of task
         val altered = Task(
                 title = task.title,
@@ -52,6 +55,9 @@ class TasksListViewModel @Inject constructor(
                     loading.set(true)
                 }.subscribe({
                     loading.set(false)
+                    snackbarMessage.set(R.string.task_completed)
+                }, {
+                    snackbarMessage.set(R.string.error_complete_task)
                 }))
     }
 

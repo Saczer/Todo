@@ -9,8 +9,23 @@ import pl.olszak.michal.todo.viewmodel.Binding
  */
 data class Task(var id: Long? = null,
                 val title: String,
-                val description: String? = null,
+                val description: String = "",
                 val done: Boolean = false,
                 val priority: Priority = Priority.LOW,
                 val repeating: Boolean = false,
-                val time: Instant? = null) : Binding
+                val time: Instant? = null) : Binding, Comparable<Task> {
+
+    override fun compareTo(other: Task): Int {
+        if (other.done == this.done) {
+            if (this.id != null && other.id != null) {
+                this.id?.let { tId ->
+                    other.id?.let { oId ->
+                        return (tId - oId).toInt()
+                    }
+                }
+            }
+        }
+        return if (other.done) -1 else 1
+    }
+
+}

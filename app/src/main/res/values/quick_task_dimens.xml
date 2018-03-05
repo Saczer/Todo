@@ -5,7 +5,4 @@
     <dimen name="quick_task_bottom_elevation">8dp</dimen>
     <dimen name="quick_task_send_padding">8dp</dimen>
     <dimen name="quick_task_element_margin">16dp</dimen>
-
-
-    
 </resources>

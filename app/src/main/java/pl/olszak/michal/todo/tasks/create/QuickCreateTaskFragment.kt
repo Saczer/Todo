@@ -36,6 +36,9 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
         val viewModel: QuickCreateTaskViewModel = viewModelProvider(viewModelFactory)
         binding.vm = viewModel
         binding.enterTitle.showSoftInputMethod()
+        binding.toolbar.setNavigationOnClickListener {
+            viewModel.onNavigateBack()
+        }
 
         savedInstanceState?.let {
             alreadyAnimated = it.getBoolean(SAVED_ANIMATION_STATE, false)

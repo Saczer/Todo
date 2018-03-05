@@ -18,8 +18,7 @@
             style="@style/QuickTask.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/quick_task_toolbar_height"
-            android:layout_gravity="top"
-            android:onClick="@{() -> vm.onNavigateBack()}"/>
+            android:layout_gravity="top"/>
 
         <LinearLayout
             style="@style/QuickTask.Bottom"

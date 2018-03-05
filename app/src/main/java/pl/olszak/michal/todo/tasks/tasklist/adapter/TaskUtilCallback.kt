@@ -24,7 +24,6 @@ class TaskUtilCallback constructor(private val oldList: List<Task>,
         val new = newList[newItemPosition]
 
         return old.title == new.title &&
-                old.description == new.description &&
                 old.priority == new.priority &&
                 old.done == new.done
     }

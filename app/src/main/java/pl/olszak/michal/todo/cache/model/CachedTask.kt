@@ -12,7 +12,7 @@ import pl.olszak.michal.todo.data.model.Priority
  */
 @Entity(tableName = DatabaseConstants.CACHED_TASK_TABLE)
 data class CachedTask(val title: String,
-                      val description: String? = null,
+                      val description: String = "",
                       val done: Boolean = false,
                       val repeating: Boolean = false,
                       val priority: Priority = Priority.LOW,

@@ -14,22 +14,26 @@ import javax.inject.Inject
 class TaskStoreImpl @Inject constructor(private val taskDao: TaskDao,
                                         private val converter: TaskConverter) : TaskStore {
 
+    /*todo: the sorting operation should be done somewhere else, for e.g add parameter according
+    *       to which category it could be sorted, ideally the use case could provide comparator
+    *       object to which store could obey
+    */
     override fun getAllTasks(): Flowable<List<Task>> {
         return Flowable.defer {
             taskDao.getAllCachedTasks()
         }.map {
-                    it.map {
-                        converter.convertTo(it)
-                    }
-                }
+            it.map {
+                converter.convertTo(it)
+            }.sorted()
+        }
     }
 
     override fun getTaskById(id: Long): Flowable<Task> {
         return Flowable.defer {
             taskDao.getCachedTaskById(id)
         }.map {
-                    converter.convertTo(it)
-                }
+            converter.convertTo(it)
+        }
     }
 
     override fun clearAllTasks(): Completable {

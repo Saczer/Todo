@@ -2,7 +2,9 @@ package pl.olszak.michal.todo.tasks.tasklist
 
 import android.arch.lifecycle.ViewModelProvider
 import android.databinding.DataBindingUtil
+import android.databinding.Observable
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -26,16 +28,27 @@ import javax.inject.Inject
 class TasksListFragment : Fragment(), Injectable {
 
     private lateinit var binding: FragmentAllTasksBinding
+    private lateinit var viewModel: TasksListViewModel
     private val adapter: TaskAdapter = TaskAdapter()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private val snackbarCallback = object : Observable.OnPropertyChangedCallback() {
+        override fun onPropertyChanged(p0: Observable?, p1: Int) {
+            if (viewModel.snackbarMessage.get() != 0) {
+                Snackbar.make(binding.root, viewModel.snackbarMessage.get(), Snackbar.LENGTH_LONG).show()
+                viewModel.snackbarMessage.set(0)
+            }
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val viewModel: TasksListViewModel = viewModelProvider(viewModelFactory)
+        viewModel = viewModelProvider(viewModelFactory)
         binding.vm = viewModel
         viewModel.start()
+        viewModel.snackbarMessage.addOnPropertyChangedCallback(snackbarCallback)
 
         val swipeHandler = object : SwipeToDoneCallback(context) {
 
@@ -52,7 +65,7 @@ class TasksListFragment : Fragment(), Injectable {
                 val position = viewHolder.adapterPosition
                 val task = adapter.getBindingForPosition(position)
                 adapter.removeItem(position)
-                viewModel.markTaskAsChecked(task)
+                viewModel.completeTask(task)
             }
         }
 
@@ -74,6 +87,11 @@ class TasksListFragment : Fragment(), Injectable {
             val itemTouchHelper = ItemTouchHelper(swipeHandler)
             itemTouchHelper.attachToRecyclerView(it)
         }
+    }
+
+    override fun onDestroy() {
+        viewModel.snackbarMessage.removeOnPropertyChangedCallback(snackbarCallback)
+        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

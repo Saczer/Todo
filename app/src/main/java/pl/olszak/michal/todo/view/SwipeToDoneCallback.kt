@@ -17,10 +17,10 @@ import pl.olszak.michal.todo.R
  */
 abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-    private val checkIcon: Drawable
+    private val checkIcon: Drawable = ContextCompat.getDrawable(context, R.drawable.check)
     private val intrinsicWidth: Int
     private val intrinsicHeight: Int
-    private val backgroundColor = Color.WHITE
+    private val backgroundColor = ContextCompat.getColor(context, R.color.green)
     private val background = ColorDrawable()
 
     private var buttonState: ButtonState = ButtonState.GONE
@@ -29,11 +29,6 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
         background.apply {
             color = backgroundColor
         }
-
-        val drawable = ContextCompat.getDrawable(context, R.drawable.check)
-        val wrapped = DrawableCompat.wrap(drawable)
-        DrawableCompat.setTint(wrapped, ContextCompat.getColor(context, R.color.green))
-        checkIcon = wrapped
         intrinsicWidth = checkIcon.intrinsicWidth
         intrinsicHeight = checkIcon.intrinsicHeight
     }
