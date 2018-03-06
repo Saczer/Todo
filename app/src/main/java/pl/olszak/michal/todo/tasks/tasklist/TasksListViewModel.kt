@@ -40,17 +40,9 @@ class TasksListViewModel @Inject constructor(
     }
 
     fun completeTask(task: Task) {
-        //todo: could be done in model, with returned new instance of task
-        val altered = Task(
-                title = task.title,
-                description = task.description,
-                done = true,
-                id = task.id,
-                priority = task.priority,
-                repeating = task.repeating,
-                time = task.time)
+        val completed = task.complete()
 
-        disposables.add(alterTask.execute(altered)
+        disposables.add(alterTask.execute(completed)
                 .doOnSubscribe {
                     loading.set(true)
                 }.subscribe({
@@ -60,6 +52,8 @@ class TasksListViewModel @Inject constructor(
                     snackbarMessage.set(R.string.error_complete_task)
                 }))
     }
+
+
 
     fun clearAllCompletedTasks() {
         disposables.add(clearAllCompletedTasks.execute()

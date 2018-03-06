@@ -14,11 +14,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.olszak.michal.todo.R
-import pl.olszak.michal.todo.databinding.FragmentAllTasksBinding
+import pl.olszak.michal.todo.databinding.FragmentTaskListBinding
 import pl.olszak.michal.todo.di.Injectable
 import pl.olszak.michal.todo.tasks.tasklist.adapter.TaskAdapter
 import pl.olszak.michal.todo.util.viewModelProvider
-import pl.olszak.michal.todo.view.SwipeToDoneCallback
+import pl.olszak.michal.todo.view.TaskSwipeCallback
 import javax.inject.Inject
 
 /**
@@ -27,7 +27,7 @@ import javax.inject.Inject
  */
 class TasksListFragment : Fragment(), Injectable {
 
-    private lateinit var binding: FragmentAllTasksBinding
+    private lateinit var binding: FragmentTaskListBinding
     private lateinit var viewModel: TasksListViewModel
     private val adapter: TaskAdapter = TaskAdapter()
 
@@ -50,7 +50,7 @@ class TasksListFragment : Fragment(), Injectable {
         viewModel.start()
         viewModel.snackbarMessage.addOnPropertyChangedCallback(snackbarCallback)
 
-        val swipeHandler = object : SwipeToDoneCallback(context) {
+        val swipeHandler = object : TaskSwipeCallback(context) {
 
             override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
                 val position = viewHolder.adapterPosition
@@ -96,7 +96,7 @@ class TasksListFragment : Fragment(), Injectable {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_all_tasks,
+                R.layout.fragment_task_list,
                 container,
                 false)
 

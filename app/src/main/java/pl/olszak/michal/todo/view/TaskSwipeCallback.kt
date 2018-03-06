@@ -2,11 +2,9 @@ package pl.olszak.michal.todo.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import pl.olszak.michal.todo.R
@@ -15,7 +13,8 @@ import pl.olszak.michal.todo.R
  * Created by molszak.
  * 25.02.2018
  */
-abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+//todo: create second and third action for the swipe helper depending on the task state
+abstract class TaskSwipeCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val checkIcon: Drawable = ContextCompat.getDrawable(context, R.drawable.check)
     private val intrinsicWidth: Int
@@ -23,7 +22,7 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
     private val backgroundColor = ContextCompat.getColor(context, R.color.green)
     private val background = ColorDrawable()
 
-    private var buttonState: ButtonState = ButtonState.GONE
+    private var rightButtonState: ButtonState = ButtonState.GONE
 
     init {
         background.apply {
@@ -38,10 +37,10 @@ abstract class SwipeToDoneCallback(context: Context) : ItemTouchHelper.SimpleCal
     }
 
     override fun onChildDraw(canvas: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
-        buttonState = if (dX < -intrinsicWidth) ButtonState.VISIBLE else ButtonState.GONE
+        rightButtonState = if (dX < -intrinsicWidth) ButtonState.VISIBLE else ButtonState.GONE
 
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            if (buttonState == ButtonState.VISIBLE) {
+            if (rightButtonState == ButtonState.VISIBLE) {
                 drawCheck(canvas, viewHolder, dX)
             }
         }

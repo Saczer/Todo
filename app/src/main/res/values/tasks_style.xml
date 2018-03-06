@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TaskItem" />
-
     <style name="Task" />
-
-    <style name="TaskItem.Title">
-        <item name="android:gravity">left</item>
-        <item name="android:textSize">@dimen/text_size_medium</item>
-        <item name="android:fontFamily">sans-serif-bold</item>
-        <item name="android:textColor">@color/blackOpacity87</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
 
     <style name="Task.Fab">
         <item name="elevation">@dimen/tasks_fab_elevation</item>

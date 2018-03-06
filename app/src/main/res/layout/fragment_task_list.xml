@@ -15,16 +15,16 @@
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
-            style="@style/AllTasks.Appbar"
+            style="@style/TaskList.Appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                style="@style/AllTasks.Toolbar"
+                style="@style/TaskList.Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/all_tasks_toolbar_height"
+                android:layout_height="@dimen/task_list_toolbar_height"
                 app:title="@string/all_tasks" />
 
         </android.support.design.widget.AppBarLayout>

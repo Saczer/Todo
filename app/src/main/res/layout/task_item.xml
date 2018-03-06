@@ -13,14 +13,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tasks_item_height">
+        android:layout_height="@dimen/task_list_item_height">
 
         <pl.olszak.michal.todo.view.CircleView
             android:id="@+id/circle"
-            android:layout_width="@dimen/tasks_item_circle_size"
-            android:layout_height="@dimen/tasks_item_circle_size"
-            android:layout_marginStart="@dimen/tasks_item_margin"
-            android:layout_marginTop="@dimen/tasks_item_margin_small"
+            android:layout_width="@dimen/task_list_item_circle_size"
+            android:layout_height="@dimen/task_list_item_circle_size"
+            android:layout_marginStart="@dimen/task_list_item_margin"
+            android:layout_marginTop="@dimen/task_list_item_margin_small"
             android:visibility="@{!obj.done}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,13 +28,13 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/TaskItem.Title"
+            style="@style/TaskList.Item.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/tasks_item_margin_small"
-            android:layout_marginEnd="@dimen/tasks_item_margin"
-            android:layout_marginStart="@dimen/tasks_item_margin"
-            android:layout_marginTop="@dimen/tasks_item_margin_small"
+            android:layout_marginBottom="@dimen/task_list_item_margin_small"
+            android:layout_marginEnd="@dimen/task_list_item_margin"
+            android:layout_marginStart="@dimen/task_list_item_margin"
+            android:layout_marginTop="@dimen/task_list_item_margin_small"
             android:text="@{obj.title}"
             app:done="@{obj.done}"
             app:layout_constraintBottom_toBottomOf="parent"

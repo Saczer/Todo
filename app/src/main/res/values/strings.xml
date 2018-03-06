@@ -3,7 +3,7 @@
     <string name="create_description" translatable="false">Create task</string>
     <string name="tasksList">Tasks</string>
     <string name="settings">Settings</string>
-    <string name="all_tasks">All tasksList</string>
+    <string name="all_tasks">All tasks</string>
     <string name="preferences">Preferences</string>
     <string name="theme">Theme</string>
     <string name="quick_task_hint">Enter title of task</string>

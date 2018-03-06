@@ -6,5 +6,4 @@ import java.util.concurrent.Executor
  * @author molszak
  *         created on 18.01.2018.
  */
-interface ThreadExecutor : Executor {
-}
+interface ThreadExecutor : Executor

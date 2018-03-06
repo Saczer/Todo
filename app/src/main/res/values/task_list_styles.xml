@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TaskList" />
+
+    <style name="TaskList.Item" />
+
+    <style name="TaskList.Item.Title">
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/blackOpacity87</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TaskList.Appbar">
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/task_list_toolbar_elevation</item>
+    </style>
+
+    <style name="TaskList.Toolbar">
+        <item name="titleTextColor">?android:attr/colorPrimary</item>
+        <item name="titleTextAppearance">@style/TaskList.Toolbar.Title</item>
+    </style>
+
+    <style name="TaskList.Toolbar.Title">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+</resources>

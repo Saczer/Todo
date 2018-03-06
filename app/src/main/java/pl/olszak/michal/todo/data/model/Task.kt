@@ -15,6 +15,14 @@ data class Task(var id: Long? = null,
                 val repeating: Boolean = false,
                 val time: Instant? = null) : Binding, Comparable<Task> {
 
+    fun complete(): Task {
+        return Task(id, title, description, true, priority, repeating, time)
+    }
+
+    fun uncomplete(): Task {
+        return Task(id, title, description, false, priority, repeating, time)
+    }
+
     override fun compareTo(other: Task): Int {
         if (other.done == this.done) {
             if (this.id != null && other.id != null) {

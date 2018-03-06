@@ -16,9 +16,12 @@ data class CachedTask(val title: String,
                       val done: Boolean = false,
                       val repeating: Boolean = false,
                       val priority: Priority = Priority.LOW,
-                      val time: Instant? = null) {
+                      val time: Instant? = null) : Comparable<CachedTask> {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 
+    override fun compareTo(other: CachedTask): Int {
+        return (id!! - other.id!!).toInt()
+    }
 }

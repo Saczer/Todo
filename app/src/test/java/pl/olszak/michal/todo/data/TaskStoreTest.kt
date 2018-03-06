@@ -52,7 +52,7 @@ open class TaskStoreTest {
         val testObserver = taskStore.getAllTasks().test()
         testObserver.assertValue { it.size == cachedTasks.size }
                 .assertValue {
-                    it.zip(cachedTasks)
+                    it.zip(cachedTasks.sorted())
                             .none { it.first.id != it.second.id }
                 }
     }
