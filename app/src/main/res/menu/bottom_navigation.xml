@@ -6,7 +6,7 @@
         android:id="@+id/task_list"
         android:enabled="true"
         android:icon="@mipmap/ic_checkbox_marked_circle_black_24dp"
-        android:title="@string/tasksList"
+        android:title="@string/tasks"
         app:showAsAction="ifRoom" />
 
     <item

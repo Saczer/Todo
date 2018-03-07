@@ -54,10 +54,11 @@ class TasksListViewModel @Inject constructor(
     }
 
 
-
     fun clearAllCompletedTasks() {
         disposables.add(clearAllCompletedTasks.execute()
-                .subscribe())
+                .subscribe({
+                    snackbarMessage.set(R.string.task_removal_success)
+                }))
     }
 
 
