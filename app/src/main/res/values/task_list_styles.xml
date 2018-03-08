@@ -19,6 +19,15 @@
         <item name="android:elevation">@dimen/task_list_toolbar_elevation</item>
     </style>
 
+    <style name="TaskList.Empty" />
+
+    <style name="TaskList.Empty.Description">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textColor">@color/blackOpacity38</item>
+    </style>
+
     <style name="TaskList.Toolbar">
         <item name="titleTextColor">?android:attr/colorPrimary</item>
         <item name="titleTextAppearance">@style/TaskList.Toolbar.Title</item>

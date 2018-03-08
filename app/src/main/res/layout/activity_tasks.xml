@@ -30,7 +30,6 @@
                 android:layout_margin="@dimen/tasks_fab_margin"
                 android:onClick="@{vm::onClickAdd}"
                 android:src="@mipmap/ic_plus_white_24dp"
-                app:layout_behavior="pl.olszak.michal.todo.view.behavior.ScrollAwareFabBehavior"
                 android:visibility="@{vm.actionVisibility}" />
 
         </android.support.design.widget.CoordinatorLayout>

@@ -5,28 +5,22 @@ import android.databinding.BindingMethod
 import android.databinding.BindingMethods
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import org.threeten.bp.Instant
 import org.threeten.bp.format.DateTimeFormatter
-import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Priority
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.tasks.tasklist.adapter.TaskAdapter
-import pl.olszak.michal.todo.util.extension.logE
 import pl.olszak.michal.todo.util.tools.TodoUtils
 import pl.olszak.michal.todo.view.CircleView
 import pl.olszak.michal.todo.view.ThemeGroup
 import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
-import java.text.NumberFormat
-import java.text.ParseException
 
 /**
  * Created by molszak.
@@ -68,6 +62,13 @@ fun bindVisibility(view: FloatingActionButton, visibility: Boolean?) {
 fun bindVisibility(view: BottomNavigationView, animatedVisibility: Boolean?) {
     animatedVisibility?.let {
         TodoAnimationUtils.animateVisibility(view, it)
+    }
+}
+
+@BindingAdapter(value = ["android:visibility"], requireAll = false)
+fun bindVisibility(view: View, visibility: Boolean?) {
+    visibility?.let {
+        view.visibility = if (it) View.VISIBLE else View.GONE
     }
 }
 

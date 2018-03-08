@@ -3,7 +3,7 @@
     <dimen name="task_list_toolbar_height">@dimen/toolbar_height</dimen>
     <dimen name="task_list_toolbar_elevation">4dp</dimen>
     <dimen name="task_list_item_height">48dp</dimen>
-    <dimen name="task_list_item_margin">16dp</dimen>
-    <dimen name="task_list_item_margin_small">8dp</dimen>
+    <dimen name="task_list_margin">16dp</dimen>
+    <dimen name="task_list_margin_small">8dp</dimen>
     <dimen name="task_list_item_circle_size">24dp</dimen>
 </resources>

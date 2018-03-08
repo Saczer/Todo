@@ -31,10 +31,31 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/tasksList"
-            android:layout_below="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/appBar"
+            android:visibility="@{!vm.tasks.isEmpty()}"
             app:tasks="@{vm.tasks}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appBar"
+            android:visibility="@{vm.tasks.isEmpty()}">
+
+            <TextView
+                style="@style/TaskList.Empty.Description"
+                android:layout_centerInParent="true"
+                android:id="@+id/description"
+                android:layout_margin="@dimen/task_list_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_tasks" />
+
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
 

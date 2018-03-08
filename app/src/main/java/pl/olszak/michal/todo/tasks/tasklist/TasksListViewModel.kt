@@ -23,9 +23,10 @@ class TasksListViewModel @Inject constructor(
         private val deleteTask: DeleteTask,
         private val clearAllCompletedTasks: ClearAllCompletedTasks) : BaseViewModel() {
 
+    //todo: is this loading necessary ? the callbacks will come instantly until I will not integrate with some outer source such as firebase
     val loading: ObservableBoolean = ObservableBoolean(false)
     val tasks: ObservableList<Task> = ObservableArrayList()
-    val snackbarMessage: ObservableInt = ObservableInt()
+    val message: ObservableInt = ObservableInt()
 
     override fun start() {
         tasks.clear()
@@ -37,7 +38,7 @@ class TasksListViewModel @Inject constructor(
                     tasks.clear()
                     tasks.addAll(it)
                 }, {
-                    snackbarMessage.set(R.string.error_task_list)
+                    message.set(R.string.error_task_list)
                 }))
     }
 
@@ -49,33 +50,32 @@ class TasksListViewModel @Inject constructor(
                     loading.set(true)
                 }.subscribe({
                     loading.set(false)
-                    snackbarMessage.set(R.string.task_completed)
+                    message.set(R.string.task_completed)
                 }, {
-                    snackbarMessage.set(R.string.error_complete_task)
+                    message.set(R.string.error_complete_task)
                 }))
     }
 
-    fun clearTask(task: Task){
-        if(task.done){
+    fun clearTask(task: Task) {
+        if (task.done) {
             disposables.add(deleteTask.execute(task)
                     .doOnSubscribe {
                         loading.set(true)
                     }
                     .subscribe({
                         loading.set(false)
-                        snackbarMessage.set(R.string.task_removed)
+                        message.set(R.string.task_removed)
                     }, {
-                        snackbarMessage.set(R.string.error_remove_task)
+                        message.set(R.string.error_remove_task)
                     })
             )
         }
     }
 
-
     fun clearAllCompletedTasks() {
         disposables.add(clearAllCompletedTasks.execute()
                 .subscribe({
-                    snackbarMessage.set(R.string.task_removal_success)
+                    message.set(R.string.task_removal_success)
                 }))
     }
 

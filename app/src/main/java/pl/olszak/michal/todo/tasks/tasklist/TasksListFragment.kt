@@ -34,11 +34,11 @@ class TasksListFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val snackbarCallback = object : Observable.OnPropertyChangedCallback() {
+    private val messageCallback = object : Observable.OnPropertyChangedCallback() {
         override fun onPropertyChanged(p0: Observable?, p1: Int) {
-            if (viewModel.snackbarMessage.get() != 0) {
-                Snackbar.make(binding.root, viewModel.snackbarMessage.get(), Snackbar.LENGTH_LONG).show()
-                viewModel.snackbarMessage.set(0)
+            if (viewModel.message.get() != 0) {
+                Snackbar.make(binding.root, viewModel.message.get(), Snackbar.LENGTH_LONG).show()
+                viewModel.message.set(0)
             }
         }
     }
@@ -48,7 +48,7 @@ class TasksListFragment : Fragment(), Injectable {
         viewModel = viewModelProvider(viewModelFactory)
         binding.vm = viewModel
         viewModel.start()
-        viewModel.snackbarMessage.addOnPropertyChangedCallback(snackbarCallback)
+        viewModel.message.addOnPropertyChangedCallback(messageCallback)
 
         val swipeHandler = object : TaskSwipeCallback(context) {
 
@@ -95,7 +95,7 @@ class TasksListFragment : Fragment(), Injectable {
     }
 
     override fun onDestroy() {
-        viewModel.snackbarMessage.removeOnPropertyChangedCallback(snackbarCallback)
+        viewModel.message.removeOnPropertyChangedCallback(messageCallback)
         super.onDestroy()
     }
 

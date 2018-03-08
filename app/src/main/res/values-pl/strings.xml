@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="no_tasks">Wszystkie zadania ukończone,\n miłego dnia 😉</string>
+
     <string name="tasks">Zadania</string>
     <string name="settings">Ustawienia</string>
     <string name="all_tasks">Wszystkie zadania</string>
