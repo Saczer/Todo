@@ -9,9 +9,11 @@
     <string name="quick_task_hint">Enter title of task</string>
     <string name="remove_completed">Remove completed tasks</string>
     <string name="task_removal_success">Completed tasks removed</string>
+    <string name="task_removed">Task cleared</string>
 
     <string name="task_completed">Task completed</string>
 
+    <string name="error_remove_task">Could not remove task</string>
     <string name="error_complete_task">Could not mark task as done</string>
     <string name="error_task_list">Could not download list of tasks</string>
 </resources>

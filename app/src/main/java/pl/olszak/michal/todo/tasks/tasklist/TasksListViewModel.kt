@@ -8,6 +8,7 @@ import pl.olszak.michal.todo.R
 import pl.olszak.michal.todo.data.model.Task
 import pl.olszak.michal.todo.domain.interactor.task.AlterTask
 import pl.olszak.michal.todo.domain.interactor.task.ClearAllCompletedTasks
+import pl.olszak.michal.todo.domain.interactor.task.DeleteTask
 import pl.olszak.michal.todo.domain.interactor.task.GetAllTasks
 import pl.olszak.michal.todo.viewmodel.BaseViewModel
 import javax.inject.Inject
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class TasksListViewModel @Inject constructor(
         private val getAllTasks: GetAllTasks,
         private val alterTask: AlterTask,
+        private val deleteTask: DeleteTask,
         private val clearAllCompletedTasks: ClearAllCompletedTasks) : BaseViewModel() {
 
     val loading: ObservableBoolean = ObservableBoolean(false)
@@ -51,6 +53,22 @@ class TasksListViewModel @Inject constructor(
                 }, {
                     snackbarMessage.set(R.string.error_complete_task)
                 }))
+    }
+
+    fun clearTask(task: Task){
+        if(task.done){
+            disposables.add(deleteTask.execute(task)
+                    .doOnSubscribe {
+                        loading.set(true)
+                    }
+                    .subscribe({
+                        loading.set(false)
+                        snackbarMessage.set(R.string.task_removed)
+                    }, {
+                        snackbarMessage.set(R.string.error_remove_task)
+                    })
+            )
+        }
     }
 
 

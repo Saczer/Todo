@@ -8,9 +8,11 @@
     <string name="quick_task_hint">Wpisz tytuł zadania</string>
     <string name="remove_completed">Usuń ukończone zadania</string>
     <string name="task_removal_success">Usunięto ukończone zadania</string>
+    <string name="task_removed">Zadanie usunięte</string>
 
     <string name="task_completed">Ukończono zadanie</string>
 
+    <string name="error_remove_task">Nie można było usunąć zadania</string>
     <string name="error_complete_task">Nie można było oznaczyć zadania jako ukończone</string>
     <string name="error_task_list">Nie można było pobrać listy zadań</string>
 </resources>

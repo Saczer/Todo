@@ -55,17 +55,22 @@ class TasksListFragment : Fragment(), Injectable {
             override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
                 val position = viewHolder.adapterPosition
                 val task = adapter.getBindingForPosition(position)
-                if (task.done) {
-                    return 0
+                return if (task.done) {
+                    ItemTouchHelper.RIGHT
+                } else {
+                    ItemTouchHelper.LEFT
                 }
-                return super.getSwipeDirs(recyclerView, viewHolder)
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val task = adapter.getBindingForPosition(position)
                 adapter.removeItem(position)
-                viewModel.completeTask(task)
+                if (direction == ItemTouchHelper.LEFT) {
+                    viewModel.completeTask(task)
+                } else {
+                    viewModel.clearTask(task)
+                }
             }
         }
 
