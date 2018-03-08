@@ -4,23 +4,23 @@
     android:layout_height="wrap_content">
 
     <pl.olszak.michal.todo.view.ThemeView
-        android:id="@+id/orange"
+        android:id="@+id/orange_theme"
         android:layout_width="@dimen/themegroup_view_size"
         android:layout_height="@dimen/themegroup_view_size"
-        android:layout_marginEnd="@dimen/themegroup_margin"
-        android:layout_marginStart="@dimen/themegroup_margin" />
+        android:layout_marginEnd="@dimen/theme_group_margin"
+        android:layout_marginStart="@dimen/theme_group_margin" />
 
     <pl.olszak.michal.todo.view.ThemeView
-        android:id="@+id/pink"
+        android:id="@+id/pink_theme"
         android:layout_width="@dimen/themegroup_view_size"
         android:layout_height="@dimen/themegroup_view_size"
-        android:layout_marginEnd="@dimen/themegroup_margin" />
+        android:layout_marginEnd="@dimen/theme_group_margin" />
 
     <pl.olszak.michal.todo.view.ThemeView
-        android:id="@+id/black"
+        android:id="@+id/black_theme"
         android:layout_width="@dimen/themegroup_view_size"
         android:layout_height="@dimen/themegroup_view_size"
-        android:layout_marginEnd="@dimen/themegroup_margin" />
+        android:layout_marginEnd="@dimen/theme_group_margin" />
 
 
 </merge>

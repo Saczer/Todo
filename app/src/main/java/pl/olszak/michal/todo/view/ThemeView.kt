@@ -110,7 +110,7 @@ class ThemeView @JvmOverloads constructor(
         state?.let {
             if (it is Bundle) {
                 checked = it.getBoolean(CHECKED)
-                super.onRestoreInstanceState(it.getBundle(STATE))
+                super.onRestoreInstanceState(it.getParcelable(STATE))
             }
         }
     }

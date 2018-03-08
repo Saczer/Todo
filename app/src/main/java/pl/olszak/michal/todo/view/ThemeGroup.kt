@@ -30,19 +30,19 @@ class ThemeGroup @JvmOverloads constructor(
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.theme_group, this, true)
 
-        orange = findViewById(R.id.orange)
+        orange = findViewById(R.id.orange_theme)
         orange.apply {
             themePalette = ThemePalette.ORANGE
             listener = this@ThemeGroup
         }
 
-        pink = findViewById(R.id.pink)
+        pink = findViewById(R.id.pink_theme)
         pink.apply {
             themePalette = ThemePalette.PINK
             listener = this@ThemeGroup
         }
 
-        black = findViewById(R.id.black)
+        black = findViewById(R.id.black_theme)
         black.apply {
             themePalette = ThemePalette.BLACK
             listener = this@ThemeGroup
