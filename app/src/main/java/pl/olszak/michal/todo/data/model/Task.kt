@@ -15,12 +15,8 @@ data class Task(var id: Long? = null,
                 val repeating: Boolean = false,
                 val time: Instant? = null) : Binding {
 
-    fun complete(): Task {
-        return Task(id, title, description, true, priority, repeating, time)
-    }
-
-    fun uncomplete(): Task {
-        return Task(id, title, description, false, priority, repeating, time)
+    fun mark(complete : Boolean): Task {
+        return Task(id, title, description, complete, priority, repeating, time)
     }
 
     class TaskDoneComparator : Comparator<Task> {

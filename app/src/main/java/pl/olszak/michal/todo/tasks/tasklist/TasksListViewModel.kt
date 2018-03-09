@@ -43,7 +43,7 @@ class TasksListViewModel @Inject constructor(
     }
 
     fun completeTask(task: Task) {
-        val completed = task.complete()
+        val completed = task.mark(true)
 
         disposables.add(alterTask.execute(completed)
                 .doOnSubscribe {
