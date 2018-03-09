@@ -24,7 +24,7 @@ class TaskStoreImpl @Inject constructor(private val taskDao: TaskDao,
         }.map {
             it.map {
                 converter.convertTo(it)
-            }.sorted()
+            }.sortedWith(taskDoneComparator)
         }
     }
 
@@ -62,5 +62,10 @@ class TaskStoreImpl @Inject constructor(private val taskDao: TaskDao,
             taskDao.insertCachedTask(converter.convertFrom(task))
             Completable.complete()
         }
+    }
+
+    companion object {
+        private val taskDoneComparator = Task.TaskDoneComparator()
+        private val taskDoneReverseComparator = Task.TaskDoneReverseComparator()
     }
 }
