@@ -21,13 +21,14 @@ import pl.olszak.michal.todo.util.tools.TodoUtils
 import pl.olszak.michal.todo.view.CircleView
 import pl.olszak.michal.todo.view.ThemeGroup
 import pl.olszak.michal.todo.view.animation.TodoAnimationUtils
+import pl.olszak.michal.todo.view.preferences.ThemePreference
 
 /**
  * Created by molszak.
  * 10.02.2018
  */
 @BindingMethods(value = [
-    BindingMethod(type = ThemeGroup::class,
+    BindingMethod(type = ThemePreference::class,
             attribute = "themePalette",
             method = "setTheme")
 ])
@@ -35,7 +36,7 @@ class BindingMethods
 
 
 @BindingAdapter(value = ["themePaletteChange"], requireAll = false)
-fun bindThemePaletteChange(view: ThemeGroup, listener: ThemeGroup.OnChangeTheme?) {
+fun bindThemePaletteChange(view: ThemePreference, listener: ThemeGroup.OnChangeTheme?) {
     listener?.let {
         if (view.onThemeChangeListener != null && view.onThemeChangeListener == it) {
             return

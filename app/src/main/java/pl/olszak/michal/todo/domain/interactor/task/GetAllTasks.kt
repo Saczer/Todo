@@ -20,5 +20,4 @@ class GetAllTasks @Inject constructor(
         return taskStore.getAllTasks()
     }
 
-
 }

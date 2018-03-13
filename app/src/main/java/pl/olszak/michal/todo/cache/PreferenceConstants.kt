@@ -8,7 +8,7 @@ import pl.olszak.michal.todo.cache.model.ThemePalette
  */
 object Keys {
 
-    const val THEME = "theme_preference"
+    const val THEME = "preference_theme"
 
 }
 

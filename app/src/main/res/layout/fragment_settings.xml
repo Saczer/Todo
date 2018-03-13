@@ -14,8 +14,8 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
-            style="@style/Settings.Appbar"
             android:id="@+id/toolbar"
+            style="@style/Settings.Appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -43,28 +43,13 @@
                     android:layout_height="@dimen/settings_item_height"
                     app:pt_title="@string/preferences" />
 
-                <RelativeLayout
+                <pl.olszak.michal.todo.view.preferences.ThemePreference
                     android:layout_width="match_parent"
+                    android:gravity="center_vertical"
                     android:layout_height="@dimen/settings_item_height"
-                    android:gravity="center_vertical">
+                    app:themePalette="@{vm.observableTheme}"
+                    app:themePaletteChange="@{vm::onThemeSelected}" />
 
-                    <TextView
-                        style="@style/Settings.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="@dimen/settings_margin"
-                        android:text="@string/theme" />
-
-                    <pl.olszak.michal.todo.view.ThemeGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/settings_margin"
-                        app:themePalette="@{vm.observableTheme}"
-                        app:themePaletteChange="@{vm::onThemeSelected}" />
-
-                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
 
