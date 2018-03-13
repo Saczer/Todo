@@ -42,6 +42,10 @@ class TaskAdapter : SingleBindingRecyclerAdapter<Task>(R.layout.task_item) {
     }
 
     override fun onViewHolderBound(itemView: View, binding: Task, position: Int) {
+        itemView.setOnClickListener {
+            binding.taskOptionsVisible = !binding.taskOptionsVisible
+            notifyItemChanged(position)
+        }
     }
 
 }

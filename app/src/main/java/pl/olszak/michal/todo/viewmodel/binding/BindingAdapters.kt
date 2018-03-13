@@ -111,3 +111,10 @@ fun bindTaskList(view: RecyclerView, items: List<Task>) {
     val adapter: TaskAdapter? = view.adapter as? TaskAdapter?
     adapter?.setItems(items)
 }
+
+@BindingAdapter(value = ["android:layout_height"])
+fun bindLayoutHeight(view: View, height : Float){
+    val params = view.layoutParams
+    params.height = height.toInt()
+    view.layoutParams = params
+}

@@ -13,7 +13,8 @@ data class Task(var id: Long? = null,
                 val done: Boolean = false,
                 val priority: Priority = Priority.LOW,
                 val repeating: Boolean = false,
-                val time: Instant? = null) : Binding {
+                val time: Instant? = null,
+                var taskOptionsVisible : Boolean = false) : Binding {
 
     fun mark(complete : Boolean): Task {
         return Task(id, title, description, complete, priority, repeating, time)
