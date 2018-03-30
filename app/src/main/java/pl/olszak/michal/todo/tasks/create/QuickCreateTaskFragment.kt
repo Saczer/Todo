@@ -54,7 +54,7 @@ class QuickCreateTaskFragment : Fragment(), Injectable {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_quick_task,
                 container,
